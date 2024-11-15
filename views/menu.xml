@@ -1,14 +1,14 @@
-<!--
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Top menu item -->
-  <menuitem name="Gym" id="main_gym_menu" groups="group_gym_manager"/>
 
-  <!-- menu categories -->
-  <menuitem name="Gym" id="gym_menu" groups="group_gym_manager" parent="main_gym_menu"/>
+  <menuitem
+        id="upocargo_root_menu"
+        name="UPOCARGO"
+        groups="group_upocargo_manager"/>
 
   <!-- actions -->
-  <menuitem name="Classes" id="classes_menu" parent="gym_menu" groups="group_gym_manager" action="classes_list_action"/>
-  <menuitem name="Users" id="users_menu" parent="gym_menu" groups="group_gym_manager" action="users_list_action"/>
-  <menuitem name="Instructores" id="instructores_menu" parent="gym_menu" groups="group_gym_manager" action="instructores_list_action"/>
+  <menuitem id="upocargos_clientes_menu" name="Clientes" parent="upocargo_root_menu" groups="group_upocargo_manager" action="upocargo_clientes_action"/>
+  <menuitem id="upocargo_mudanza_menu" name="Mudanzas" parent="upocargo_root_menu" groups="group_upocargo_manager" action="upocargo_mudanzas_action"/>
+  <menuitem id="upocargo_almacenamiento_menu" name="Almacenamiento" parent="upocargo_root_menu" groups="group_upocargo_manager" action="upocargo_almacenamiento_action"/>
+
 </odoo>
--->

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_upocargo_mudanza_tree" model="ir.ui.view">
+        <field name="name">upocargo.mudanza.tree</field>
+        <field name="model">upocargo.mudanza</field>
+        <field name="arch" type="xml">
+            <tree string="Mudanzas UPOCARGO">
+                <field name="id_mudanza"/>
+                <field name="fecha"/>
+                <field name="dirOrigen"/>
+                <field name="dirDestino"/>
+                <field name="estado"/>
+                <field name="cliente"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_upocargo_mudanza_form" model="ir.ui.view">
+        <field name="name">upocargo.mudanza.form</field>
+        <field name="model">upocargo.mudanza</field>
+        <field name="arch" type="xml">
+            <form string="Mudanza">
+                <sheet>
+                    <group>
+                        <field name="id_mudanza" />
+                        <field name="fecha" />
+                        <field name="dirOrigen" />
+                        <field name="dirDestino" />
+                        <field name="estado" />
+                    </group>
+                    <group>
+                        <field name="cliente" />
+                    </group>
+                    <!--
+                    <notebook>
+                        <page name="Vehiculos">
+                            <field name="vehiculos">
+                                <tree>
+                                    <field name="" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="Empleados">
+                            <field name="empleados">
+                                <tree>
+                                    <field name="" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    -->
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_upocargo_mudanza_calendar" model="ir.ui.view">
+        <field name="name">upocargo.mudanza.calendar</field>
+        <field name="model">upocargo.mudanza</field>
+        <field name="arch" type="xml">
+            <calendar string="Mudanzas" color="estado" date_start="fecha" date_stop="fecha" mode="month">
+                <field name="id_mudanza" />
+                <field name="cliente" />
+            </calendar>
+        </field>
+    </record>
+
+    <record id="view_upocargo_mudanza_search" model="ir.ui.view">
+        <field name="name">upocargo.mudanza.search</field>
+        <field name="model">upocargo.mudanza</field>
+        <field name="arch" type="xml">
+            <search>
+                <!--
+                <filter name="search_capacity" string="Capacity > 10" domain="[('capacity','>',10)]" />
+                <separator orientation="vertical" />
+                <group expand="0" string="Agrupar por...">
+                    <filter name="group_by_instructor" string="Instructor" context="{'group_by':'instructores_id'}" />
+                </group>
+            -->
+            </search>
+        </field>
+    </record>
+
+    <record id="upocargo_mudanzas_action" model="ir.actions.act_window">
+        <field name="name">Mudanzas UPOCARGO</field>
+        <field name="res_model">upocargo.mudanza</field>
+        <field name="view_mode">calendar,tree,form</field>
+    </record>
+</odoo>
