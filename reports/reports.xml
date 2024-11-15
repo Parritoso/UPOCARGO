@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+<odoo>
+    <!-- E2. Esquema basico -->
+    <record id="report_gym_classes_report" model="ir.actions.report">
+        <field name="name">Classes report</field>
+        <field name="model">gym.classes</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">gym.gym_classes_template</field>
+        <field name="binding_model_id" ref="model_gym_classes"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- E3 -->
+    <record id="report_gym_users_report" model="ir.actions.report">
+        <field name="name">Users report</field>
+        <field name="model">gym.users</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">gym.gym_users_template</field>
+        <field name="binding_model_id" ref="model_gym_users"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>
+    -->

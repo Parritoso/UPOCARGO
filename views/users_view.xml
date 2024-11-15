@@ -1,0 +1,49 @@
+<!--
+<odoo>
+  <record id="gym_users_form_view" model="ir.ui.view">
+    <field name="name">gym.users.form</field>
+    <field name="model">gym.users</field>
+    <field name="arch" type="xml">
+      <form string="Users">
+        <header>
+          <button name="btn_submit_to_admitido" string="Admitir" type="object" class="oe_highlight" />
+          <button name="btn_submit_to_cancelado" string="Cancelar" type="object" class="oe_highlight" />
+          <button name="btn_submit_to_solicitado" string="Solicitar" type="object" class="oe_highlight" />
+        </header>
+        <sheet layout="auto">
+          <group>
+            <field name="idcard" />
+            <field name="name" />
+            <field name="state" widget="statusbar" />
+          </group>
+          <group>
+            <field name="photo" nolabel="1" widget="image" class="oe_avatar" />
+          </group>
+          <field name="classes_ids" widget="many2many" />
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="gym_users_tree_view" model="ir.ui.view">
+    <field name="name">gym.users.tree</field>
+    <field name="model">gym.users</field>
+    <field name="arch" type="xml">
+      <tree string="tree_string">
+        <field name="idcard" />
+        <field name="name" />
+        <field name="state" />
+      </tree>
+    </field>
+  </record>
+
+  <record id="users_list_action" model="ir.actions.act_window">
+    <field name="name">Users</field>
+    <field name="res_model">gym.users</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+      <p class="o_view_nocontent_smiling_face">Create the first user</p>
+    </field>
+  </record>
+</odoo>
+-->

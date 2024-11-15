@@ -1,0 +1,83 @@
+<!--
+<odoo>
+    <template id="gym_users_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">                    <!-- Probad tambien con web.internal_layout -->
+                    <div class="page">
+                        <div class="oe_structure" />
+                        <div class="row" style="font-size: 24px; margin-bottom: 20px;">
+                            <span style="font-weight: bold; text-decoration: underline; ">ID Card:</span>
+                            <span style="color: #999999;" t-field="o.idcard" />
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-2" style="margin: auto; text-align: center; padding-left: 15px; padding-right: 15px; border-right: 2px solid #cccccc;">
+                                <p style="padding-top: 10px;">
+                                    <img t-if="not o.photo" t-att-src="'/web/static/src/img/placeholder.png'" height="120" border="1" width="120" />
+                                    <img t-if="o.photo" t-att-src="'data:image/png;base64,%s' % to_text(o.photo)" height="120" border="1" width="120" />
+                                </p>
+                                <p t-field="o.name" style="font-size: 14px; font-weight: bold;" />
+                            </div>
+                            <div class="col-xs-8" style="text-align: left; margin: auto; padding-left: 15px; padding-top: 10px;">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                <strong>ID Card: </strong>
+                                            </p>
+                                            <p>
+                                                <strong>State: </strong>
+                                            </p>
+                                        </td>
+                                        <td style="padding-left: 10px;">
+                                            <p t-field="o.idcard" />
+                                            <p t-field="o.state" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div t-if="o.classes_ids" class="row" style="margin-top: 40px; font-weight: bold; font-size: 19px;">
+                            Clases reservadas de <span t-field="o.name" />
+                        </div>
+                        <div t-if="o.classes_ids" id="clases_reservadas" class="row" style="margin-top: 10px;">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Titulo</th>
+                                        <th>Inicio</th>
+                                        <th>Fin</th>
+                                        <th>Ocupacion total</th>
+                                        <th>Instructor</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="o.classes_ids" t-as="clase">
+                                        <tr>
+                                            <td>
+                                                <p t-field="clase.name" />
+                                            </td>
+                                            <td>
+                                                <p t-field="clase.start" />
+                                            </td>
+                                            <td>
+                                                <p t-field="clase.end" />
+                                            </td>
+                                            <td>
+                                                <p t-field="clase.ocupacion" />
+                                            </td>
+                                            <td>
+                                                <p t-field="clase.instructores_id" />
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
+-->

@@ -1,0 +1,95 @@
+<!--
+<odoo>
+
+  <record id="gym_classes_form_view" model="ir.ui.view">
+    <field name="name">gym.classes.form</field>
+    <field name="model">gym.classes</field>
+    <field name="arch" type="xml">
+      <form string="Classes">
+        <sheet layout="auto">
+          <group>
+            <field name="name" />
+            <field name="start" />
+            <field name="end" />
+            <field name="capacity" />
+            <field name="activityType" />
+            <field name="ocupacion" />
+            <field name="instructores_id" widget="many2one" />
+            <field name="users_ids">
+              <tree>
+                <field name="name" />
+                <field name="idcard" />
+              </tree>
+            </field>
+            <newline></newline>
+            <button name="btn_desapuntar_socios" string="Desapuntar socios" type="object" class="oe_highlight" />
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="gym_classes_tree_view" model="ir.ui.view">
+    <field name="name">gym.classes.tree</field>
+    <field name="model">gym.classes</field>
+    <field name="arch" type="xml">
+      <tree string="tree_string">
+        <field name="name" />
+        <field name="start" />
+        <field name="end" />
+        <field name="capacity" />
+        <field name="activityType" />
+        <field name="ocupacion" />
+        <field name="instructores_id" widget="many2one" />
+        <field name="users_ids" />
+      </tree>
+    </field>
+  </record>
+
+  <record id="gym_classes_calendar_view" model="ir.ui.view">
+    <field name="name">gym.classes.calendar</field>
+    <field name="model">gym.classes</field>
+    <field name="arch" type="xml">
+      <calendar string="Clases" color="activityType" date_start="start" date_stop="end" mode="month">
+        <field name="name" />
+        <field name="capacity" />
+      </calendar>
+    </field>
+  </record>
+
+  <record id="gym_classes_graph_view" model="ir.ui.view">
+    <field name="name">gym.classes.graph</field>
+    <field name="model">gym.classes</field>
+    <field name="arch" type="xml">
+      <graph string="Numero de usuarios por clase" type="bar">
+        <field name="name" />
+        <field name="ocupacion" />
+      </graph>
+    </field>
+  </record>
+
+  <record id="gym_class_search_view" model="ir.ui.view">
+    <field name="name">gym.classes.search</field>
+    <field name="model">gym.classes</field>
+    <field name="arch" type="xml">
+      <search>
+        <filter name="search_capacity" string="Capacity > 10" domain="[('capacity','>',10)]" />
+        <separator orientation="vertical" />
+        <group expand="0" string="Agrupar por...">
+          <filter name="group_by_instructor" string="Instructor" context="{'group_by':'instructores_id'}" />
+        </group>
+      </search>
+    </field>
+  </record>
+
+  <record id="classes_list_action" model="ir.actions.act_window">
+    <field name="name">Classes</field>
+    <field name="res_model">gym.classes</field>
+    <field name="search_view_id" ref="gym_class_search_view"/>
+    <field name="view_mode">tree,form,calendar,graph</field>
+    <field name="help" type="html">
+      <p class="o_view_nocontent_smiling_face">Create the first user</p>
+    </field>
+  </record>
+</odoo>
+-->

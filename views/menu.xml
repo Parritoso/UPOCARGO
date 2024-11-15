@@ -1,0 +1,14 @@
+<!--
+<odoo>
+    <!-- Top menu item -->
+  <menuitem name="Gym" id="main_gym_menu" groups="group_gym_manager"/>
+
+  <!-- menu categories -->
+  <menuitem name="Gym" id="gym_menu" groups="group_gym_manager" parent="main_gym_menu"/>
+
+  <!-- actions -->
+  <menuitem name="Classes" id="classes_menu" parent="gym_menu" groups="group_gym_manager" action="classes_list_action"/>
+  <menuitem name="Users" id="users_menu" parent="gym_menu" groups="group_gym_manager" action="users_list_action"/>
+  <menuitem name="Instructores" id="instructores_menu" parent="gym_menu" groups="group_gym_manager" action="instructores_list_action"/>
+</odoo>
+-->
