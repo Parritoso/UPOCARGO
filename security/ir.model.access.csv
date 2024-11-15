@@ -1,4 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-class_manager,class_manager,model_gym_classes,group_gym_manager,1,1,1,1
-users_manager,users_manager,model_gym_users,group_gym_manager,1,1,1,1
-instructores_manager,instructores_manager,model_gym_instructores,group_gym_manager,1,1,1,1
+upocargo_manager,upocargo_manager,model_upocargo_cliente,base.group_user,1,1,1,1
+upocargo_mudanza_manager,upocargo_mudanza_manager,model_upocargo_mudanza,group_upocargo_manager,1,1,1,1
+upocargo_almacenamiento_manager,upocargo_almacenamiento_manager,model_upocargo_almacenamiento,group_upocargo_manager,1,1,1,1

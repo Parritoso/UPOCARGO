@@ -20,6 +20,12 @@
 
     # always loaded
     'data': [
+        'security/security.xml',
+        'security/ir.model.access.csv',
+        'views/mudanzas_view.xml',
+        'views/clientes_view.xml',
+        'views/almacenamiento_view.xml',
+        'views/menu.xml'
     ],
     # only loaded in demonstration mode
     'demo': [     

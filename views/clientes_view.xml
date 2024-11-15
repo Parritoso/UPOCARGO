@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_upocargo_clientes_tree" model="ir.ui.view">
+        <field name="name">upocargo.cliente.tree</field>
+        <field name="model">upocargo.cliente</field>
+        <field name="arch" type="xml">
+            <tree string="Clientes UPOCARGO">
+                <field name="id_cliente"/>
+                <field name="name"/>
+                <field name="direccion"/>
+                <field name="telefono"/>
+                <field name="email"/>
+                <field name="mudanza"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_upocargo_clientes_form" model="ir.ui.view">
+        <field name="name">upocargo.cliente.form</field>
+        <field name="model">upocargo.cliente</field>
+        <field name="arch" type="xml">
+            <form string="Cliente">
+                <sheet>
+                    <group>
+                        <field name="id_cliente"/>
+                        <field name="name"/>
+                        <field name="direccion"/>
+                        <field name="telefono"/>
+                        <field name="email"/>
+                        <field name="mudanza" readonly="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Mudanzas">
+                            <field name="mudanzas">
+                                <tree>
+                                    <field name="id_mudanza"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Almacenamiento">
+                            <field name="almacenamiento">
+                                <tree>
+                                    <field name="id_almacenamiento"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <!--
+                        <page string="Servicios Adicionales">
+                            <field name="servicios_adicionales">
+                                <tree>
+                                    <field name="tipo_servicio"/>
+                                    <field name="descripcion"/>
+                                </tree>
+                            </field>
+                        </page>
+                        -->
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_upocargo_clientes_search" model="ir.ui.view">
+        <field name="name">upocargo.cliente.search</field>
+        <field name="model">upocargo.cliente</field>
+        <field name="arch" type="xml">
+            <search>
+            <!--
+                <filter name="search_capacity" string="Capacity > 10" domain="[('capacity','>',10)]" />
+                <separator orientation="vertical" />
+                <group expand="0" string="Agrupar por...">
+                    <filter name="group_by_instructor" string="Instructor" context="{'group_by':'instructores_id'}" />
+                </group>
+            -->
+            </search>
+        </field>
+    </record>
+
+    <record id="upocargo_clientes_action" model="ir.actions.act_window">
+        <field name="name">Clientes UPOCARGO</field>
+        <field name="res_model">upocargo.cliente</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>
