@@ -223,19 +223,19 @@ El proyecto UPOCARGO involucra a diversos actores clave que interactúan con el 
     - Soporte técnico a los usuarios.
   - **Intereses**: Garantizar el funcionamiento eficiente del sistema, implementar mejoras continuas y resolver rápidamente cualquier incidencia técnica reportada por los usuarios.
 ## 6 FECHAS DE ENTREGA
-Definición de las fechas de entrega y material que se entrega, así como, comentarios relacionados con las entregas.
-**Primer entregable (15%).
-Documentación de análisis: Definición del proyecto, toma de requisitos, modelo de negocio, etc.**
-~~$${\color{red}Fecha} \space {\color{red}límite} \space {\color{red}de} \space {\color{red}entrega:} \space {\color{red}Lunes,} \space {\color{red}21} \space {\color{red}de} \space {\color{red}Octubre} \space {\color{red}a} \space {\color{red}las} \space {\color{red}23.59h.}$$~~
+Definición de las fechas de entrega y material que se entrega, así como, comentarios relacionados con las entregas.<br>
+**Primer entregable (15%).** <br>
+**Documentación de análisis: Definición del proyecto, toma de requisitos, modelo de negocio, etc.** <br>
+~~Fecha límite de entrega: Lunes, 21 de Octubre a las 23.59h.~~
 <br>
-**Segundo entregable (35%).
-Entrega intermedia del desarrollo de un módulo.**
+**Segundo entregable (35%).** <br>
+**Entrega intermedia del desarrollo de un módulo.** <br>
 $${\color{red}Fecha} \space {\color{red}límite} \space {\color{red}de} \space {\color{red}entrega:} \space {\color{red}Lunes,} \space {\color{red}18} \space {\color{red}de} \space {\color{red}Noviembre} \space {\color{red}a} \space {\color{red}las} \space {\color{red}23.59h}$$
 <br>
-**Tercer entregable (10%).
-Defensa del proyecto.**
+**Tercer entregable (10%).** <br>
+**Defensa del proyecto.** <br>
 $${\color{red}Fechas} \space {\color{red}de} \space {\color{red}defensa:} \space {\color{red}Martes} \space {\color{red}10} \space {\color{red}y} \space {\color{red}17} \space {\color{red}de} \space {\color{red}Diciembre} \space {\color{red}en} \space {\color{red}horario} \space {\color{red}de} \space {\color{red}EB.}$$
 <br>
-**Cuarto entregable (40%).
-Entrega completa del módulo (Subir nota: +10% incorporación de tests automatizados)**
+**Cuarto entregable (40%).** <br>
+**Entrega completa del módulo (Subir nota: +10% incorporación de tests automatizados)** <br>
 $${\color{red}Fecha} \space {\color{red}límite} \space {\color{red}de} \space {\color{red}entrega:} \space {\color{red}Domingo,} \space {\color{red}22} \space {\color{red}de} \space {\color{red}Diciembre} \space {\color{red}a} \space {\color{red}las} \space {\color{red}23.59h} \space$$
