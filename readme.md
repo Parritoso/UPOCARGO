@@ -41,127 +41,181 @@ Aunque no se utilizarán sensores IoT reales en este proyecto académico, el sis
 El sistema UPOCARGO está diseñado con una arquitectura modular, lo que permitirá que en el futuro se agreguen nuevas funcionalidades o se adapte a otros mercados o escalas empresariales. Cada módulo puede ser desarrollado y mejorado independientemente, lo que facilita el mantenimiento y la evolución continua del sistema.
 <br>
 ## 3 OBJETIVOS DEL SISTEMA
-|---|---|
-|OBJ–001|Digitalización del proceso de mudanza y almacenamiento|
-|Versión|0.01|
-|Autores|Grupo 4|
-|Descripción|El objetivo de este módulo es digitalizar todo el ciclo de vida de una mudanza, desde la solicitud inicial hasta el almacenamiento o entrega de bienes. El sistema debe permitir añadir, eliminar, modificar y consultar las solicitudes de mudanza y almacenamiento, proporcionando una trazabilidad completa de los recursos empleados, los tiempos de entrega y la satisfacción del cliente.
+| Clave        | Descripción                                                                                                                   |
+|--------------|-------------------------------------------------------------------------------------------------------------------------------|
+| OBJ–001      | Digitalización del proceso de mudanza y almacenamiento                                                                         |
+| Versión      | 0.01                                                                                                                          |
+| Autores      | Grupo 4                                                                                                                       |
+| Descripción  | El objetivo de este módulo es digitalizar todo el ciclo de vida de una mudanza, desde la solicitud inicial hasta el almacenamiento o entrega de bienes. El sistema debe permitir añadir, eliminar, modificar y consultar las solicitudes de mudanza y almacenamiento, proporcionando una trazabilidad completa de los recursos empleados, los tiempos de entrega y la satisfacción del cliente.  |
+| Importancia  | Alta                                                                                                                           |
+| Estado       | Inicial                                                                                                                        |
+| Comentarios  |                                                                                                                                |
+
 **Atributos clave:**
+
 - **Mudanza:**
-    _id_mudanza: Identificador único.
-    _fecha: Fecha de la mudanza.
-    _estado: Estado de la mudanza.
+  - _id_mudanza: Identificador único.
+  - _fecha: Fecha de la mudanza.
+  - _estado: Estado de la mudanza.
+
 - **Almacenamiento:**
-    _id_almacenamiento: Identificador único.
-    _fechaIngreso: Fecha de ingreso de los bienes.|
-|Importancia|Alta|
-|Estado|Inicial|
-|Comentarios||
+  - _id_almacenamiento: Identificador único.
+  - _fechaIngreso: Fecha de ingreso de los bienes.
 <br>
-|---|---|
-|OBJ–002|Portal interactivo para clientes|
-|Versión|0.01|
-|Autores|Grupo 4|
-|Descripción|Este objetivo se centra en el desarrollo de un portal interactivo que permita a los clientes gestionar todos los aspectos de sus servicios de mudanza y almacenamiento. El sistema permitirá la visualización de inventarios, el seguimiento de mudanzas y la contratación de servicios adicionales.
+| Clave        | Descripción                                                                                                                   |
+|--------------|-------------------------------------------------------------------------------------------------------------------------------|
+| OBJ–002      | Portal interactivo para clientes                                                                                              |
+| Versión      | 0.01                                                                                                                          |
+| Autores      | Grupo 4                                                                                                                       |
+| Descripción  | Este objetivo se centra en el desarrollo de un portal interactivo que permita a los clientes gestionar todos los aspectos de sus servicios de mudanza y almacenamiento. El sistema permitirá la visualización de inventarios, el seguimiento de mudanzas y la contratación de servicios adicionales. |
+| Importancia  | Alta                                                                                                                           |
+| Estado       | Inicial                                                                                                                        |
+| Comentarios  |                                                                                                                                |
+
 **Atributos clave:**
+
 - **Cliente:**
-    _id_cliente: Identificador del cliente.
-    _nombre: Muestra el nombre del cliente.
+  - _id_cliente: Identificador del cliente.
+  - _nombre: Muestra el nombre del cliente.
+
 - **Servicios Adicionales:**
-    _id_servicios: Identificador del servicio.
-    _tipo: Tipo de servicio adicional.|
-|Importancia|Alta|
-|Estado|Inicial|
-|Comentarios||
+  - _id_servicios: Identificador del servicio.
+  - _tipo: Tipo de servicio adicional.
 <br>
-|---|---|
-|OBJ–003|Automatización de tareas administrativas|
-|Versión|0.01|
-|Autores|Grupo 4|
-|Descripción|El sistema debe automatizar las tareas administrativas críticas como la generación de contratos, facturación, y gestión de inventarios, lo que reducirá los errores humanos y mejorará la eficiencia operativa de la empresa.
+| Clave        | Descripción                                                                                                                   |
+|--------------|-------------------------------------------------------------------------------------------------------------------------------|
+| OBJ–003      | Automatización de tareas administrativas                                                                                      |
+| Versión      | 0.01                                                                                                                          |
+| Autores      | Grupo 4                                                                                                                       |
+| Descripción  | El sistema debe automatizar las tareas administrativas críticas como la generación de contratos, facturación, y gestión de inventarios, lo que reducirá los errores humanos y mejorará la eficiencia operativa de la empresa. |
+| Importancia  | Media                                                                                                                          |
+| Estado       | Inicial                                                                                                                        |
+| Comentarios  |                                                                                                                                |
+
 **Atributos clave:**
+
 - **Factura:**
-    _id_factura: Identificador de la factura.
-    _precio: Monto total de la factura.|
-|Importancia|Media|
-|Estado|Inicial|
-|Comentarios||
+  - _id_factura: Identificador de la factura.
+  - _precio: Monto total de la factura.
 <br>
-|---|---|
-|OBJ–004|Optimización de Recursos y Gestión Centralizada|
-|Versión|0.01|
-|Autores|Grupo 4|
-|Descripción|Este objetivo busca optimizar la asignación de recursos (empleados y vehículos) mediante un sistema centralizado que asigne de manera automática los recursos según las solicitudes recibidas, maximizando la eficiencia operativa.
+| Clave        | Descripción                                                                                                                   |
+|--------------|-------------------------------------------------------------------------------------------------------------------------------|
+| OBJ–004      | Optimización de Recursos y Gestión Centralizada                                                                               |
+| Versión      | 0.01                                                                                                                          |
+| Autores      | Grupo 4                                                                                                                       |
+| Descripción  | Este objetivo busca optimizar la asignación de recursos (empleados y vehículos) mediante un sistema centralizado que asigne de manera automática los recursos según las solicitudes recibidas, maximizando la eficiencia operativa. |
+| Importancia  | Alta                                                                                                                           |
+| Estado       | Inicial                                                                                                                        |
+| Comentarios  |                                                                                                                                |
+
 **Atributos clave:**
+
 - **Empleado:**
-    _id_empleado: Identificador del empleado.
-    _nombre: Muestra el nombre del empleado.
+  - _id_empleado: Identificador del empleado.
+  - _nombre: Muestra el nombre del empleado.
+
 - **Vehículo:**
-    _id_vehiculo: Identificador del vehículo.
-    _capacidad: Capacidad de carga del vehículo.|
-|Importancia|Alta|
-|Estado|Inicial|
-|Comentarios||
+  - _id_vehiculo: Identificador del vehículo.
+  - _capacidad: Capacidad de carga del vehículo.
 <br>
-|---|---|
-|OBJ–005|Expansión y Adaptabilidad del Sistema|
-|Versión|0.01|
-|Autores|Grupo 4|
-|Descripción|El objetivo es diseñar una plataforma modular y escalable que permita la expansión de la empresa a nuevos mercados, con la capacidad de agregar nuevas funcionalidades en el futuro sin afectar al sistema actual.
+| Clave        | Descripción                                                                                                                   |
+|--------------|-------------------------------------------------------------------------------------------------------------------------------|
+| OBJ–005      | Expansión y Adaptabilidad del Sistema                                                                                         |
+| Versión      | 0.01                                                                                                                          |
+| Autores      | Grupo 4                                                                                                                       |
+| Descripción  | El objetivo es diseñar una plataforma modular y escalable que permita la expansión de la empresa a nuevos mercados, con la capacidad de agregar nuevas funcionalidades en el futuro sin afectar al sistema actual. |
+| Importancia  | Media                                                                                                                          |
+| Estado       | Inicial                                                                                                                        |
+| Comentarios  |                                                                                                                                |
+
 **Atributos clave:**
+
 - **Proveedor:**
-    _id_proveedor: Identificador del proveedor.
-    _entidad: Nombre del proveedor.|
-|Importancia|Media|
-|Estado|Inicial|
-|Comentarios||
+  - _id_proveedor: Identificador del proveedor.
+  - _entidad: Nombre del proveedor.
 <br>
-|---|---|
-|OBJ–006|Generación de Informes y Monitorización|
-|Versión|0.01|
-|Autores|Grupo 4|
-|Descripción|Este objetivo busca proporcionar a los administradores la capacidad de generar informes detallados sobre la eficiencia de las operaciones, uso de recursos y satisfacción de los clientes, facilitando la toma de decisiones estratégicas.
+| Clave        | Descripción                                                                                                                   |
+|--------------|-------------------------------------------------------------------------------------------------------------------------------|
+| OBJ–006      | Generación de Informes y Monitorización                                                                                       |
+| Versión      | 0.01                                                                                                                          |
+| Autores      | Grupo 4                                                                                                                       |
+| Descripción  | Este objetivo busca proporcionar a los administradores la capacidad de generar informes detallados sobre la eficiencia de las operaciones, uso de recursos y satisfacción de los clientes, facilitando la toma de decisiones estratégicas. |
+| Importancia  | Media                                                                                                                          |
+| Estado       | Inicial                                                                                                                        |
+| Comentarios  |                                                                                                                                |
+
 **Atributos clave:**
+
 - **Mudanza:**
-    _estado: Describe el estado de la mudanza, que puede ser inicial o terminado, entre otros.
+  - _estado: Describe el estado de la mudanza, que puede ser inicial o terminado, entre otros.
+
 - **Vehículo:**
-    _estado: Estado en que se encuentra el vehículo.
-|
-|Importancia|Media|
-|Estado|Inicial|
-|Comentarios||
+  - _estado: Estado en que se encuentra el vehículo.
 <br>
 ## 4 IDENTIFICACIÓN DE OBLIGACIONES
 
 ## 5 STAKEHOLDERS - USUARIOS PARTICIPANTES Y FINALES
 El proyecto UPOCARGO involucra a diversos actores clave que interactúan con el sistema en diferentes niveles. Estos stakeholders incluyen tanto los usuarios internos (empleados y administradores de la empresa) como los clientes externos que utilizarán el sistema para gestionar sus mudanzas y bienes almacenados. Cada grupo de usuarios tendrá acceso a funciones específicas del sistema diseñadas para satisfacer sus necesidades operativas y de servicio.
 ### 5.1 Stakeholders Internos
-- Administradores de UPOCARGO:
-    _Rol: Los administradores son responsables de la gestión global del sistema, asegurándose de que las operaciones de mudanza y almacenamiento se realicen sin contratiempos.
-    _Funciones en el sistema: Acceso a informes completos sobre la eficiencia operativa, control del inventario de bienes almacenados, gestión de contratos y clientes, asignación de recursos (empleados y vehículos), y supervisión de las solicitudes de servicio.
-    _Intereses: Mejorar la eficiencia operativa, maximizar el uso de los recursos, reducir errores administrativos, y aumentar la satisfacción del cliente mediante un control centralizado de todas las operaciones.
-- Personal Administrativo:
-    _Rol: El equipo administrativo se encarga de procesar solicitudes de clientes, generar contratos, gestionar pagos y facturas, y coordinar la logística de las mudanzas.
-    _Funciones en el sistema: Creación y gestión de solicitudes, emisión de facturas, seguimiento de pagos y clientes, actualización de inventarios y monitoreo del progreso de cada servicio de mudanza o almacenamiento.
-    _Intereses: Minimizar el trabajo manual mediante la automatización de tareas administrativas, mejorar la precisión de los datos y garantizar una gestión fluida de las operaciones diarias.
-- Operadores de Mudanza y Almacenamiento:
-    _Rol: El personal operativo es responsable de llevar a cabo las mudanzas y la gestión física de los bienes en los almacenes.
-    _Funciones en el sistema: Acceso a sus tareas asignadas, coordinación con otros operadores, visualización de rutas optimizadas para mudanzas, y control de inventarios de bienes almacenados.
-    _Intereses: Facilitar la asignación de tareas y el acceso a la información relevante de las mudanzas para mejorar la eficiencia en la ejecución de sus actividades y reducir tiempos de respuesta.
+- **Administradores de UPOCARGO**:
+  - **Rol**: Los administradores son responsables de la gestión global del sistema, asegurándose de que las operaciones de mudanza y almacenamiento se realicen sin contratiempos.
+  - **Funciones en el sistema**: 
+    - Acceso a informes completos sobre la eficiencia operativa.
+    - Control del inventario de bienes almacenados.
+    - Gestión de contratos y clientes.
+    - Asignación de recursos (empleados y vehículos).
+    - Supervisión de las solicitudes de servicio.
+  - **Intereses**: Mejorar la eficiencia operativa, maximizar el uso de los recursos, reducir errores administrativos y aumentar la satisfacción del cliente mediante un control centralizado de todas las operaciones.
+
+- **Personal Administrativo**:
+  - **Rol**: El equipo administrativo se encarga de procesar solicitudes de clientes, generar contratos, gestionar pagos y facturas, y coordinar la logística de las mudanzas.
+  - **Funciones en el sistema**:
+    - Creación y gestión de solicitudes.
+    - Emisión de facturas.
+    - Seguimiento de pagos y clientes.
+    - Actualización de inventarios.
+    - Monitoreo del progreso de cada servicio de mudanza o almacenamiento.
+  - **Intereses**: Minimizar el trabajo manual mediante la automatización de tareas administrativas, mejorar la precisión de los datos y garantizar una gestión fluida de las operaciones diarias.
+
+- **Operadores de Mudanza y Almacenamiento**:
+  - **Rol**: El personal operativo es responsable de llevar a cabo las mudanzas y la gestión física de los bienes en los almacenes.
+  - **Funciones en el sistema**:
+    - Acceso a sus tareas asignadas.
+    - Coordinación con otros operadores.
+    - Visualización de rutas optimizadas para mudanzas.
+    - Control de inventarios de bienes almacenados.
+  - **Intereses**: Facilitar la asignación de tareas y el acceso a la información relevante de las mudanzas para mejorar la eficiencia en la ejecución de sus actividades y reducir tiempos de respuesta.
+
 ### 5.2 Stakeholders Externos
-- Clientes de UPOCARGO:
-    _Rol: Los clientes son los usuarios finales que contratan los servicios de mudanza y almacenamiento de UPOCARGO.
-    _Funciones en el sistema: Acceso a un portal personalizado donde pueden gestionar sus solicitudes, realizar inventarios de sus bienes almacenados, coordinar fechas de mudanza, contratar servicios adicionales (como seguros o embalaje), y monitorear en tiempo real el estado de sus mudanzas.
-    _Intereses: Tener un control completo sobre sus mudanzas, acceso rápido a información sobre sus bienes almacenados, recibir notificaciones automáticas sobre el progreso del servicio y poder contratar servicios adicionales con facilidad.
-- Proveedores de Servicios Externos:
-    _Rol: Estos proveedores incluyen empresas que ofrecen servicios adicionales a través del marketplace de UPOCARGO, como aseguradoras, empresas de embalaje o servicios de limpieza.
-    _Funciones en el sistema: Gestión de sus servicios dentro del marketplace de UPOCARGO, recepción de solicitudes de los clientes y coordinación con la empresa para la entrega de sus servicios.
-    _Intereses: Aumentar su visibilidad y oferta de servicios a través de la plataforma UPOCARGO, y facilitar la colaboración con la empresa para ofrecer servicios complementarios a los clientes.
+
+- **Clientes de UPOCARGO**:
+  - **Rol**: Los clientes son los usuarios finales que contratan los servicios de mudanza y almacenamiento de UPOCARGO.
+  - **Funciones en el sistema**:
+    - Acceso a un portal personalizado donde pueden gestionar sus solicitudes.
+    - Realizar inventarios de sus bienes almacenados.
+    - Coordinar fechas de mudanza.
+    - Contratar servicios adicionales (como seguros o embalaje).
+    - Monitorear en tiempo real el estado de sus mudanzas.
+  - **Intereses**: Tener un control completo sobre sus mudanzas, acceso rápido a información sobre sus bienes almacenados, recibir notificaciones automáticas sobre el progreso del servicio y poder contratar servicios adicionales con facilidad.
+
+- **Proveedores de Servicios Externos**:
+  - **Rol**: Estos proveedores incluyen empresas que ofrecen servicios adicionales a través del marketplace de UPOCARGO, como aseguradoras, empresas de embalaje o servicios de limpieza.
+  - **Funciones en el sistema**:
+    - Gestión de sus servicios dentro del marketplace de UPOCARGO.
+    - Recepción de solicitudes de los clientes.
+    - Coordinación con la empresa para la entrega de sus servicios.
+  - **Intereses**: Aumentar su visibilidad y oferta de servicios a través de la plataforma UPOCARGO, y facilitar la colaboración con la empresa para ofrecer servicios complementarios a los clientes.
+
 ### 5.3 Otros Stakeholders Técnicos
-- Desarrolladores y Equipo de Soporte Técnico:
-    _Rol: El equipo encargado del desarrollo, implementación y mantenimiento del sistema UPOCARGO.
-    _Funciones en el sistema: Desarrollo y mantenimiento de las funcionalidades del sistema, resolución de problemas técnicos, implementación de mejoras y soporte técnico a los usuarios.
-    _Intereses: Garantizar el funcionamiento eficiente del sistema, implementar mejoras continuas y resolver rápidamente cualquier incidencia técnica reportada por los usuarios.
+
+- **Desarrolladores y Equipo de Soporte Técnico**:
+  - **Rol**: El equipo encargado del desarrollo, implementación y mantenimiento del sistema UPOCARGO.
+  - **Funciones en el sistema**:
+    - Desarrollo y mantenimiento de las funcionalidades del sistema.
+    - Resolución de problemas técnicos.
+    - Implementación de mejoras.
+    - Soporte técnico a los usuarios.
+  - **Intereses**: Garantizar el funcionamiento eficiente del sistema, implementar mejoras continuas y resolver rápidamente cualquier incidencia técnica reportada por los usuarios.
 ## 6 FECHAS DE ENTREGA
 Definición de las fechas de entrega y material que se entrega, así como, comentarios relacionados con las entregas.
 **Primer entregable (15%).
