@@ -54,14 +54,15 @@ El sistema UPOCARGO está diseñado con una arquitectura modular, lo que permiti
 **Atributos clave:**
 
 - **Mudanza:**
-  - _id_mudanza: Identificador único.
-  - _fecha: Fecha de la mudanza.
-  - _estado: Estado de la mudanza.
+  - id_mudanza: Identificador único.
+  - fecha: Fecha de la mudanza.
+  - estado: Estado de la mudanza.
 
 - **Almacenamiento:**
-  - _id_almacenamiento: Identificador único.
-  - _fechaIngreso: Fecha de ingreso de los bienes.
+  - id_almacenamiento: Identificador único.
+  - fechaIngreso: Fecha de ingreso de los bienes.
 <br>
+
 | Clave        | Descripción                                                                                                                   |
 |--------------|-------------------------------------------------------------------------------------------------------------------------------|
 | OBJ–002      | Portal interactivo para clientes                                                                                              |
@@ -75,13 +76,14 @@ El sistema UPOCARGO está diseñado con una arquitectura modular, lo que permiti
 **Atributos clave:**
 
 - **Cliente:**
-  - _id_cliente: Identificador del cliente.
-  - _nombre: Muestra el nombre del cliente.
+  - id_cliente: Identificador del cliente.
+  - nombre: Muestra el nombre del cliente.
 
 - **Servicios Adicionales:**
-  - _id_servicios: Identificador del servicio.
-  - _tipo: Tipo de servicio adicional.
+  - id_servicios: Identificador del servicio.
+  - tipo: Tipo de servicio adicional.
 <br>
+
 | Clave        | Descripción                                                                                                                   |
 |--------------|-------------------------------------------------------------------------------------------------------------------------------|
 | OBJ–003      | Automatización de tareas administrativas                                                                                      |
@@ -95,9 +97,10 @@ El sistema UPOCARGO está diseñado con una arquitectura modular, lo que permiti
 **Atributos clave:**
 
 - **Factura:**
-  - _id_factura: Identificador de la factura.
-  - _precio: Monto total de la factura.
+  - id_factura: Identificador de la factura.
+  - precio: Monto total de la factura.
 <br>
+
 | Clave        | Descripción                                                                                                                   |
 |--------------|-------------------------------------------------------------------------------------------------------------------------------|
 | OBJ–004      | Optimización de Recursos y Gestión Centralizada                                                                               |
@@ -111,13 +114,14 @@ El sistema UPOCARGO está diseñado con una arquitectura modular, lo que permiti
 **Atributos clave:**
 
 - **Empleado:**
-  - _id_empleado: Identificador del empleado.
-  - _nombre: Muestra el nombre del empleado.
+  - id_empleado: Identificador del empleado.
+  - nombre: Muestra el nombre del empleado.
 
 - **Vehículo:**
-  - _id_vehiculo: Identificador del vehículo.
-  - _capacidad: Capacidad de carga del vehículo.
+  - id_vehiculo: Identificador del vehículo.
+  - capacidad: Capacidad de carga del vehículo.
 <br>
+
 | Clave        | Descripción                                                                                                                   |
 |--------------|-------------------------------------------------------------------------------------------------------------------------------|
 | OBJ–005      | Expansión y Adaptabilidad del Sistema                                                                                         |
@@ -131,9 +135,10 @@ El sistema UPOCARGO está diseñado con una arquitectura modular, lo que permiti
 **Atributos clave:**
 
 - **Proveedor:**
-  - _id_proveedor: Identificador del proveedor.
-  - _entidad: Nombre del proveedor.
+  - id_proveedor: Identificador del proveedor.
+  - entidad: Nombre del proveedor.
 <br>
+
 | Clave        | Descripción                                                                                                                   |
 |--------------|-------------------------------------------------------------------------------------------------------------------------------|
 | OBJ–006      | Generación de Informes y Monitorización                                                                                       |
@@ -147,11 +152,12 @@ El sistema UPOCARGO está diseñado con una arquitectura modular, lo que permiti
 **Atributos clave:**
 
 - **Mudanza:**
-  - _estado: Describe el estado de la mudanza, que puede ser inicial o terminado, entre otros.
+  - estado: Describe el estado de la mudanza, que puede ser inicial o terminado, entre otros.
 
 - **Vehículo:**
-  - _estado: Estado en que se encuentra el vehículo.
+  - estado: Estado en que se encuentra el vehículo.
 <br>
+
 ## 4 IDENTIFICACIÓN DE OBLIGACIONES
 
 ## 5 STAKEHOLDERS - USUARIOS PARTICIPANTES Y FINALES
@@ -220,16 +226,16 @@ El proyecto UPOCARGO involucra a diversos actores clave que interactúan con el 
 Definición de las fechas de entrega y material que se entrega, así como, comentarios relacionados con las entregas.
 **Primer entregable (15%).
 Documentación de análisis: Definición del proyecto, toma de requisitos, modelo de negocio, etc.**
-~~Fecha límite de entrega: Lunes, 21 de Octubre a las 23.59h.~~
+~~$${\color{red}Fecha} \space {\color{red}límite} \space {\color{red}de} \space {\color{red}entrega:} \space {\color{red}Lunes,} \space {\color{red}21} \space {\color{red}de} \space {\color{red}Octubre} \space {\color{red}a} \space {\color{red}las} \space {\color{red}23.59h.}$$~~
 <br>
 **Segundo entregable (35%).
 Entrega intermedia del desarrollo de un módulo.**
-~~Fecha límite de entrega: Lunes, 18 de Noviembre a las 23.59h~~
+$${\color{red}Fecha} \space {\color{red}límite} \space {\color{red}de} \space {\color{red}entrega:} \space {\color{red}Lunes,} \space {\color{red}18} \space {\color{red}de} \space {\color{red}Noviembre} \space {\color{red}a} \space {\color{red}las} \space {\color{red}23.59h}$$
 <br>
 **Tercer entregable (10%).
 Defensa del proyecto.**
-~~Fechas de defensa: Martes 10 y 17 de Diciembre en horario de EB.~~
+$${\color{red}Fechas} \space {\color{red}de} \space {\color{red}defensa:} \space {\color{red}Martes} \space {\color{red}10} \space {\color{red}y} \space {\color{red}17} \space {\color{red}de} \space {\color{red}Diciembre} \space {\color{red}en} \space {\color{red}horario} \space {\color{red}de} \space {\color{red}EB.}$$
 <br>
 **Cuarto entregable (40%).
 Entrega completa del módulo (Subir nota: +10% incorporación de tests automatizados)**
-~~Fecha límite de entrega: Domingo, 22 de Diciembre a las 23.59h~~
+$${\color{red}Fecha} \space {\color{red}límite} \space {\color{red}de} \space {\color{red}entrega:} \space {\color{red}Domingo,} \space {\color{red}22} \space {\color{red}de} \space {\color{red}Diciembre} \space {\color{red}a} \space {\color{red}las} \space {\color{red}23.59h} \space$$
