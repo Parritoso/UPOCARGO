@@ -12,6 +12,7 @@
                 <field name="dirDestino"/>
                 <field name="estado"/>
                 <field name="cliente"/>
+                <field name="factura" />
             </tree>
         </field>
     </record>
@@ -32,24 +33,33 @@
                     <group>
                         <field name="cliente" />
                     </group>
-                    <!--
                     <notebook>
                         <page name="Vehiculos">
                             <field name="vehiculos">
                                 <tree>
-                                    <field name="" />
+                                    <field name="id_vehiculo" />
+                                    <field name="matricula" />
                                 </tree>
                             </field>
                         </page>
                         <page name="Empleados">
                             <field name="empleados">
                                 <tree>
-                                    <field name="" />
+                                    <field name="id_empleado" />
+                                    <field name="nombre" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="Factura">
+                            <field name="factura">
+                                <tree>
+                                    <field name="id_factura" />
+                                    <field name="precio" widget="monetary" options="{'currency_field': 'currency_id'}" />
+                                    <field name="currency_id" invisible="1" />
                                 </tree>
                             </field>
                         </page>
                     </notebook>
-                    -->
                 </sheet>
             </form>
         </field>

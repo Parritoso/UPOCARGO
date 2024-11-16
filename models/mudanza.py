@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields, api
+from odoo import models, fields, api, exceptions
 import random
 import string
 from datetime import datetime
@@ -17,17 +17,28 @@ class Mudanza(models.Model):
 
     #Campos relacionales
     cliente = fields.Many2one('upocargo.cliente', string="Cliente")
-    #vehiculos = fields.Many2many('upocargo.vehiculos', string="Vehiculos")
-    #empleados = fields.Many2many('upocargo.empleados', string="Empleados")
+    vehiculos = fields.Many2many('upocargo.vehiculo', string="Vehiculos")
+    empleados = fields.Many2many('upocargo.empleado', string="Empleados")
+        #Simulación de Campo One2one
+    factura = fields.Many2one('upocargo.factura', string='Factura', ondelete='restrict')
+    _sql_constraits = [
+        ('unique_factura_mudanza', 'UNIQUE(id_factura)','¡Cada Mudanza solo puede tener una factura asociada!')
+    ]
 
-    @api.model_create_multi
-    def create(self, vals_list):
-        for vals in vals_list:
-            if not vals.get('id_mudanza'):
-                creation_date = datetime.now().strftime('%d-%m-%Y')
-                random_suffix = ''.join(random.choices(string.ascii_uppercase + string.digits, k=5))
-                vals['id_mudanza'] = f"{creation_date}-{random_suffix}"
-        return super(Mudanza, self).create(vals_list)
+    @api.model
+    def create(self, vals):
+        if 'id_factura' in vals:
+            existing_mudanza = self.search([('id_factura', '=', vals['id_factura'])])
+            if existing_mudanza:
+                raise exceptions.ValidationError('Esta factura ya esta vinculada a otra mudanza.')
+        return super(Mudanza, self).write(vals)
+    
+    def write(self,vals):
+        if 'id_factura' in vals:
+            existing_mudanza = self.search([('id_factura', '=', vals['id_factura'])])
+            if existing_mudanza:
+                raise exceptions.ValidationError('Esta factura ya esta vinculada a otra mudanza.')
+        return super(Mudanza, self).write(vals)
     
     @staticmethod
     def _generate_id_mudanza():
