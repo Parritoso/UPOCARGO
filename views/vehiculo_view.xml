@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_upocargo_vehiculo_tree" model="ir.ui.view">
+        <field name="name">upocargo.vehiculo.tree</field>
+        <field name="model">upocargo.vehiculo</field>
+        <field name="arch" type="xml">
+            <tree string="Vehiculos UPOCARGO">
+                <field name="id_vehiculo"/>
+                <field name="matricula"/>
+                <field name="capacidad"/>
+                <field name="estado"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_upocargo_vehiculo_form" model="ir.ui.view">
+        <field name="name">upocargo.vehiculo.form</field>
+        <field name="model">upocargo.vehiculo</field>
+        <field name="arch" type="xml">
+            <form string="Vehiculo">
+                <sheet>
+                    <group>
+                        <field name="id_vehiculo" />
+                        <field name="matricula" />
+                        <field name="capacidad" />
+                        <field name="estado" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_upocargo_vehiculo_search" model="ir.ui.view">
+        <field name="name">upocargo.vehiculo.search</field>
+        <field name="model">upocargo.vehiculo</field>
+        <field name="arch" type="xml">
+            <search>
+            <!--
+                <filter name="search_capacity" string="Capacity > 10" domain="[('capacity','>',10)]" />
+                <separator orientation="vertical" />
+                <group expand="0" string="Agrupar por...">
+                    <filter name="group_by_instructor" string="Instructor" context="{'group_by':'instructores_id'}" />
+                </group>
+            -->
+            </search>
+        </field>
+    </record>
+
+    <record id="upocargo_vehiculo_action" model="ir.actions.act_window">
+        <field name="name">Vehiculo UPOCARGO</field>
+        <field name="res_model">upocargo.vehiculo</field>
+        <field name="view_mode">calendar,tree,form</field>
+    </record>
