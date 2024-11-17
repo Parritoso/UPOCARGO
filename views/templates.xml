@@ -1,24 +1,81 @@
 <odoo>
-    <data>
-<!--
-        <template id="listing">
+  <template id="login_template" name="UPOCARGO Login">
+    <form action="/upocargo/login" method="post">
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" name="email" required/>
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" name="password" required/>
+      </div>
+      <div>
+        <button type="submir">Iniciar Sesión</button>
+      </div>
+    </form>
+  </template>
+
+  <template id="mudanzas_template" name="Portal de Mudanzas">
+    <t t-call="website.layout"/>
+      <div class="container mt-4">
+        <h2>Mis mudanzas</h2>
+        <t t-if="mudanzas">
           <ul>
-            <li t-foreach="objects" t-as="object">
-              <a t-attf-href="#{ root }/objects/#{ object.id }">
-                <t t-esc="object.display_name"/>
-              </a>
-            </li>
-          </ul>
-        </template>
-        <template id="object">
-          <h1><t t-esc="object.display_name"/></h1>
-          <dl>
-            <t t-foreach="object._fields" t-as="field">
-              <dt><t t-esc="field"/></dt>
-              <dd><t t-esc="object[field]"/></dd>
+            <t t-foreach="mudanzas" t-as="mudanza">
+              <li>
+                <strong>ID:</strong> <t t-esc="mudanza.id_mudanza"/><br>
+                <strong>Fecha:</strong> <t t-esc="mudanza.fecha"/><br>
+                <strong>Direccion Origen:</strong> <t t-esc="mudanza.dirOrigen"/><br>
+                <strong>Direccion Destino:</strong> <t t-esc="mudanza.dirDestino"/><br>
+                <strong>Estado:</strong> <t t-esc="mudanza.estado"/><br>
+              </li>
             </t>
-          </dl>
-        </template>
--->
-    </data>
+          </ul>
+        <t t-else="">
+          <p>No hay mudanzas disponibles</p> 
+        </t>
+      </div>
+    </t>
+  </template>
+
+  <template id="almacenamientos_template" name="Portal de ALmacenamientos">
+    <t t-call="website.layout"/>
+      <div class="container mt-4">
+        <h2>Mis Almacenamientos</h2>
+        <t t-if="almacenamientos">
+          <ul>
+            <t t-foreach="almacenamientos" t-as="almacenamiento">
+              <li>
+                <strong>ID:</strong> <t t-esc="almacenamiento.id_almacenamiento"/><br>
+                <strong>Fecha de Ingreso:</strong> <t t-esc="almacenamiento.fecha_ingreso"/><br>
+                <strong>Fecha de Salida:</strong> <t t-esc="almacenamiento.fecha_salida"/><br>
+              </li>
+            </t>
+          </ul>
+        <t t-else="">
+          <p>No hay almacenamientos disponibles</p> 
+        </t>
+      </div>
+    </t>
+  </template>
+
+  <template id="facturas_template" name="Portal de Facturas">
+    <t t-call="website.layout"/>
+      <div class="container mt-4">
+        <h2>Mis Facturas</h2>
+        <t t-if="facturas">
+          <ul>
+            <t t-foreach="facturas" t-as="factura">
+              <li>
+                <strong>ID:</strong> <t t-esc="factura.id_factura"/><br>
+                <strong>Coste:</strong> <t t-esc="factura.precio"/><br>
+              </li>
+            </t>
+          </ul>
+        <t t-else="">
+          <p>No hay facturas disponibles</p> 
+        </t>
+      </div>
+    </t>
+  </template>
 </odoo>

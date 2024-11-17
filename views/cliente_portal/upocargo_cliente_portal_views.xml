@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_portal_upocargo" name="UPOCARGO" parent="website.main_menu"/>
+    <menuitem id="menu_portal_mudanzas" name="Mis Mudanzas" parent="menu_portal_upocargo", actions="upocargo.mudanzas_template"/>
+    <menuitem id="menu_portal_almacenamientos" name="Mis Almacenamientos" parent="menu_portal_upocargo" actions="upocargo.almacenamientos_template"/>
+    <menuitem id="menu_portal_facturas" name="Mis Facturas" parent="menu_portal_upocargo" actions="upocargo.facturas_template"/>
+
+</odoo>

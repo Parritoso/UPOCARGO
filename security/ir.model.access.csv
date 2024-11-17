@@ -5,3 +5,7 @@ upocargo_almacenamiento_manager,upocargo_almacenamiento_manager,model_upocargo_a
 upocargo_empleado_manager,upocargo_empleado_manager,model_upocargo_empleado,group_upocargo_manager,1,1,1,1
 upocargo_vehiculo_manager,upocargo_vehiculo_manager,model_upocargo_vehiculo,group_upocargo_manager,1,1,1,1
 upocargo_factura_manager,upocargo_factura_manager,model_upocargo_factura,group_upocargo_manager,1,1,1,1
+access_cliente_portal, access_cliente_portal,model_upocargo_cliente,base.group_portal,1,0,0,0
+access_mudanza_portal, access_mudanza_portal,model_upocargo_mudanza,base.group_portal,1,0,0,0
+access_almacenamiento_portal, access_almacenamiento_portal,model_upocargo_almacenamiento,base.group_portal,1,0,0,0
+access_factura_portal, access_factura_portal,model_upocargo_factura,base.group_portal,1,0,0,0

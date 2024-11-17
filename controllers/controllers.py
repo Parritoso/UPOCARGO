@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-# from odoo import http
+from odoo import http
+from odoo.http import request
 
 
 # class Gym(http.Controller):
@@ -19,3 +20,60 @@
 #         return http.request.render('gym.object', {
 #             'object': obj
 #         })
+#class UpocargoApi(http.Controller):
+#    @http.route('/api/upocargo/data', type='json', auth='user', methods=['GET'], csrf=False)
+#    def get_data(self):
+#        data = request.env[''].search([]).read(['',''])
+#        return {'data': data}
+    
+#    @http.route('api/upocargo/create', type='json', auth='user', methods=['POST'], CSRF=False)
+#    def create_data(self, **kwargs):
+#        nuevo_registro = request.env[''].create(**kwargs)
+#        return {'success':True,'id':nuevo_registro.id}
+
+class UpocargoAuth(http.Controller):
+    @http.route('/upocargo/login', type='http', auth='public', methods=['GET','POST'], csrf=False)
+    def login(self,**kwargs):
+        if http.request.httrequest.method == 'POST':
+            email = kwargs.get('email')
+            password = kwargs.get('password')
+            user = request.env['res.users'].sudo().search([('login','=', email)])
+            if user and user._check_password(password):
+                request.session.uid = user.id
+                return request.redirect('upocargo/mudanzas')
+            else:
+                request.render('upocargo.login_template')
+    
+    @http.route('/upocargo/logout', type='http', auth='user')
+    def logout(self):
+        request.session.logout()
+        return request.redirect('/upocargo/login')
+
+
+class UpocargoPortal(http.Controller):
+    @http.route('/upocargo/mudanzas', type='http', auth='user', website=True)
+    def show_mudanzas(self):
+        user_id = request.env.user.partner_id.id
+        cliente = request.env['upocargo.cliente'].search(['id_cliente','=',user_id])
+        mudanzas = cliente.mudanzas
+        return request.render('upocargo.mudanzas_template', {
+            'mudanzas': mudanzas
+        })
+    
+    @http.route('/upocargo/facturas', type='http', auth='user', website=True)
+    def show_facturas(self):
+        user_id = request.env.user.partner_id.id
+        cliente = request.env['upocargo.cliente'].search(['id_cliente','=',user_id])
+        facturas = request.env['upocargo.factura'].search(['mudanza.cliente','=',cliente.id])
+        return request.render('upocargo.facturas_template', {
+            'factura': facturas
+        })
+    
+    @http.route('/upocargo/almacenamientos', type='http', auth='user', website=True)
+    def show_almacenamientos(self):
+        user_id = request.env.user.partner_id.id
+        cliente = request.env['upocargo.cliente'].search(['id_cliente','=',user_id])
+        almacenamientos = cliente.almacenamientos
+        return request.render('upocargo.almacenamientos_template', {
+            'almacenamientos': almacenamientos
+        })
