@@ -26,7 +26,8 @@
         'views/mudanzas_view.xml',
         'views/clientes_view.xml',
         'views/almacenamiento_view.xml',
-        'views/templates.xml'
+        'views/templates.xml',
+        'views/cliente_portal/upocargo_cliente_portal_views.xml'
         'views/menu.xml'
     ],
     # only loaded in demonstration mode
