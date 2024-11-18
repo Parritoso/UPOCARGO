@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_upocargo_bienes_almacenados_tree" model="ir.ui.view">
+        <field name="name">upocargo.bienes_almacenados.tree</field>
+        <field name="model">upocargo.bienes_almacenados</field>
+        <field name="arch" type="xml">
+            <tree string="Bienes Almacenados UPOCARGO">
+                <field name="id_bien"/>
+                <field name="descripcion"/>
+                <field name="peso"/>
+                <field name="tamaño"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_upocargo_bienes_almacenados_form" model="ir.ui.view">
+        <field name="name">upocargo.bienes_almacenados.form</field>
+        <field name="model">upocargo.bienes_almacenados</field>
+        <field name="arch" type="xml">
+            <form string="Bienes Almacenados">
+                <sheet>
+                    <group>
+                        <field name="id_bien" />
+                        <field name="descripcion" />
+                        <field name="peso" />
+                        <field name="tamaño" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_upocargo_bienes_almacenados_search" model="ir.ui.view">
+        <field name="name">upocargo.bienes_almacenados.search</field>
+        <field name="model">upocargo.bienes_almacenados</field>
+        <field name="arch" type="xml">
+            <search>
+            <!--
+                <filter name="search_capacity" string="Capacity > 10" domain="[('capacity','>',10)]" />
+                <separator orientation="vertical" />
+                <group expand="0" string="Agrupar por...">
+                    <filter name="group_by_instructor" string="Instructor" context="{'group_by':'instructores_id'}" />
+                </group>
+            -->
+            </search>
+        </field>
+    </record>
+
+    <record id="upocargo_bienes_almacenados_action" model="ir.actions.act_window">
+        <field name="name">Bienes Almacenados UPOCARGO</field>
+        <field name="res_model">upocargo.bienes_almacenados</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+</odoo>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_upocargo_proveedor_tree" model="ir.ui.view">
+        <field name="name">upocargo.proveedor.tree</field>
+        <field name="model">upocargo.proveedor</field>
+        <field name="arch" type="xml">
+            <tree string="Proveedores UPOCARGO">
+                <field name="id_proveedor"/>
+                <field name="entidad"/>
+                <field name="email"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_upocargo_proveedor_form" model="ir.ui.view">
+        <field name="name">upocargo.proveedor.form</field>
+        <field name="model">upocargo.proveedor</field>
+        <field name="arch" type="xml">
+            <form string="Proveedor">
+                <sheet>
+                    <group>
+                        <field name="id_proveedor" />
+                        <field name="entidad"/>
+                        <field name="email"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_upocargo_proveedor_search" model="ir.ui.view">
+        <field name="name">upocargo.proveedor.search</field>
+        <field name="model">upocargo.proveedor</field>
+        <field name="arch" type="xml">
+            <search>
+            <!--
+                <filter name="search_capacity" string="Capacity > 10" domain="[('capacity','>',10)]" />
+                <separator orientation="vertical" />
+                <group expand="0" string="Agrupar por...">
+                    <filter name="group_by_instructor" string="Instructor" context="{'group_by':'instructores_id'}" />
+                </group>
+            -->
+            </search>
+        </field>
+    </record>
+
+    <record id="upocargo_proveedor_action" model="ir.actions.act_window">
+        <field name="name">Proveedor UPOCARGO</field>
+        <field name="res_model">upocargo.proveedor</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>
