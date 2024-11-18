@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_upocargo_empleado_tree" model="ir.ui.view">
+        <field name="name">upocargo.empleado.tree</field>
+        <field name="model">upocargo.empleado</field>
+        <field name="arch" type="xml">
+            <tree string="Empleados UPOCARGO">
+                <field name="id_empleado"/>
+                <field name="nombre"/>
+                <field name="telefono"/>
+                <field name="cargo"/>
+                <field name="email"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_upocargo_empleado_form" model="ir.ui.view">
+        <field name="name">upocargo.empleado.form</field>
+        <field name="model">upocargo.empleado</field>
+        <field name="arch" type="xml">
+            <form string="Empleado">
+                <sheet>
+                    <group>
+                        <field name="id_empleado" />
+                        <field name="nombre" />
+                        <field name="telefono" />
+                        <field name="cargo" />
+                        <field name="email" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_upocargo_empleado_search" model="ir.ui.view">
+        <field name="name">upocargo.empleado.search</field>
+        <field name="model">upocargo.empleado</field>
+        <field name="arch" type="xml">
+            <search>
+            <!--
+                <filter name="search_capacity" string="Capacity > 10" domain="[('capacity','>',10)]" />
+                <separator orientation="vertical" />
+                <group expand="0" string="Agrupar por...">
+                    <filter name="group_by_instructor" string="Instructor" context="{'group_by':'instructores_id'}" />
+                </group>
+            -->
+            </search>
+        </field>
+    </record>
+
+    <record id="upocargo_empleado_action" model="ir.actions.act_window">
+        <field name="name">Empleado UPOCARGO</field>
+        <field name="res_model">upocargo.empleado</field>
+        <field name="view_mode">calendar,tree,form</field>
+    </record>
+<odoo/>

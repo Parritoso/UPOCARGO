@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_upocargo_factura_tree" model="ir.ui.view">
+        <field name="name">upocargo.factura.tree</field>
+        <field name="model">upocargo.factura</field>
+        <field name="arch" type="xml">
+            <tree string="Vehiculos UPOCARGO">
+                <field name="id_factura"/>
+                <field name="precio"/>
+                <field name="currency_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_upocargo_factura_form" model="ir.ui.view">
+        <field name="name">upocargo.factura.form</field>
+        <field name="model">upocargo.factura</field>
+        <field name="arch" type="xml">
+            <form string="Factura">
+                <sheet>
+                    <group>
+                        <field name="id_factura" />
+                        <field name="precio" />
+                        <field name="currency_id" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_upocargo_factura_search" model="ir.ui.view">
+        <field name="name">upocargo.factura.search</field>
+        <field name="model">upocargo.factura</field>
+        <field name="arch" type="xml">
+            <search>
+            <!--
+                <filter name="search_capacity" string="Capacity > 10" domain="[('capacity','>',10)]" />
+                <separator orientation="vertical" />
+                <group expand="0" string="Agrupar por...">
+                    <filter name="group_by_instructor" string="Instructor" context="{'group_by':'instructores_id'}" />
+                </group>
+            -->
+            </search>
+        </field>
+    </record>
+
+    <record id="upocargo_factura_action" model="ir.actions.act_window">
+        <field name="name">Factura UPOCARGO</field>
+        <field name="res_model">upocargo.factura</field>
+        <field name="view_mode">calendar,tree,form</field>
+    </record>
+<odoo/>
