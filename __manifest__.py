@@ -21,27 +21,20 @@
     # always loaded
     'data': [
         'security/security.xml',
+        'security/record_rules.xml',
         'security/ir.model.access.csv',
         'views/mudanzas_view.xml',
         'views/clientes_view.xml',
         'views/almacenamiento_view.xml',
         'views/bienes_almacenados_view.xml',
         'views/proveedor_view.xml',
-        'views/servicios_adicionales_view.xml',
-        'views/empleado_view.xml',
         'views/factura_view.xml',
         'views/vehiculo_view.xml',
+        'views/empleado_view.xml',
         'views/menu.xml'
     ],
     # only loaded in demonstration mode
-    'demo': [   
-        'demo/upocargo.almacenamiento.csv',
-        'demo/upocargo.bienes_almacenados.csv',
-        'demo/upocargo.cliente.csv',
-        'demo/upocargo.empleado.csv',
-        'demo/upocargo.proveedor.csv',
-        'demo/upocargo.servicios_adicionales.csv',
-        'demo/upocargo.vehiculo.csv'  
+    'demo': [     
     ],
     'application': True,
 }
