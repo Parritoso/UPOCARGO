@@ -13,5 +13,8 @@
   <menuitem id="upocargo_almacenamiento_menu" name="Almacenamiento" parent="upocargo_root_menu" groups="group_upocargo_manager" action="upocargo_almacenamiento_action"/>
   <menuitem id="upocargo_bienes_almacenados_menu" name="Bienes Almacenados" parent="upocargo_root_menu" groups="group_upocargo_manager" action="upocargo_bienes_almacenados_action"/>
   <menuitem id="upocargo_proveedor_menu" name="Proveedor" parent="upocargo_root_menu" groups="group_upocargo_manager" action="upocargo_proveedor_action"/>
-  
+  <menuitem id="upocargo_factura_menu" name="Factura" parent="upocargo_root_menu" groups="group_upocargo_manager" action="upocargo_factura_action"/>
+  <menuitem id="upocargo_empleado_menu" name="Empleado" parent="upocargo_root_menu" groups="group_upocargo_manager" action="upocargo_empleado_action"/>
+  <menuitem id="upocargo_vehiculo_menu" name="Vehiculo" parent="upocargo_root_menu" groups="group_upocargo_manager" action="upocargo_vehiculo_action"/>
+
 </odoo>
