@@ -50,5 +50,5 @@
     <record id="upocargo_vehiculo_action" model="ir.actions.act_window">
         <field name="name">Vehiculo UPOCARGO</field>
         <field name="res_model">upocargo.vehiculo</field>
-        <field name="view_mode">calendar,tree,form</field>
+        <field name="view_mode">tree,form</field>
     </record>
