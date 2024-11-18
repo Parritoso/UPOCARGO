@@ -52,3 +52,4 @@
         <field name="res_model">upocargo.vehiculo</field>
         <field name="view_mode">tree,form</field>
     </record>
+</odoo>

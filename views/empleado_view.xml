@@ -54,4 +54,4 @@
         <field name="res_model">upocargo.empleado</field>
         <field name="view_mode">calendar,tree,form</field>
     </record>
-<odoo/>
+</odoo>

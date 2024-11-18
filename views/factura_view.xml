@@ -50,4 +50,4 @@
         <field name="res_model">upocargo.factura</field>
         <field name="view_mode">calendar,tree,form</field>
     </record>
-<odoo/>
+</odoo>
