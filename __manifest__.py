@@ -34,7 +34,14 @@
         'views/menu.xml'
     ],
     # only loaded in demonstration mode
-    'demo': [     
+    'demo': [    
+        'demo/upocargo.almacenamiento.csv',
+        'demo/upocargo.bienes_almacenados.csv',
+        'demo/upocargo.cliente.csv',
+        'demo/upocargo.empleado.csv',
+        'demo/upocargo.proveedor.csv',
+        'demo/upocargo.servicios_adicionales.csv',
+        'demo/upocargo.vehiculo.csv'   
     ],
     'application': True,
 }
