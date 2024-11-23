@@ -32,27 +32,53 @@ from odoo.http import request
 #        return {'success':True,'id':nuevo_registro.id}
 
 class UpocargoAuth(http.Controller):
-    @http.route('/upocargo/login', type='http', auth='public', methods=['GET','POST'], csrf=True, website=True)
+    @http.route('/upocargo/login', type='http', auth='public', methods=['GET','POST'], csrf=True)
     def login(self,**kwargs):
         if http.request.httprequest.method == 'POST':
             email = kwargs.get('email')
-            #password = kwargs.get('password')
+            password = kwargs.get('password')
             user = request.env['upocargo.cliente'].sudo().search([('email','=', email)])
             if user: #and user._check_password(password):
-                request.session['cliente_id'] = user.id_cliente
-                return request.redirect('upocargo/mudanzas')
+                if password == str(user.id_cliente) and not user.password:
+                    request.session['cliente_id'] = user.id_cliente
+                    return request.redirect('/upocargo/change_password')
+                elif user._check_password(password):
+                    request.session['cliente_id'] = user.id_cliente
+                    return request.redirect('/upocargo/mudanzas')
+                else:
+                    http.request.render('upocargo.login_template',{
+                        'error' : 'Credenciales incorrectas, intente de nuevo.'
+                    })
             else:
-                request.render('login_template',{
+                http.request.render('upocargo.login_template',{
                     'error' : 'Credenciales incorrectas, intente de nuevo.'
                 })
         else:
-            return request.render('login_template')
+            return http.request.render('upocargo.login_template')
     
     @http.route('/upocargo/logout', type='http', auth='user',website=True)
     def logout(self):
         request.session.logout()
         return request.redirect('/upocargo/login')
-
+    
+    @http.route('/upocargo/change_password', type='http', auth='public', methods=['GET','POST'], csrf=True)
+    def change_password(self,**kwargs):
+        cliente_id = request.session.get('cliente_id')
+        if not cliente_id:
+            return request.redirect('/upocargo/login')
+        cliente = request.env['upocargo.cliente'].sudo().search([('id_cliente','=',cliente_id)],limit=1)
+        if not cliente:
+            return request.redirect('/upocargo/login')
+        if http.request.httprequest.method == 'POST':
+            new_password = kwargs.get("password")
+            confirm_password = kwargs.get("password")
+            if not new_password or new_password != confirm_password:
+                return http.request.render('upocargo.change_password_template', {
+                    'error': 'Las contraseñas no coinciden'
+                })
+            cliente.sudo().write({'password': new_password})
+            return request.redirect('/upocargo/mudanzas')
+        return http.request.render('upocargo.change_password_template')
 
 class UpocargoPortal(http.Controller):
     @http.route('/upocargo/mudanzas', type='http', auth='public', website=True)
