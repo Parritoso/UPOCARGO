@@ -32,29 +32,37 @@ from odoo.http import request
 #        return {'success':True,'id':nuevo_registro.id}
 
 class UpocargoAuth(http.Controller):
-    @http.route('/upocargo/login', type='http', auth='public', methods=['GET','POST'], csrf=False)
+    @http.route('/upocargo/login', type='http', auth='public', methods=['GET','POST'], csrf=True, website=True)
     def login(self,**kwargs):
-        if http.request.httrequest.method == 'POST':
+        if http.request.httprequest.method == 'POST':
             email = kwargs.get('email')
-            password = kwargs.get('password')
-            user = request.env['res.users'].sudo().search([('login','=', email)])
-            if user and user._check_password(password):
-                request.session.uid = user.id
+            #password = kwargs.get('password')
+            user = request.env['upocargo.cliente'].sudo().search([('email','=', email)])
+            if user: #and user._check_password(password):
+                request.session['cliente_id'] = user.id_cliente
                 return request.redirect('upocargo/mudanzas')
             else:
-                request.render('upocargo.login_template')
+                request.render('login_template',{
+                    'error' : 'Credenciales incorrectas, intente de nuevo.'
+                })
+        else:
+            return request.render('login_template')
     
-    @http.route('/upocargo/logout', type='http', auth='user')
+    @http.route('/upocargo/logout', type='http', auth='user',website=True)
     def logout(self):
         request.session.logout()
         return request.redirect('/upocargo/login')
 
 
 class UpocargoPortal(http.Controller):
-    @http.route('/upocargo/mudanzas', type='http', auth='user', website=True)
+    @http.route('/upocargo/mudanzas', type='http', auth='public', website=True)
     def show_mudanzas(self):
-        user_id = request.env.user.partner_id.id
-        cliente = request.env['upocargo.cliente'].search(['id_cliente','=',user_id])
+        user_id = request.session.get('cliente_id')
+        if not user_id:
+            return request.redirect('/upocargo/login')
+        cliente = request.env['upocargo.cliente'].sudo().browse(user_id)#.search(['id_cliente','=',user_id])
+        if not cliente.exists():
+            return request.redirect('/upocargo/login')
         mudanzas = cliente.mudanzas
         return request.render('upocargo.mudanzas_template', {
             'mudanzas': mudanzas
@@ -62,17 +70,25 @@ class UpocargoPortal(http.Controller):
     
     @http.route('/upocargo/facturas', type='http', auth='user', website=True)
     def show_facturas(self):
-        user_id = request.env.user.partner_id.id
-        cliente = request.env['upocargo.cliente'].search(['id_cliente','=',user_id])
-        facturas = request.env['upocargo.factura'].search(['mudanza.cliente','=',cliente.id])
+        user_id = request.session.get('cliente_id')
+        if not user_id:
+            return request.redirect('/upocargo/login')
+        cliente = request.env['upocargo.cliente'].sudo().browse(user_id)#.search(['id_cliente','=',user_id])
+        if not cliente.exists():
+            return request.redirect('/upocargo/login')
+        facturas = request.env['upocargo.factura'].search(['mudanza.cliente','=',cliente.id_cliente])
         return request.render('upocargo.facturas_template', {
             'factura': facturas
         })
     
     @http.route('/upocargo/almacenamientos', type='http', auth='user', website=True)
     def show_almacenamientos(self):
-        user_id = request.env.user.partner_id.id
-        cliente = request.env['upocargo.cliente'].search(['id_cliente','=',user_id])
+        user_id = request.session.get('cliente_id')
+        if not user_id:
+            return request.redirect('/upocargo/login')
+        cliente = request.env['upocargo.cliente'].sudo().browse(user_id)#.search(['id_cliente','=',user_id])
+        if not cliente.exists():
+            return request.redirect('/upocargo/login')
         almacenamientos = cliente.almacenamientos
         return request.render('upocargo.almacenamientos_template', {
             'almacenamientos': almacenamientos

@@ -30,6 +30,7 @@
         'views/factura_view.xml',
         'views/vehiculo_view.xml',
         'views/empleado_view.xml',
+        'views/templates.xml',
         'views/menu.xml'
     ],
     # only loaded in demonstration mode
