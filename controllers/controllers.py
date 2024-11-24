@@ -44,7 +44,7 @@ class UpocargoAuth(http.Controller):
                     return request.redirect('/upocargo/change_password')
                 elif user._check_password(password):
                     request.session['cliente_id'] = user.id_cliente
-                    return request.redirect('/upocargo/mudanzas')
+                    return request.redirect('/upocargo/portal_home')
                 else:
                     http.request.render('upocargo.login_template',{
                         'error' : 'Credenciales incorrectas, intente de nuevo.'
@@ -56,7 +56,7 @@ class UpocargoAuth(http.Controller):
         else:
             return http.request.render('upocargo.login_template')
     
-    @http.route('/upocargo/logout', type='http', auth='user',website=True)
+    @http.route('/upocargo/logout', type='http', auth='public',website=True)
     def logout(self):
         request.session.logout()
         return request.redirect('/upocargo/login')
@@ -77,10 +77,20 @@ class UpocargoAuth(http.Controller):
                     'error': 'Las contraseñas no coinciden'
                 })
             cliente.sudo().write({'password': new_password})
-            return request.redirect('/upocargo/mudanzas')
+            return request.redirect('/upocargo/portal_home')
         return http.request.render('upocargo.change_password_template')
 
 class UpocargoPortal(http.Controller):
+    @http.route('/upocargo/portal_home', type='http', auth='public',methods=['GET','POST'])
+    def portal_home(self,**kwargs):
+        cliente_id = request.session.get('cliente_id')
+        if not cliente_id:
+            return request.redirect('/upocargo/login')
+        cliente = request.env['upocargo.cliente'].sudo().search([('id_cliente','=',cliente_id)],limit=1)
+        if not cliente:
+            return request.redirect('/upocargo/login')
+        return http.request.render('upocargo.portal_home_template')
+    
     @http.route('/upocargo/mudanzas', type='http', auth='public', website=True)
     def show_mudanzas(self):
         user_id = request.session.get('cliente_id')
@@ -94,7 +104,7 @@ class UpocargoPortal(http.Controller):
             'mudanzas': mudanzas
         })
     
-    @http.route('/upocargo/facturas', type='http', auth='user', website=True)
+    @http.route('/upocargo/facturas', type='http', auth='public', website=True)
     def show_facturas(self):
         user_id = request.session.get('cliente_id')
         if not user_id:
@@ -107,7 +117,7 @@ class UpocargoPortal(http.Controller):
             'factura': facturas
         })
     
-    @http.route('/upocargo/almacenamientos', type='http', auth='user', website=True)
+    @http.route('/upocargo/almacenamientos', type='http', auth='public', website=True)
     def show_almacenamientos(self):
         user_id = request.session.get('cliente_id')
         if not user_id:

@@ -55,104 +55,133 @@
           <h2>Cambiar Contraseña</h2>
           <form action="/upocargo/change_password" method="post">
             <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-              <div class="input-group">
-                <label for="password">Nueva Contraseña:</label>
-                <input type="password" name="password" required="required"/>
+            <div class="input-group">
+              <label for="password">Nueva Contraseña:</label>
+              <input type="password" name="password" required="required"/>
+            </div>
+            <div class="input-group">
+              <label for="password_confirm">Confirmar Contraseña:</label>
+              <input type="password" name="password_confirm" required="required"/>
+            </div>
+            <t t-if="error">
+              <div class="error-message">
+                <p t-esc="error"></p>
               </div>
-              <div class="input-group">
-                <label for="password_confirm">Confirmar Contraseña:</label>
-                <input type="password" name="password_confirm" required="required"/>
-              </div>
-              <t t-if="error">
-                <div class="error-message">
-                  <p t-esc="error"></p>
-                </div>
-              </t>
-              <button type="submit" class="login-button">Cambiar Contraseña</button>
-            </form>
-          </div>
+            </t>
+            <button type="submit" class="login-button">Cambiar Contraseña</button>
+          </form>
         </div>
+      </div>
+    </t>
+  </template>
+
+  <template id="portal_home_template" name="Portal Principal">
+    <t t-call="web.layout">
+    <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/portal_home_styles.css"/>
+      <div class="container">
+        <nav class="navbar">
+          <div class="navber-brand">
+            <a href="/upocargo/portal_home">UpoCargo</a>
+          </div>
+          <ul class="navbar-menu">
+            <li>
+              <a href="/upocargo/mudanzas">Mis Mudanzas</a>
+            </li>
+            <li>
+              <a href="/upocargo/facturas">Mis Facturas</a>
+            </li>
+            <li>
+              <a href="/upocargo/almacenamientos"></a>Mis Almacenamientos</li>
+          </ul>
+          <div class="navbar-end">
+            <a href="/upocargo/logout" class="button is-danger">Cerrar Sesión</a>
+          </div>
+        </nav>
+        <div class="content">
+          <t t-raw="0"/>
+        </div>
+      </div>
+    </t>
+  </template>
+
+  <template id="mudanzas_template" name="Portal de Mudanzas">
+    <div class="container mt-4">
+      <h2>Mis mudanzas</h2>
+      <t t-if="mudanzas">
+        <ul>
+          <t t-foreach="mudanzas" t-as="mudanza">
+            <li>
+              <strong>ID:</strong>
+              <t t-esc="mudanza.id_mudanza"/>
+              <br/>
+              <strong>Fecha:</strong>
+              <t t-esc="mudanza.fecha"/>
+              <br/>
+              <strong>Direccion Origen:</strong>
+              <t t-esc="mudanza.dirOrigen"/>
+              <br/>
+              <strong>Direccion Destino:</strong>
+              <t t-esc="mudanza.dirDestino"/>
+              <br/>
+              <strong>Estado:</strong>
+              <t t-esc="mudanza.estado"/>
+              <br/>
+            </li>
+          </t>
+        </ul>
       </t>
-    </template>
+      <t t-else="">
+        <p>No hay mudanzas disponibles</p>
+      </t>
+    </div>
+  </template>
 
-    <template id="mudanzas_template" name="Portal de Mudanzas">
-      <div class="container mt-4">
-        <h2>Mis mudanzas</h2>
-        <t t-if="mudanzas">
-          <ul>
-            <t t-foreach="mudanzas" t-as="mudanza">
-              <li>
-                <strong>ID:</strong>
-                <t t-esc="mudanza.id_mudanza"/>
-                <br/>
-                <strong>Fecha:</strong>
-                <t t-esc="mudanza.fecha"/>
-                <br/>
-                <strong>Direccion Origen:</strong>
-                <t t-esc="mudanza.dirOrigen"/>
-                <br/>
-                <strong>Direccion Destino:</strong>
-                <t t-esc="mudanza.dirDestino"/>
-                <br/>
-                <strong>Estado:</strong>
-                <t t-esc="mudanza.estado"/>
-                <br/>
-              </li>
-            </t>
-          </ul>
-        </t>
-        <t t-else="">
-          <p>No hay mudanzas disponibles</p>
-        </t>
-      </div>
-    </template>
+  <template id="almacenamientos_template" name="Portal de ALmacenamientos">
+    <div class="container mt-4">
+      <h2>Mis Almacenamientos</h2>
+      <t t-if="almacenamientos">
+        <ul>
+          <t t-foreach="almacenamientos" t-as="almacenamiento">
+            <li>
+              <strong>ID:</strong>
+              <t t-esc="almacenamiento.id_almacenamiento"/>
+              <br/>
+              <strong>Fecha de Ingreso:</strong>
+              <t t-esc="almacenamiento.fecha_ingreso"/>
+              <br/>
+              <strong>Fecha de Salida:</strong>
+              <t t-esc="almacenamiento.fecha_salida"/>
+              <br/>
+            </li>
+          </t>
+        </ul>
+      </t>
+      <t t-else="">
+        <p>No hay almacenamientos disponibles</p>
+      </t>
+    </div>
+  </template>
 
-    <template id="almacenamientos_template" name="Portal de ALmacenamientos">
-      <div class="container mt-4">
-        <h2>Mis Almacenamientos</h2>
-        <t t-if="almacenamientos">
-          <ul>
-            <t t-foreach="almacenamientos" t-as="almacenamiento">
-              <li>
-                <strong>ID:</strong>
-                <t t-esc="almacenamiento.id_almacenamiento"/>
-                <br/>
-                <strong>Fecha de Ingreso:</strong>
-                <t t-esc="almacenamiento.fecha_ingreso"/>
-                <br/>
-                <strong>Fecha de Salida:</strong>
-                <t t-esc="almacenamiento.fecha_salida"/>
-                <br/>
-              </li>
-            </t>
-          </ul>
-        </t>
-        <t t-else="">
-          <p>No hay almacenamientos disponibles</p>
-        </t>
-      </div>
-    </template>
-
-    <template id="facturas_template" name="Portal de Facturas">
-      <div class="container mt-4">
-        <h2>Mis Facturas</h2>
-        <t t-if="facturas">
-          <ul>
-            <t t-foreach="facturas" t-as="factura">
-              <li>
-                <strong>ID:</strong>
-                <t t-esc="factura.id_factura"/>
-                <br/>
-                <strong>Coste:</strong>
-                <t t-esc="factura.precio"/>
-                <br/>
-              </li>
-            </t>
-          </ul>
-        </t>
-        <t t-else="">
-          <p>No hay facturas disponibles</p>
-        </t>
-      </div>
-    </template>
-  </odoo>
+  <template id="facturas_template" name="Portal de Facturas">
+    <div class="container mt-4">
+      <h2>Mis Facturas</h2>
+      <t t-if="facturas">
+        <ul>
+          <t t-foreach="facturas" t-as="factura">
+            <li>
+              <strong>ID:</strong>
+              <t t-esc="factura.id_factura"/>
+              <br/>
+              <strong>Coste:</strong>
+              <t t-esc="factura.precio"/>
+              <br/>
+            </li>
+          </t>
+        </ul>
+      </t>
+      <t t-else="">
+        <p>No hay facturas disponibles</p>
+      </t>
+    </div>
+  </template>
+</odoo>

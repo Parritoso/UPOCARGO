@@ -45,16 +45,14 @@
                                 </tree>
                             </field>
                         </page>
-                        <!--
                         <page string="Servicios Adicionales">
                             <field name="servicios_adicionales">
                                 <tree>
-                                    <field name="tipo_servicio"/>
-                                    <field name="descripcion"/>
+                                    <field name="id_servicios"/>
+                                    <field name="tipo"/>
                                 </tree>
                             </field>
                         </page>
-                        -->
                     </notebook>
                 </sheet>
             </form>
