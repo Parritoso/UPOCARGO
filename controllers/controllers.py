@@ -46,11 +46,11 @@ class UpocargoAuth(http.Controller):
                     request.session['cliente_id'] = user.id_cliente
                     return request.redirect('/upocargo/portal_home')
                 else:
-                    http.request.render('upocargo.login_template',{
+                    return http.request.render('upocargo.login_template',{
                         'error' : 'Credenciales incorrectas, intente de nuevo.'
                     })
             else:
-                http.request.render('upocargo.login_template',{
+                return http.request.render('upocargo.login_template',{
                     'error' : 'Credenciales incorrectas, intente de nuevo.'
                 })
         else:
