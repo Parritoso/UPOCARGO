@@ -4,7 +4,7 @@ import random
 import string
 import hashlib
 import os
-from datetime import datetime,timedelta
+from datetime import datetime,date
 
 class Cliente(models.Model):
     _name = 'upocargo.cliente'
@@ -35,7 +35,7 @@ class Cliente(models.Model):
 
     @api.depends('mudanzas')
     def _compute_display_next_mudanza(self):
-        today = datetime.now
+        today = date.today()
         for record in self:
             mudanzas_futuras = record.mudanzas.filtered(lambda m: m.fecha and m.fecha >= today)
             if mudanzas_futuras:

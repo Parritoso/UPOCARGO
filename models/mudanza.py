@@ -31,7 +31,18 @@ class Mudanza(models.Model):
             existing_mudanza = self.search([('id_factura', '=', vals['id_factura'])])
             if existing_mudanza:
                 raise exceptions.ValidationError('Esta factura ya esta vinculada a otra mudanza.')
-        return super(Mudanza, self).write(vals)
+        mudanza = super(Mudanza, self).create(vals)
+        factura_vals = {
+            'id_factura': self.env['upocargo.factura']._generate_id_factura(),
+            'precio': 0.0,
+            'currency_id': self.env.user.company_id.currency_id.id,
+            'mudanza_id': mudanza.id,
+        }
+        factura = self.env['upocargo.factura'].create(factura_vals)
+        if not factura or isinstance(factura, bool):
+            raise exceptions.ValidationError('No se puedo crear la factura asociada')
+        mudanza.factura = factura.id
+        return mudanza
     
     def write(self,vals):
         if 'id_factura' in vals:

@@ -48,6 +48,6 @@
     <record id="upocargo_factura_action" model="ir.actions.act_window">
         <field name="name">Factura UPOCARGO</field>
         <field name="res_model">upocargo.factura</field>
-        <field name="view_mode">calendar,tree,form</field>
+        <field name="view_mode">tree,form</field>
     </record>
 </odoo>

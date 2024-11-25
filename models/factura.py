@@ -13,7 +13,7 @@ class Factura(models.Model):
     currency_id = fields.Many2one('res.currency', string="Moneda",default=lambda self: self.env.user.company_id.currency_id)
 
     #Campos relacionales #Simulación de Campo One2one
-    mudanza = fields.One2many('upocargo.mudanza','id_mudanza', string='Mudanza')
+    mudanza_id = fields.Many2one('upocargo.mudanza',string='Mudanza', ondelete='restrict')
     _sql_constraits = [
         ('unique_mudanza_factura', 'UNIQUE(id_mudanza)','¡Cada factura solo puede tener una mudanza asociada!')
     ]
@@ -24,7 +24,7 @@ class Factura(models.Model):
             existing_factura = self.search([('id_mudanza', '=', vals['id_mudanza'])])
             if existing_factura:
                 raise exceptions.ValidationError('Esta Mudanza ya esta vinculada a otra factura.')
-        return super(Factura, self).write(vals)
+        return super(Factura, self).create(vals)
     
     def write(self,vals):
         if 'id_mudanza' in vals:
