@@ -7,8 +7,8 @@
         <field name="arch" type="xml">
             <tree string="Vehiculos UPOCARGO">
                 <field name="id_factura"/>
-                <field name="precio"/>
-                <field name="currency_id"/>
+                <field name="precio" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                <field name="currency_id" invisible="1"/>
             </tree>
         </field>
     </record>
@@ -21,8 +21,8 @@
                 <sheet>
                     <group>
                         <field name="id_factura" />
-                        <field name="precio" />
-                        <field name="currency_id" />
+                        <field name="precio" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="currency_id" invisible="1"/>
                     </group>
                 </sheet>
             </form>

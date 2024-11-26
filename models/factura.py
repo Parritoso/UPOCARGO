@@ -9,8 +9,8 @@ class Factura(models.Model):
     #Campos base
     id_factura = fields.Char(string="Id de la factura", required=True, help="Identificador de la factura", default=lambda self: self._generate_id_factura(), readonly=True)
     #Editado para poder formatearlo como moneda
-    precio = fields.Float("Precio", help="Precio de la factura")
     currency_id = fields.Many2one('res.currency', string="Moneda",default=lambda self: self.env.user.company_id.currency_id)
+    precio = fields.Monetary("Precio",currency_field='currency_id', help="Precio de la factura")
 
     #Campos relacionales #Simulación de Campo One2one
     mudanza_id = fields.Many2one('upocargo.mudanza',string='Mudanza', ondelete='restrict')

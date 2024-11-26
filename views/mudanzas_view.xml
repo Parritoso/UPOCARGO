@@ -30,6 +30,8 @@
                         <field name="dirDestino" />
                         <field name="estado" />
                     </group>
+                    <field name="vehiculos_ocupados" invisible="1"/>
+                    <field name="empleados_ocupados" invisible="1"/>
                     <group>
                         <field name="cliente" />
                     </group>
