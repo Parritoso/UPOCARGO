@@ -52,6 +52,6 @@
     <record id="upocargo_empleado_action" model="ir.actions.act_window">
         <field name="name">Empleado UPOCARGO</field>
         <field name="res_model">upocargo.empleado</field>
-        <field name="view_mode">calendar,tree,form</field>
+        <field name="view_mode">tree,form</field>
     </record>
 </odoo>
