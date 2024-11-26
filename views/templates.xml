@@ -91,7 +91,8 @@
               <a href="/upocargo/facturas">Mis Facturas</a>
             </li>
             <li>
-              <a href="/upocargo/almacenamientos"></a>Mis Almacenamientos</li>
+              <a href="/upocargo/almacenamientos">Mis Almacenamientos</a>
+            </li>
           </ul>
           <div class="navbar-end">
             <a href="/upocargo/logout" class="button is-danger">Cerrar Sesión</a>

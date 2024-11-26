@@ -91,12 +91,12 @@ class UpocargoPortal(http.Controller):
             return request.redirect('/upocargo/login')
         return http.request.render('upocargo.portal_home_template')
     
-    @http.route('/upocargo/mudanzas', type='http', auth='public', website=True)
+    @http.route('/upocargo/mudanzas', type='http', auth='public')
     def show_mudanzas(self):
         user_id = request.session.get('cliente_id')
         if not user_id:
             return request.redirect('/upocargo/login')
-        cliente = request.env['upocargo.cliente'].sudo().browse(user_id)#.search(['id_cliente','=',user_id])
+        cliente = request.env['upocargo.cliente'].sudo().search([('id_cliente','=',user_id)])#.browse(user_id)#.search(['id_cliente','=',user_id])
         if not cliente.exists():
             return request.redirect('/upocargo/login')
         mudanzas = cliente.mudanzas
@@ -104,28 +104,29 @@ class UpocargoPortal(http.Controller):
             'mudanzas': mudanzas
         })
     
-    @http.route('/upocargo/facturas', type='http', auth='public', website=True)
+    @http.route('/upocargo/facturas', type='http', auth='public')
     def show_facturas(self):
         user_id = request.session.get('cliente_id')
         if not user_id:
             return request.redirect('/upocargo/login')
-        cliente = request.env['upocargo.cliente'].sudo().browse(user_id)#.search(['id_cliente','=',user_id])
+        cliente = request.env['upocargo.cliente'].sudo().search([('id_cliente','=',user_id)])#.browse(user_id)#.search(['id_cliente','=',user_id])
         if not cliente.exists():
             return request.redirect('/upocargo/login')
-        facturas = request.env['upocargo.factura'].search(['mudanza.cliente','=',cliente.id_cliente])
+        facturas = cliente.mudanzas.factura
+        #facturas = request.env['upocargo.factura'].search([('mudanza_id.cliente','=',cliente.id_cliente)])
         return request.render('upocargo.facturas_template', {
-            'factura': facturas
+            'facturas': facturas
         })
     
-    @http.route('/upocargo/almacenamientos', type='http', auth='public', website=True)
+    @http.route('/upocargo/almacenamientos', type='http', auth='public')
     def show_almacenamientos(self):
         user_id = request.session.get('cliente_id')
         if not user_id:
             return request.redirect('/upocargo/login')
-        cliente = request.env['upocargo.cliente'].sudo().browse(user_id)#.search(['id_cliente','=',user_id])
+        cliente = request.env['upocargo.cliente'].sudo().search([('id_cliente','=',user_id)])#.browse(user_id)#.search(['id_cliente','=',user_id])
         if not cliente.exists():
             return request.redirect('/upocargo/login')
-        almacenamientos = cliente.almacenamientos
+        almacenamientos = cliente.almacenamiento
         return request.render('upocargo.almacenamientos_template', {
             'almacenamientos': almacenamientos
         })
