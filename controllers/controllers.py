@@ -81,6 +81,10 @@ class UpocargoAuth(http.Controller):
         return http.request.render('upocargo.change_password_template')
 
 class UpocargoPortal(http.Controller):
+    @http.route('/upocargo', type='http', auth='none')
+    def upocargo(self, **kwargs):
+        return http.request.render('upocargo.upocargo_index')
+
     @http.route('/upocargo/portal_home', type='http', auth='public',methods=['GET','POST'])
     def portal_home(self,**kwargs):
         cliente_id = request.session.get('cliente_id')
@@ -104,6 +108,20 @@ class UpocargoPortal(http.Controller):
             'mudanzas': mudanzas
         })
     
+    @http.route('/upocargo/mudanzas/<string:id_mudanza>', type='http', auth='public')
+    def show_mudanza(self, id_mudanza):
+        user_id = request.session.get('cliente_id')
+        if not user_id:
+            return request.redirect('/upocargo/login')
+        mudanza = request.env['upocargo.mudanza'].sudo().search([('id_mudanza','=',id_mudanza)],limit=1)
+        if not mudanza:
+            return http.request.httprequest.not_found("Mudanza no encontrada D:")
+        if not user_id == mudanza.cliente.id_cliente:
+            return request.redirect('/upocargo/mudanzas')
+        return http.request.render('upocargo.mudanza_detail',{
+            'id_mudanza': mudanza
+        })
+    
     @http.route('/upocargo/facturas', type='http', auth='public')
     def show_facturas(self):
         user_id = request.session.get('cliente_id')
@@ -118,6 +136,20 @@ class UpocargoPortal(http.Controller):
             'facturas': facturas
         })
     
+    @http.route('/upocargo/facturas/<string:id_factura>', type='http', auth='public')
+    def show_factura(self, id_factura):
+        user_id = request.session.get('cliente_id')
+        if not user_id:
+            return request.redirect('/upocargo/login')
+        factura = request.env['upocargo.factura'].sudo().search([('id_factura','=',id_factura)],limit=1)
+        if not factura:
+            return http.request.httprequest.not_found("Factura no encontrada D:")
+        if not user_id == factura.mudanza_id.cliente.id_cliente:
+            return request.redirect('/upocargo/facturas')
+        return http.request.render('upocargo.factura_detail',{
+            'factura': factura
+        })
+    
     @http.route('/upocargo/almacenamientos', type='http', auth='public')
     def show_almacenamientos(self):
         user_id = request.session.get('cliente_id')
@@ -129,4 +161,18 @@ class UpocargoPortal(http.Controller):
         almacenamientos = cliente.almacenamiento
         return request.render('upocargo.almacenamientos_template', {
             'almacenamientos': almacenamientos
+        })
+    
+    @http.route('/upocargo/almacenamientos/<string:id_almacenamiento>', type='http', auth='public')
+    def show_almacenamiento(self, id_almacenamiento):
+        user_id = request.session.get('cliente_id')
+        if not user_id:
+            return request.redirect('/upocargo/login')
+        almacenamiento = request.env['upocargo.almacenamiento'].sudo().search([('id_almacenamiento','=',id_almacenamiento)],limit=1)
+        if not almacenamiento:
+            return http.request.httprequest.not_found("Mudanza no encontrada D:")
+        if not user_id == almacenamiento.cliente.id_cliente:
+            return request.redirect('/upocargo/mudanzas')
+        return http.request.render('upocargo.mudanza_detail',{
+            'almacenamiento': almacenamiento
         })

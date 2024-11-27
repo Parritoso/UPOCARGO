@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <!--
   <template id="login_template" name="UPOCARGO Login">
@@ -16,6 +17,89 @@
     </form>
   </template>
 -->
+
+  <template id="upocargo_index" name="Upocargo Home Page">
+    <t t-call="web.layout">
+      <!--<script src="https://kit.fontawesome.com/7e0b1d0202.js" crossorigin="anonymous"></script>-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+      <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/upocargo.css"/>
+      <div id="warp" class="homepage">
+        <!--Header-->
+        <section id="hero" class="hero-section text-center">
+          <div class="container">
+            <h1 class="display-3">Bienvenido a Upocargo</h1>
+            <p class="lead">Tu solución confiable para mudanzas rapidas y seguras</p>
+            <a href="/contacto" class="btn btn-primary btn-lg mt-3">Contactanos ahora</a>
+            <a href="/upocargo/login" class="btn btn-secondary btn-lg mt-3">Iniciar Sesión</a>
+          </div>
+        </section>
+        <!--Services-->
+        <section id="services" class="services-section py-5">
+          <div class="container">
+            <h2 class="text-center mb-4">Nuestros Servicios</h2>
+            <div class="row">
+              <div class="col-md-4 text-center">
+                <i class="fa fa-truck fa-3x mb-3"></i>
+                <h4>Transporte Local</h4>
+                <p>Movemos tus pertenencias en la ciudad con rapidez y seguridad</p>
+              </div>
+              <div class="col-md-4 text-center">
+                <i class="fa fa-globe fa-3x mb-3"></i>
+                <h4>Transporte Internacional</h4>
+                <p>Facilitamos tus mudanzas a nivel internacional sin complicaciones</p>
+              </div>
+              <div class="col-md-4 text-center">
+                <i class="fa fa-box fa-3x mb-3"></i>
+                <h4>Empaque Profesional</h4>
+                <p>Protección máxima para tus bienes con nuestros servicios de embalaje</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!--Testimonial-->
+        <section id="testimonials" class="testimonials-section bg-light py-5">
+          <div class="container">
+            <h2 class="text-center mb-4">Clientes Satisfechos</h2>
+            <div class="row">
+              <div class="col-md-6">
+                <blockquote class="blockquote">
+                  <p>"El equipo de Upocargo hizo que nuestra mudanza fuera increíblemente sencilla. 100% recomendados."</p>
+                  <footer class="blockquote-footer">Ana Rodríguez</footer>
+                </blockquote>
+              </div>
+              <div class="col-md-6">
+                <blockquote class="blockquote">
+                  <p>"Un servicio profesional y amigable. Definitivamente los contrataría de nuevo."</p>
+                  <footer class="blockquote-footer">Luis García</footer>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!--Footer-->
+        <footer class="footer bg-dark text-white py-4">
+          <div class="container text-center">
+            <p>&#169; 2024 Upocargo. Todos los derechos reservados.</p>
+            <p>
+              <a href="/about" class="text-white">Acerca de Nosotros</a> |
+              <a href="/contact" class="text-white">Contáctanos</a>
+            </p>
+            <div class="social-icons">
+              <a href="#" class="text-white mx-2">
+                <i class="fa fa-facebook"></i>
+              </a>
+              <a href="#" class="text-white mx-2">
+                <i class="fa fa-twitter"></i>
+              </a>
+              <a href="#" class="text-white mx-2">
+                <i class="fa fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </t>
+  </template>
 
   <template id="login_template" name="Login">
     <t t-call="web.layout">
@@ -77,7 +161,7 @@
 
   <template id="portal_home_template" name="Portal Principal">
     <t t-call="web.layout">
-    <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/portal_home_styles.css"/>
+      <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/portal_home_styles.css"/>
       <div class="container">
         <nav class="navbar">
           <div class="navber-brand">
@@ -106,8 +190,48 @@
   </template>
 
   <template id="mudanzas_template" name="Portal de Mudanzas">
+    <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/aux_pages.css"/>
     <div class="container mt-4">
-      <h2>Mis mudanzas</h2>
+      <nav class="navbar">
+        <div class="navber-brand">
+          <a href="/upocargo/portal_home">UpoCargo</a>
+        </div>
+        <ul class="navbar-menu">
+          <li>
+            <a href="/upocargo/mudanzas">Mis Mudanzas</a>
+          </li>
+          <li>
+            <a href="/upocargo/facturas">Mis Facturas</a>
+          </li>
+          <li>
+            <a href="/upocargo/almacenamientos">Mis Almacenamientos</a>
+          </li>
+        </ul>
+        <div class="navbar-end">
+          <a href="/upocargo/logout" class="button is-danger">Cerrar Sesión</a>
+        </div>
+      </nav>
+      <section class="section" id="mudanzas">
+        <h2>Mis Mudanzas</h2>
+        <t t-if="mudanzas">
+          <t t-foreach="mudanzas" t-as="mudanza">
+            <a t-att-href="'/upocargo/mudanzas/' + str(mudanza.id_mudanza)">
+              <div class="card">
+                <span>
+                  <strong>Mudanza</strong>
+                  <t t-esc="mudanza.id_mudanza" />
+ -                  <strong>Fecha:</strong>
+                  <t t-esc="mudanza.fecha"/>
+                </span>
+              </div>
+            </a>
+          </t>
+        </t>
+        <t t-else="">
+          <p>No hay mudanzas disponibles</p>
+        </t>
+      </section>
+      <!--<h2>Mis mudanzas</h2>
       <t t-if="mudanzas">
         <ul>
           <t t-foreach="mudanzas" t-as="mudanza">
@@ -133,56 +257,355 @@
       </t>
       <t t-else="">
         <p>No hay mudanzas disponibles</p>
-      </t>
+      </t>-->
     </div>
+  </template>
+
+  <template id="mudanza_detail" name="Detalles de Mudanza">
+    <t t-call="web.layout">
+      <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/mudanza_detail.css"/>
+      <div class="container">
+        <section class="mudanza-detail">
+          <h2>Detalles de la mudanza</h2>
+          <!--Informacion general-->
+          <div class="mudanza-info">
+            <h3>Información General</h3>
+            <p>
+              <strong>ID de la Mudanza:</strong>
+              <t t-esc="id_mudanza.id_mudanza" />
+            </p>
+            <p>
+              <strong>Fecha de Inicio:</strong>
+              <t t-esc="id_mudanza.fecha" />
+            </p>
+            <p>
+              <strong>Dirección de Origen:</strong>
+              <t t-esc="id_mudanza.dirOrigen" />
+            </p>
+            <p>
+              <strong>Dirección de Destino:</strong>
+              <t t-esc="id_mudanza.dirDestino" />
+            </p>
+            <p>
+              <strong>Estado:</strong>
+              <t t-esc="id_mudanza.estado" />
+            </p>
+          </div>
+          <!--Informacion del Cliente-->
+          <div class="cliente-info">
+            <h3>Cliente</h3>
+            <t t-if="id_mudanza.cliente">
+              <p>
+                <strong>Nombre:</strong>
+                <t t-esc="id_mudanza.cliente.name"/>
+              </p>
+              <t t-if="id_mudanza.cliente.email">
+                <p>
+                  <strong>Email:</strong>
+                  <t t-esc="id_mudanza.cliente.email"/>
+                </p>
+              </t>
+              <t t-if="id_mudanza.cliente.telefono">
+                <p>
+                  <strong>Teléfono:</strong>
+                  <t t-esc="id_mudanza.cliente.telefono"/>
+                </p>
+              </t>
+            </t>
+            <t t-else="">
+              <p>No hay información del cliente asociada</p>
+            </t>
+          </div>
+          <!--Empleados-->
+          <div class="empleados-info">
+            <h3>Empleados Asignados</h3>
+            <t t-if="id_mudanza.empleados">
+              <ul>
+                <t t-foreach="id_mudanza.empleados" t-as="empleado">
+                  <li>
+                    <strong>Nombre:</strong>
+                    <t t-esc="empleado.nombre" />
+                    <strong>Puesto:</strong>
+                    <t t-esc="empleado.cargo" />
+                  </li>
+                </t>
+              </ul>
+            </t>
+            <t t-else="">
+              <p>No hay empleados asignados a esta mudanza.</p>
+            </t>
+          </div>
+          <!-- Factura Asociada -->
+          <div class="factura-info">
+            <h3>Factura Asociada</h3>
+            <t t-if="id_mudanza.factura">
+              <p>
+                <strong>ID Factura:</strong>
+                <t t-esc="id_mudanza.factura.id_factura" />
+              </p>
+              <p>
+                <strong>Total:</strong>
+                <t t-esc="id_mudanza.factura.precio" />
+              </p>
+              <a t-att-href="'/upocargo/facturas/' + str(id_mudanza.factura.id_factura)">Ver Factura</a>
+            </t>
+            <t t-else="">
+              <p>No hay factura asociada a esta mudanza</p>
+            </t>
+          </div>
+        </section>
+      </div>
+    </t>
   </template>
 
   <template id="almacenamientos_template" name="Portal de ALmacenamientos">
+    <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/aux_pages.css"/>
     <div class="container mt-4">
-      <h2>Mis Almacenamientos</h2>
-      <t t-if="almacenamientos">
-        <ul>
-          <t t-foreach="almacenamientos" t-as="almacenamiento">
-            <li>
-              <strong>ID:</strong>
-              <t t-esc="almacenamiento.id_almacenamiento"/>
-              <br/>
-              <strong>Fecha de Ingreso:</strong>
-              <t t-esc="almacenamiento.fecha_ingreso"/>
-              <br/>
-              <strong>Fecha de Salida:</strong>
-              <t t-esc="almacenamiento.fecha_salida"/>
-              <br/>
-            </li>
-          </t>
+      <nav class="navbar">
+        <div class="navber-brand">
+          <a href="/upocargo/portal_home">UpoCargo</a>
+        </div>
+        <ul class="navbar-menu">
+          <li>
+            <a href="/upocargo/mudanzas">Mis Mudanzas</a>
+          </li>
+          <li>
+            <a href="/upocargo/facturas">Mis Facturas</a>
+          </li>
+          <li>
+            <a href="/upocargo/almacenamientos">Mis Almacenamientos</a>
+          </li>
         </ul>
-      </t>
-      <t t-else="">
-        <p>No hay almacenamientos disponibles</p>
-      </t>
+        <div class="navbar-end">
+          <a href="/upocargo/logout" class="button is-danger">Cerrar Sesión</a>
+        </div>
+      </nav>
+      <section class="section" id="almacenamientos">
+        <h2>Mis Almacenamientos</h2>
+        <t t-if="almacenamientos">
+          <t t-foreach="almacenamientos" t-as="almacenamiento">
+            <a t-att-href="'/upocargo/almacenamientos/' +str(almacenamiento.id_almacenamiento)">
+              <div class="card">
+                <span>
+                  <strong>Almacenamiento</strong>
+                  <t t-esc="almacenamiento.id_almacenamiento"/>
+ -                  <strong>Fecha de Ingreso:</strong>
+                  <t t-esc="almacenamiento.fecha_ingreso"/>
+                </span>
+              </div>
+            </a>
+          </t>
+        </t>
+        <t t-else="">
+          <p>No hay almacenamientos disponibles</p>
+        </t>
+      </section>
+      <!--<h2>Mis Almacenamientos</h2>
+    <t t-if="almacenamientos">
+      <ul>
+        <t t-foreach="almacenamientos" t-as="almacenamiento">
+          <li>
+            <strong>ID:</strong>
+            <t t-esc="almacenamiento.id_almacenamiento"/>
+            <br/>
+            <strong>Fecha de Ingreso:</strong>
+            <t t-esc="almacenamiento.fecha_ingreso"/>
+            <br/>
+            <strong>Fecha de Salida:</strong>
+            <t t-esc="almacenamiento.fecha_salida"/>
+            <br/>
+          </li>
+        </t>
+      </ul>
+    </t>
+    <t t-else="">
+      <p>No hay almacenamientos disponibles</p>
+    </t>-->
     </div>
   </template>
 
+  <template id="almacenamiento_detail" name="Detalles de Almacenamiento">
+    <t t-call="web.layout">
+      <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/almacenamiento_detail.css"/>
+      <div class="container">
+        <section class="almacenamiento-detail">
+          <h2>Detalles de Almacenamiento</h2>
+          <div class="almacenamiento-info">
+            <h3>Información del Almacenamiento</h3>
+            <p>
+              <strong>ID del Almacenamiento:</strong>
+              <t t-esc="almacenamiento.id_almacenamiento" />
+            </p>
+            <p>
+              <strong>Fecha de Ingreso:</strong>
+              <t t-esc="almacenamiento.fecha_ingreso or 'N/A'" />
+            </p>
+            <p>
+              <strong>Fecha de Salida:</strong>
+              <t t-esc="almacenamiento.fecha_salida or 'N/A'" />
+            </p>
+            <p>
+              <strong>Estado:</strong>
+              <t t-esc="almacenamiento.estado or 'N/A'" />
+            </p>
+          </div>
+          <div class="bien-info">
+            <h3>Bienes Almacenados</h3>
+            <ul>
+              <t t-foreach="almacenamiento.bienes_almacenados" t-as="bien">
+                <li>
+                  <t t-esc="bien.name or 'Sin nombre'"/>
+                </li>
+              </t>
+            </ul>
+          </div>
+          <div class="cliente-info">
+            <h3>Cliente</h3>
+            <p>
+              <strong>Nombre:</strong>
+              <t t-esc="almacenamiento.cliente.name or 'N/A'" />
+            </p>
+            <p>
+              <strong>Correo Electrónico:</strong>
+              <t t-esc="almacenamiento.cliente.email or 'N/A'" />
+            </p>
+            <p>
+              <strong>Teléfono:</strong>
+              <t t-esc="almacenamiento.cliente.telefono or 'N/A'" />
+            </p>
+          </div>
+        </section>
+      </div>
+    </t>
+  </template>
+
   <template id="facturas_template" name="Portal de Facturas">
+    <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/aux_pages.css"/>
     <div class="container mt-4">
-      <h2>Mis Facturas</h2>
-      <t t-if="facturas">
-        <ul>
-          <t t-foreach="facturas" t-as="factura">
-            <li>
-              <strong>ID:</strong>
-              <t t-esc="factura.id_factura"/>
-              <br/>
-              <strong>Coste:</strong>
-              <t t-esc="factura.precio"/>
-              <br/>
-            </li>
-          </t>
+      <nav class="navbar">
+        <div class="navber-brand">
+          <a href="/upocargo/portal_home">UpoCargo</a>
+        </div>
+        <ul class="navbar-menu">
+          <li>
+            <a href="/upocargo/mudanzas">Mis Mudanzas</a>
+          </li>
+          <li>
+            <a href="/upocargo/facturas">Mis Facturas</a>
+          </li>
+          <li>
+            <a href="/upocargo/almacenamientos">Mis Almacenamientos</a>
+          </li>
         </ul>
-      </t>
-      <t t-else="">
-        <p>No hay facturas disponibles</p>
-      </t>
+        <div class="navbar-end">
+          <a href="/upocargo/logout" class="button is-danger">Cerrar Sesión</a>
+        </div>
+      </nav>
+      <section class="section" id="facturas">
+        <h2>Mis Facturas</h2>
+        <t t-if="facturas">
+          <t t-foreach="facturas" t-as="factura">
+            <a t-att-href="'/upocargo/facturas/' +str(factura.id_factura)">
+              <div class="card">
+                <span>
+                  <strong>Factura</strong>
+                  <t t-esc="factura.id_factura"/>
+ -                  <strong>Total</strong>
+                  <t t-esc="factura.precio"/>
+                </span>
+              </div>
+            </a>
+          </t>
+        </t>
+        <t t-else="">
+          <p>No hay facturas disponibles</p>
+        </t>
+      </section>
+      <!--<h2>Mis Facturas</h2>
+    <t t-if="facturas">
+      <ul>
+        <t t-foreach="facturas" t-as="factura">
+          <li>
+            <strong>ID:</strong>
+            <t t-esc="factura.id_factura"/>
+            <br/>
+            <strong>Coste:</strong>
+            <t t-esc="factura.precio"/>
+            <br/>
+          </li>
+        </t>
+      </ul>
+    </t>
+    <t t-else="">
+      <p>No hay facturas disponibles</p>
+    </t>-->
     </div>
+  </template>
+
+  <template id="factura_detail" name="Detalles de Factura">
+    <t t-call="web.layout">
+      <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/factura_detail.css"/>
+      <div class="container">
+        <section class="factura-detail">
+          <h2>Detalles de Factura</h2>
+          <div class="factura-info">
+            <h3>Información de la Factura</h3>
+            <p>
+              <strong>ID de la Factura:</strong>
+              <t t-esc="factura.id_factura" />
+            </p>
+            <p>
+              <strong>Total:</strong>
+              <t t-esc="'%s %s' % (factura.currency_id.symbol, factura.precio)" />
+            </p>
+          </div>
+          <div class="mudanza-info">
+            <h3>Información de la mudanza asociada</h3>
+            <p>
+              <strong>ID de la Mudanza: </strong>
+              <a t-att-href="'/upocargo/mudanzas/%s' % factura.mudanza_id.id_mudanza">
+                <t t-esc="factura.mudanza_id.id_mudanza" />
+              </a>
+            </p>
+            <p>
+              <strong>Dirección de Origen:</strong>
+              <t t-esc="factura.mudanza_id.dirOrigen or 'N/A'" />
+            </p>
+            <p>
+              <strong>Dirección de Destino:</strong>
+              <t t-esc="factura.mudanza_id.dirDestino or 'N/A'"/>
+            </p>
+            <p>
+              <strong>Estado:</strong>
+              <t t-esc="factura.mudanza_id.estado or 'N/A'" />
+            </p>
+          </div>
+          <div class="factura-info">
+            <h3>Desglose de gastos</h3>
+            <table class="desglose-table">
+              <thead>
+                <tr>
+                  <th>Concepto</th>
+                  <th>Valor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <t t-foreach="factura.compute_desglose_gastos()" t-as="gasto">
+                  <tr>
+                    <td>
+                      <t t-esc="gasto['concepto']" />
+                    </td>
+                    <td>
+                      <t t-esc="gasto['valor']"/>
+                      <t t-esc="factura.currency_id.symbol" />
+                    </td>
+                  </tr>
+                </t>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </t>
   </template>
 </odoo>

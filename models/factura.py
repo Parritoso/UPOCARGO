@@ -36,3 +36,24 @@ class Factura(models.Model):
     @staticmethod
     def _generate_id_factura():
         return ''.join(random.choices(string.ascii_uppercase + string.digits, k=9))
+    
+    def compute_desglose_gastos(self):
+        desglose=[]
+        for record in self:
+            if record.mudanza_id:
+                vehiculos_extra = max(0, len(record.mudanza_id.vehiculos)-1) *100
+                empleados_extra = max(0, len(record.mudanza_id.empleados)-2) *50
+                coste_base = record.precio -vehiculos_extra -empleados_extra
+                desglose.append({
+                    "concepto": "Costo base",
+                    "valor": coste_base
+                })
+                desglose.append({
+                    "concepto": "Vehículos adicionales",
+                    "valor": vehiculos_extra
+                })
+                desglose.append({
+                    "concepto": "Empleados adicionales",
+                    "valor": empleados_extra
+                })
+        return desglose

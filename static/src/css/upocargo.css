@@ -1,0 +1,141 @@
+/* General Styles */
+body{
+    font-family: "Arial", sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+h1, h2, h3, h4, h5, h6{
+    margin: 0 0 15px;
+    font-weight: bold;
+    color: #222;
+}
+
+/* Header Section */
+.hero-section{
+    background: url(/upocargo/static/src/img/hero.jpg) no-repeat center center/cover;
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.hero-section .btn {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.hero-section .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Services Section */
+.services-section {
+    background-color: #ffffff;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.services-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #007bff;
+}
+
+.services-section .col-md-4 {
+    margin-bottom: 20px;
+}
+
+.services-section i {
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+.services-section p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Testimonials Section */
+.testimonials-section {
+    padding: 50px 0;
+    background-color: #f1f1f1;
+}
+
+.testimonials-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+blockquote {
+    font-style: italic;
+    color: #555;
+    border-left: 5px solid #007bff;
+    padding-left: 15px;
+    margin-bottom: 30px;
+}
+
+/* Footer */
+.footer{
+    background-color: #222;
+    color: #ddd;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer p {
+    margin: 5px 0;
+}
+
+.footer a {
+    color: #007bff;
+    text-decoration: none;
+    transition:  color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #0056b3;
+}
+
+.footer .social-icons i {
+    font-size: 1.2rem;
+    margin: 0 10px;
+    color: #ddd;
+    transition: color 0.3s ease;
+}
+
+.footer .social-icons i:hover {
+    color:  #007bff;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    .hero-section p{
+        font-size: 1rem;
+    }
+
+    .services-section h2, .testimonials-section h2 {
+        font-size: 2rem;
+    }
+}

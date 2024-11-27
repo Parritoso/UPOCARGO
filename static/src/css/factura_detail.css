@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.factura-detail {
+    margin-top: 20px;
+}
+
+.factura-detail h2 {
+    text-align: center;
+    color: #28a745;
+    margin-bottom: 20px;
+}
+
+.factura-detail h3 {
+    margin-top: 30px;
+    color: #218838;
+    border-bottom: 2px solid #c3e6cb;
+    padding-bottom: 5px;
+    font-size: 1.5rem;
+}
+
+.factura-info, .mudanza-info {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #c3e6cb;
+    background-color: #d4edda;
+    border-radius: 5px;
+}
+
+.factura-info p, .mudanza-info p {
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.desglose-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.desglose-table th, .desglose-table td {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.desglose-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.desglose-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+.desglose-table td {
+    font-size: 14px;
+}
+
+a {
+    color: #218838;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 769px) {
+    .container {
+        padding: 15px;
+    }
+
+    .factura-detail h2 {
+        font-size: 1.8rem;
+    }
+
+    .factura-detail h3 {
+        font-size: 1.2rem;
+    }
+}

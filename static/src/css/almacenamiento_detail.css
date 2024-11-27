@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 25px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.almacenamiento-detail h2 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.almacenamiento-detail h3 {
+    margin-top: 30px;
+    color: #0056b3;
+    border-bottom: 2px solid #b3d4fc;
+    font-size: 1.5rem;
+}
+
+.almacenamiento-info, .bienes-info, .cliente-info {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #b3d4fc;
+    background-color: #e9f5ff;
+    border-radius: 5px;
+}
+
+.almacenamiento-info p, .bienes-info ul, .cliente-info p {
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.bienes-info ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+a {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px){
+    .container {
+        padding: 20px;
+    }
+    .almacenamiento-detail h2 {
+        font-size: 1.8rem;
+    }
+    .almacenamiento-detail h3 {
+        font-size: 1.2rem;
+    }
+}
