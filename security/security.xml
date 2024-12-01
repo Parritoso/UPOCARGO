@@ -2,4 +2,7 @@
     <record id="group_upocargo_manager" model="res.groups">
         <field name="name">Upocargo / Manager</field>
     </record>
+    <record id="group_upocargo_empleado" model="res.groups">
+        <field name="name">Upocargo / Empleado</field>
+    </record>
 </odoo>

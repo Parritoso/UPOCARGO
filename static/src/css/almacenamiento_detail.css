@@ -55,6 +55,54 @@ a:hover {
     text-decoration: underline;
 }
 
+
+form .field {
+    margin-bottom: 15px;
+}
+
+form .label {
+    font-weight: bold;
+    color: #333;
+}
+
+form .input {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #fff;
+}
+
+form .input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+form .button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+form .button:hover {
+    background-color: #0056b3;
+}
+
+form .button.is-warning {
+    background-color: #ffc107;
+}
+
+form .button.is-warning:hover {
+    background-color: #e0a800;
+}
+
 @media (max-width: 768px){
     .container {
         padding: 20px;

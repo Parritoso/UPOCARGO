@@ -23,7 +23,21 @@
                         <field name="id_proveedor" />
                         <field name="entidad"/>
                         <field name="email"/>
+                        <field name="name"/>
+                        <field name="direccion"/>
+                        <field name="telefono"/>
                     </group>
+                    <notebook>
+                        <page name="servicios_adicionales">
+                            <field name="servicios_adicionales">
+                                <tree>
+                                    <field name="id_servicios" />
+                                    <field name="tipo" />
+                                    <field name="precio_final" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

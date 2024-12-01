@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-from odoo import http
+from odoo import http, fields
 from odoo.http import request
+from datetime import timedelta
 
 
 # class Gym(http.Controller):
@@ -37,6 +38,15 @@ class UpocargoAuth(http.Controller):
         if http.request.httprequest.method == 'POST':
             email = kwargs.get('email')
             password = kwargs.get('password')
+            proveedor = request.env['upocargo.proveedor'].sudo().search([('email', '=', email)])
+            if proveedor:
+                if proveedor._check_password(password):
+                    request.session['proveedor_id'] = proveedor.id_proveedor
+                    return request.redirect('/upocargo/portal_home_proveedor')  # Página del proveedor
+                else:
+                    return http.request.render('upocargo.login_template', {
+                        'error': 'Credenciales incorrectas, intente de nuevo.'
+                    })
             user = request.env['upocargo.cliente'].sudo().search([('email','=', email)])
             if user: #and user._check_password(password):
                 if password == str(user.id_cliente) and not user.password:
@@ -95,6 +105,45 @@ class UpocargoPortal(http.Controller):
             return request.redirect('/upocargo/login')
         return http.request.render('upocargo.portal_home_template')
     
+    @http.route('/upocargo/modificar_datos', type='http', auth='public',csfr=True)
+    def modificar_datos(self, **kwargs):
+        cliente_id = request.session.get('cliente_id')
+        if not cliente_id:
+            return request.redirect('/upocargo/login')
+        user = request.env['upocargo.cliente'].sudo().search([('id_cliente','=',cliente_id)],limit=1)
+        return http.request.render('upocargo.modificar_datos_template', {'user': user})
+    
+    # Ruta para guardar los cambios del usuario
+    @http.route('/upocargo/guardar_datos', type='http', auth='user', methods=['POST'], csfr=True)
+    def guardar_datos(self, **kwargs):
+        cliente_id = request.session.get('cliente_id')
+        if not cliente_id:
+            return request.redirect('/upocargo/login')
+        user = request.env['upocargo.cliente'].sudo().search([('id_cliente','=',cliente_id)],limit=1)
+        email = kwargs.get('email')
+        name = kwargs.get('name')
+        dir = kwargs.get('dir')
+        telf = kwargs.get('tlf')
+        password = kwargs.get('password')
+
+        # Verificar que la contraseña introducida sea correcta
+        if not user._check_password(password):
+            return request.render('upocargo.modificar_datos_template', {
+                'error': 'Contraseña incorrecta. Por favor, intente de nuevo.',
+                'user': user
+            })
+
+        # Guardar los cambios en los datos del usuario
+        user.write({
+            'email': email,
+            'name': name,
+            'direccion': dir,
+            'telefono': telf
+        })
+        
+        # Redirigir al usuario a la página de inicio con un mensaje de éxito
+        return http.request.redirect('/upocargo/portal_home')
+    
     @http.route('/upocargo/mudanzas', type='http', auth='public')
     def show_mudanzas(self):
         user_id = request.session.get('cliente_id')
@@ -109,7 +158,7 @@ class UpocargoPortal(http.Controller):
         })
     
     @http.route('/upocargo/mudanzas/<string:id_mudanza>', type='http', auth='public')
-    def show_mudanza(self, id_mudanza):
+    def show_mudanza(self, id_mudanza, **kwargs):
         user_id = request.session.get('cliente_id')
         if not user_id:
             return request.redirect('/upocargo/login')
@@ -118,9 +167,56 @@ class UpocargoPortal(http.Controller):
             return http.request.httprequest.not_found("Mudanza no encontrada D:")
         if not user_id == mudanza.cliente.id_cliente:
             return request.redirect('/upocargo/mudanzas')
+        servicios_cliente = request.env['upocargo.servicios_adicionales'].sudo().search([('cliente_id', '=', user_id), ('estado', '=', 'true')])
+        if http.request.httprequest.method == 'POST':
+            action = kwargs.get('action')
+            if action == 'cancelar':
+                return self.cancelar_mudanza(mudanza)
+            elif action == 'atrasar':
+                return self.atrasar_mudanza(mudanza, kwargs.get('dias_atraso'))
+            elif action == 'agregar_servicio':
+                # Obtener el servicio adicional seleccionado
+                servicio_id = kwargs.get('servicio_id')
+                if servicio_id:
+                    servicio = request.env['upocargo.servicios_adicionales'].sudo().search([('id_servicios', '=', servicio_id)], limit=1)
+                    if servicio:
+                        # Asignar el servicio a la mudanza
+                        mudanza.servicios_adicionales = [(4, servicio.id)]
         return http.request.render('upocargo.mudanza_detail',{
-            'id_mudanza': mudanza
+            'id_mudanza': mudanza,
+            'servicios_disponibles': servicios_cliente
         })
+    
+    def cancelar_mudanza(self, mudanza):
+        # Cambiar el estado a 'Cancelado'
+        mudanza.write({'estado': 'cancelado'})
+        
+        # Comprobar si la fecha de la mudanza es dentro de una semana
+        if mudanza.fecha and mudanza.fecha <= (fields.Date.today() + timedelta(weeks=1)):
+            # Generar factura con la mitad del precio
+            factura = mudanza.factura
+            if factura:
+                precio_original = factura.precio
+                factura.write({'precio': precio_original / 2})
+        
+        # Redirigir a la página de detalles de la mudanza
+        return request.redirect('/upocargo/mudanzas/%s' % mudanza.id_mudanza)
+
+    def atrasar_mudanza(self, mudanza, dias_atraso):
+        # Atrasar la fecha de la mudanza
+        nueva_fecha = fields.Date.from_string(mudanza.fecha) + timedelta(days=int(dias_atraso))
+        mudanza.write({'fecha': nueva_fecha})
+        
+        # Actualizar la factura añadiendo el coste extra por día de atraso
+        factura = mudanza.factura
+        if factura:
+            # Suponemos un coste extra por día
+            coste_extra_por_dia = 10  # Por ejemplo, 10 unidades de la moneda por día
+            nuevo_precio = factura.precio + (int(dias_atraso) * coste_extra_por_dia)
+            factura.write({'precio': nuevo_precio})
+        
+        # Redirigir a la página de detalles de la mudanza
+        return request.redirect('/upocargo/mudanzas/%s' % mudanza.id_mudanza)
     
     @http.route('/upocargo/facturas', type='http', auth='public')
     def show_facturas(self):
@@ -164,7 +260,7 @@ class UpocargoPortal(http.Controller):
         })
     
     @http.route('/upocargo/almacenamientos/<string:id_almacenamiento>', type='http', auth='public')
-    def show_almacenamiento(self, id_almacenamiento):
+    def show_almacenamiento(self, id_almacenamiento, **kwargs):
         user_id = request.session.get('cliente_id')
         if not user_id:
             return request.redirect('/upocargo/login')
@@ -173,6 +269,127 @@ class UpocargoPortal(http.Controller):
             return http.request.httprequest.not_found("Mudanza no encontrada D:")
         if not user_id == almacenamiento.cliente.id_cliente:
             return request.redirect('/upocargo/mudanzas')
+        if http.request.httprequest.method == 'POST':
+            action = kwargs.get('action')
+            if action == 'atrasar':
+                return self.atrasar_almacenamiento(almacenamiento, kwargs.get('dias_atraso'))
         return http.request.render('upocargo.mudanza_detail',{
             'almacenamiento': almacenamiento
+        })
+    
+    def atrasar_almacenamiento(self, almacenamiento, dias_atraso):
+        # Atrasar la fecha de salida
+        nueva_fecha_salida = fields.Date.from_string(almacenamiento.fecha_salida) + timedelta(days=int(dias_atraso))
+        almacenamiento.write({'fecha_salida': nueva_fecha_salida})
+        
+        # Actualizar la factura, añadiendo un costo adicional por cada día extra
+        factura = almacenamiento.factura_id
+        if factura:
+            # Supongamos que el costo adicional es de 5 unidades monetarias por cada día adicional
+            coste_extra_por_dia = 5  # Ejemplo: 5 unidades monetarias por día
+            nuevo_precio = factura.precio + (int(dias_atraso) * coste_extra_por_dia)
+            factura.write({'precio': nuevo_precio})
+        
+        # Redirigir a la página de detalles del almacenamiento
+        return request.redirect('/upocargo/almacenamientos/%s' % almacenamiento.id_almacenamiento)
+    
+    @http.route('/upocargo/marketplace', type='http', auth="public")
+    def marketplace(self, **kwargs):
+        # Obtener todos los servicios adicionales activos
+        user_id = request.session.get('cliente_id')
+        if not user_id:
+            return request.redirect('/upocargo/login')
+        services = request.env['upocargo.servicios_adicionales'].search([('estado', '=', 'true')])
+
+        # Obtener los datos del usuario
+        user = request.env['upocargo.cliente'].sudo().search([('id_cliente','=',user_id)])
+
+        # Devolver la página con los servicios y la información del usuario
+        return request.render('upocargo.marketplace_page', {
+            'services': services,
+            'user': user,
+        })
+    
+    @http.route('/upocargo/search_servicios', type='http', auth="public")
+    def search_servicios(self, search='', **kwargs):
+        # Definir los dominios de búsqueda
+        domain = []
+        
+        if search:
+            # Filtrar por nombre del servicio adicional
+            domain += ['|', ('tipo', 'ilike', search), ('proveedores.name', 'ilike', search)]
+
+        # Obtener los servicios que coinciden con el criterio de búsqueda
+        services = request.env['upocargo.servicios_adicionales'].search(domain)
+
+        # Obtener los datos del usuario
+        user = request.env.user
+
+        # Devolver la página con los servicios filtrados
+        return request.render('upocargo.marketplace_page', {
+            'services': services,
+            'user': user,
+        })
+    
+    @http.route('/upocargo/servicio_adicional/<string:service>', 
+                type='http', auth="public")
+    def servicio_adicional(self, service, **kwargs):
+        # Comprobar si el usuario está suscrito a este servicio
+        user_id = request.session.get('cliente_id')
+        if not user_id:
+            return request.redirect('/upocargo/login')
+        servicio = request.env['upocargo.servicios_adicionales'].sudo().search([('id_servicios','=', service)],limit=1)
+        if not servicio:
+            return http.request.httprequest.not_found("Servicio no encontrado D:")
+        user = request.env['upocargo.cliente'].sudo().search([('id_cliente','=',user_id)])
+        is_subscribed = bool(request.env['upocargo.servicios_adicionales'].sudo().search([('cliente.id_cliente','=',user_id)]))
+
+        # Mostrar la vista del servicio con los detalles
+        return request.render('upocargo.servicio_adicional_page', {
+            'service': servicio,
+            'user': user,
+            'is_subscribed': is_subscribed,
+        })
+    
+    @http.route('/upocargo/suscribirse_servicio/<string:service>', 
+                type='http', auth="public")
+    def suscribirse_servicio(self, service, **kwargs):
+        user = request.env.user
+        # Comprobar si el usuario ya está suscrito al servicio
+        subscription = request.env['upocargo.cliente'].search([
+            ('servicios_adicionales.id_servicios', '=', service)
+        ], limit=1)
+
+        if subscription:
+            # Si está suscrito, desuscribir
+            subscription.unlink()
+        else:
+            # Si no está suscrito, suscribir
+            request.env['upocargo.servicios_adicionales'].create({
+                'cliente': user.id,
+                'name': service.id,
+            })
+
+        # Redirigir al usuario de nuevo a la página del servicio
+        return request.redirect('/upocargo/servicio_adicional/{}'.format(service.id_servicios))
+    
+    @http.route('/upocargo/servicios_contratados', type='http', auth="public")
+    def servicios_contratados(self, **kwargs):
+        # Obtener el id del cliente desde la sesión
+        user_id = request.session.get('cliente_id')
+        if not user_id:
+            return request.redirect('/upocargo/login')
+
+        # Obtener los servicios suscritos por el usuario
+        servicios_contratados = request.env['upocargo.servicios_adicionales'].search([
+            ('cliente.id_cliente', '=', user_id)
+        ])
+
+        # Obtener la información del usuario
+        user = request.env['upocargo.cliente'].sudo().search([('id_cliente', '=', user_id)])
+
+        # Renderizar la página con los servicios suscritos y la información del usuario
+        return request.render('upocargo.servicios_contratados_page', {
+            'services': servicios_contratados,
+            'user': user,
         })

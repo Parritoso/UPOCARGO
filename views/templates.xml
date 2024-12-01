@@ -20,9 +20,11 @@
 
   <template id="upocargo_index" name="Upocargo Home Page">
     <t t-call="web.layout">
-      <!--<script src="https://kit.fontawesome.com/7e0b1d0202.js" crossorigin="anonymous"></script>-->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
-      <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/upocargo.css"/>
+      <!--<script
+      src="https://kit.fontawesome.com/7e0b1d0202.js" crossorigin="anonymous"></script>-->
+      <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+      <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/upocargo.css" />
       <div id="warp" class="homepage">
         <!--Header-->
         <section id="hero" class="hero-section text-center">
@@ -63,7 +65,8 @@
             <div class="row">
               <div class="col-md-6">
                 <blockquote class="blockquote">
-                  <p>"El equipo de Upocargo hizo que nuestra mudanza fuera increíblemente sencilla. 100% recomendados."</p>
+                  <p>"El equipo de Upocargo hizo que nuestra mudanza fuera increíblemente sencilla.
+                    100% recomendados."</p>
                   <footer class="blockquote-footer">Ana Rodríguez</footer>
                 </blockquote>
               </div>
@@ -81,8 +84,8 @@
           <div class="container text-center">
             <p>&#169; 2024 Upocargo. Todos los derechos reservados.</p>
             <p>
-              <a href="/about" class="text-white">Acerca de Nosotros</a> |
-              <a href="/contact" class="text-white">Contáctanos</a>
+              <a href="/about" class="text-white">Acerca de Nosotros</a> | <a href="/contact"
+                class="text-white">Contáctanos</a>
             </p>
             <div class="social-icons">
               <a href="#" class="text-white mx-2">
@@ -103,19 +106,19 @@
 
   <template id="login_template" name="Login">
     <t t-call="web.layout">
-      <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/login_styles.css"/>
+      <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/login_styles.css" />
       <div class="login-container">
         <div class="login-box">
           <h2>Iniciar Sesión</h2>
           <form action="/upocargo/login" method="post">
-            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
             <div class="input-group">
               <label for="email">Email:</label>
-              <input type="email" name="email" required="required"/>
+              <input type="email" name="email" required="required" />
             </div>
             <div class="input-group">
               <label for="password">Password:</label>
-              <input type="password" name="password" required="required"/>
+              <input type="password" name="password" required="required" />
             </div>
             <div>
               <button type="submit" class="login-button">Iniciar Sesión</button>
@@ -133,19 +136,19 @@
 
   <template id="change_password_template" name="Change Password">
     <t t-call="web.layout">
-      <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/login_styles.css"/>
+      <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/login_styles.css" />
       <div class="login-container">
         <div class="login-box">
           <h2>Cambiar Contraseña</h2>
           <form action="/upocargo/change_password" method="post">
-            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
             <div class="input-group">
               <label for="password">Nueva Contraseña:</label>
-              <input type="password" name="password" required="required"/>
+              <input type="password" name="password" required="required" />
             </div>
             <div class="input-group">
               <label for="password_confirm">Confirmar Contraseña:</label>
-              <input type="password" name="password_confirm" required="required"/>
+              <input type="password" name="password_confirm" required="required" />
             </div>
             <t t-if="error">
               <div class="error-message">
@@ -161,7 +164,7 @@
 
   <template id="portal_home_template" name="Portal Principal">
     <t t-call="web.layout">
-      <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/portal_home_styles.css"/>
+      <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/portal_home_styles.css" />
       <div class="container">
         <nav class="navbar">
           <div class="navber-brand">
@@ -177,20 +180,104 @@
             <li>
               <a href="/upocargo/almacenamientos">Mis Almacenamientos</a>
             </li>
+            <li>
+              <a href="/upocargo/marketplace">Marketplace</a>
+            </li>
           </ul>
           <div class="navbar-end">
             <a href="/upocargo/logout" class="button is-danger">Cerrar Sesión</a>
           </div>
         </nav>
         <div class="content">
-          <t t-raw="0"/>
+          <a href="/upocargo/modificar_datos" class="button is-primary">Modificar mis datos</a>
+          <t t-raw="0" />
+        </div>
+      </div>
+    </t>
+  </template>
+
+  <template id="modificar_datos_template" name="Modificar mis datos">
+    <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/modificar_datos.css" />
+    <t t-call="web.layout">
+      <div class="container">
+        <nav class="navbar">
+          <div class="navbar-brand">
+            <a href="/upocargo/portal_home">UpoCargo</a>
+          </div>
+          <ul class="navbar-menu">
+            <li>
+              <a href="/upocargo/mudanzas">Mis Mudanzas</a>
+            </li>
+            <li>
+              <a href="/upocargo/facturas">Mis Facturas</a>
+            </li>
+            <li>
+              <a href="/upocargo/almacenamientos">Mis Almacenamientos</a>
+            </li>
+            <li>
+              <a href="/upocargo/marketplace">Marketplace</a>
+            </li>
+          </ul>
+          <div class="navbar-end">
+            <a href="/upocargo/logout" class="button is-danger">Cerrar Sesión</a>
+          </div>
+        </nav>
+
+        <div class="content">
+          <h2>Modificar mis datos</h2>
+          <t t-if="error">
+            <div class="alert alert-danger">
+              <t t-esc="error" />
+            </div>
+          </t>
+          <form method="post" action="/upocargo/guardar_datos">
+            <div class="field">
+              <label class="label">Correo Electrónico</label>
+              <div class="control">
+                <input class="input" type="email" name="email" t-att-value="user.email" required="1" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Nombre</label>
+              <div class="control">
+                <input class="input" type="text" name="name" t-att-value="user.name" required="1" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Dirección</label>
+              <div class="control">
+                <input class="input" type="text" name="dir" t-att-value="user.direccion"
+                  required="1" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Telefono</label>
+              <div class="control">
+                <input class="input" type="text" name="telf" t-att-value="user.telefono"
+                  required="1" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Contraseña</label>
+              <div class="control">
+                <input class="input" type="password" name="password"
+                  placeholder="Ingrese su contraseña para confirmar" required="1" />
+              </div>
+            </div>
+
+            <button class="button is-primary" type="submit">Guardar cambios</button>
+          </form>
         </div>
       </div>
     </t>
   </template>
 
   <template id="mudanzas_template" name="Portal de Mudanzas">
-    <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/aux_pages.css"/>
+    <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/aux_pages.css" />
     <div class="container mt-4">
       <nav class="navbar">
         <div class="navber-brand">
@@ -206,6 +293,9 @@
           <li>
             <a href="/upocargo/almacenamientos">Mis Almacenamientos</a>
           </li>
+          <li>
+            <a href="/upocargo/marketplace">Marketplace</a>
+          </li>
         </ul>
         <div class="navbar-end">
           <a href="/upocargo/logout" class="button is-danger">Cerrar Sesión</a>
@@ -219,9 +309,9 @@
               <div class="card">
                 <span>
                   <strong>Mudanza</strong>
-                  <t t-esc="mudanza.id_mudanza" />
- -                  <strong>Fecha:</strong>
-                  <t t-esc="mudanza.fecha"/>
+                  <t t-esc="mudanza.id_mudanza" /> - <strong>Fecha:</strong>
+                  <t
+                    t-esc="mudanza.fecha" />
                 </span>
               </div>
             </a>
@@ -231,7 +321,8 @@
           <p>No hay mudanzas disponibles</p>
         </t>
       </section>
-      <!--<h2>Mis mudanzas</h2>
+      <!--<h2>Mis
+      mudanzas</h2>
       <t t-if="mudanzas">
         <ul>
           <t t-foreach="mudanzas" t-as="mudanza">
@@ -263,11 +354,12 @@
 
   <template id="mudanza_detail" name="Detalles de Mudanza">
     <t t-call="web.layout">
-      <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/mudanza_detail.css"/>
+      <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/mudanza_detail.css" />
       <div class="container">
         <section class="mudanza-detail">
           <h2>Detalles de la mudanza</h2>
-          <!--Informacion general-->
+          <!--Informacion
+          general-->
           <div class="mudanza-info">
             <h3>Información General</h3>
             <p>
@@ -291,24 +383,42 @@
               <t t-esc="id_mudanza.estado" />
             </p>
           </div>
-          <!--Informacion del Cliente-->
+          <t t-if="id_mudanza.estado != 'Cancelada'">
+            <form method="post">
+              <div class="field">
+                <label class="label">Atrasar Mudanza (Días):</label>
+                <div class="control">
+                  <input class="input" type="number" name="dias_atraso" min="1" required="1" />
+                </div>
+              </div>
+              <input type="hidden" name="mudanza_id" value="id_mudanza.id_mudanza" />
+              <button class="button is-warning" type="submit" name="action" value="atrasar">Atrasar
+                Mudanza</button>
+            </form>
+            <from method="post">
+              <button class="button is-danger" type="submit" name="action" value="cancelar">Cancelar
+                Mudanza</button>
+            </from>
+          </t>
+          <!--Informacion
+          del Cliente-->
           <div class="cliente-info">
             <h3>Cliente</h3>
             <t t-if="id_mudanza.cliente">
               <p>
                 <strong>Nombre:</strong>
-                <t t-esc="id_mudanza.cliente.name"/>
+                <t t-esc="id_mudanza.cliente.name" />
               </p>
               <t t-if="id_mudanza.cliente.email">
                 <p>
                   <strong>Email:</strong>
-                  <t t-esc="id_mudanza.cliente.email"/>
+                  <t t-esc="id_mudanza.cliente.email" />
                 </p>
               </t>
               <t t-if="id_mudanza.cliente.telefono">
                 <p>
                   <strong>Teléfono:</strong>
-                  <t t-esc="id_mudanza.cliente.telefono"/>
+                  <t t-esc="id_mudanza.cliente.telefono" />
                 </p>
               </t>
             </t>
@@ -359,7 +469,7 @@
   </template>
 
   <template id="almacenamientos_template" name="Portal de ALmacenamientos">
-    <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/aux_pages.css"/>
+    <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/aux_pages.css" />
     <div class="container mt-4">
       <nav class="navbar">
         <div class="navber-brand">
@@ -375,6 +485,9 @@
           <li>
             <a href="/upocargo/almacenamientos">Mis Almacenamientos</a>
           </li>
+          <li>
+            <a href="/upocargo/marketplace">Marketplace</a>
+          </li>
         </ul>
         <div class="navbar-end">
           <a href="/upocargo/logout" class="button is-danger">Cerrar Sesión</a>
@@ -388,9 +501,9 @@
               <div class="card">
                 <span>
                   <strong>Almacenamiento</strong>
-                  <t t-esc="almacenamiento.id_almacenamiento"/>
- -                  <strong>Fecha de Ingreso:</strong>
-                  <t t-esc="almacenamiento.fecha_ingreso"/>
+                  <t t-esc="almacenamiento.id_almacenamiento" /> - <strong>Fecha
+                  de Ingreso:</strong>
+                  <t t-esc="almacenamiento.fecha_ingreso" />
                 </span>
               </div>
             </a>
@@ -400,7 +513,8 @@
           <p>No hay almacenamientos disponibles</p>
         </t>
       </section>
-      <!--<h2>Mis Almacenamientos</h2>
+      <!--<h2>Mis
+      Almacenamientos</h2>
     <t t-if="almacenamientos">
       <ul>
         <t t-foreach="almacenamientos" t-as="almacenamiento">
@@ -426,7 +540,8 @@
 
   <template id="almacenamiento_detail" name="Detalles de Almacenamiento">
     <t t-call="web.layout">
-      <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/almacenamiento_detail.css"/>
+      <link rel="stylesheet" type="text/css"
+        href="/upocargo/static/src/css/almacenamiento_detail.css" />
       <div class="container">
         <section class="almacenamiento-detail">
           <h2>Detalles de Almacenamiento</h2>
@@ -449,12 +564,50 @@
               <t t-esc="almacenamiento.estado or 'N/A'" />
             </p>
           </div>
+
+          <div class="servicios-agregados">
+            <h3>Servicios Contratados</h3>
+            <ul>
+              <t t-foreach="id_mudanza.servicios_adicionales" t-as="servicio">
+                <li><t t-esc="servicio.tipo" /> - <t t-esc="servicio.precio_final" /> €</li>
+              </t>
+            </ul>
+          </div>
+
+          <form method="post" action="">
+            <div class="field">
+              <label class="label">Seleccionar Servicio Adicional:</label>
+              <div class="control">
+                <div class="select">
+                  <select name="servicio_id" required="1">
+                    <t t-foreach="servicios_disponibles" t-as="servicio">
+                      <option t-att-value="servicio.id_servicios">
+                        <t t-esc="servicio.tipo" /> - <t t-esc="servicio.precio_final" /> € </option>
+                    </t>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <button class="button is-primary" type="submit" name="action" value="agregar_servicio">Añadir
+              Servicio</button>
+          </form>
+
+          <form method="post">
+            <div class="field">
+              <label class="label">Atrasar Almacenamiento (Días):</label>
+              <div class="control">
+                <input class="input" type="number" name="dias_atraso" min="1" required="1" />
+              </div>
+            </div>
+            <button class="button is-warning" type="submit" name="action" value="atrasar">Atrasar
+              Almacenamiento</button>
+          </form>
           <div class="bien-info">
             <h3>Bienes Almacenados</h3>
             <ul>
               <t t-foreach="almacenamiento.bienes_almacenados" t-as="bien">
                 <li>
-                  <t t-esc="bien.name or 'Sin nombre'"/>
+                  <t t-esc="bien.descripcion or 'Sin nombre'" />
                 </li>
               </t>
             </ul>
@@ -480,7 +633,7 @@
   </template>
 
   <template id="facturas_template" name="Portal de Facturas">
-    <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/aux_pages.css"/>
+    <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/aux_pages.css" />
     <div class="container mt-4">
       <nav class="navbar">
         <div class="navber-brand">
@@ -496,6 +649,9 @@
           <li>
             <a href="/upocargo/almacenamientos">Mis Almacenamientos</a>
           </li>
+          <li>
+            <a href="/upocargo/marketplace">Marketplace</a>
+          </li>
         </ul>
         <div class="navbar-end">
           <a href="/upocargo/logout" class="button is-danger">Cerrar Sesión</a>
@@ -509,9 +665,9 @@
               <div class="card">
                 <span>
                   <strong>Factura</strong>
-                  <t t-esc="factura.id_factura"/>
- -                  <strong>Total</strong>
-                  <t t-esc="factura.precio"/>
+                  <t t-esc="factura.id_factura" /> - <strong>Total</strong>
+                  <t
+                    t-esc="factura.precio" />
                 </span>
               </div>
             </a>
@@ -521,7 +677,8 @@
           <p>No hay facturas disponibles</p>
         </t>
       </section>
-      <!--<h2>Mis Facturas</h2>
+      <!--<h2>Mis
+      Facturas</h2>
     <t t-if="facturas">
       <ul>
         <t t-foreach="facturas" t-as="factura">
@@ -544,7 +701,7 @@
 
   <template id="factura_detail" name="Detalles de Factura">
     <t t-call="web.layout">
-      <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/factura_detail.css"/>
+      <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/factura_detail.css" />
       <div class="container">
         <section class="factura-detail">
           <h2>Detalles de Factura</h2>
@@ -559,27 +716,29 @@
               <t t-esc="'%s %s' % (factura.currency_id.symbol, factura.precio)" />
             </p>
           </div>
-          <div class="mudanza-info">
-            <h3>Información de la mudanza asociada</h3>
-            <p>
-              <strong>ID de la Mudanza: </strong>
-              <a t-att-href="'/upocargo/mudanzas/%s' % factura.mudanza_id.id_mudanza">
-                <t t-esc="factura.mudanza_id.id_mudanza" />
-              </a>
-            </p>
-            <p>
-              <strong>Dirección de Origen:</strong>
-              <t t-esc="factura.mudanza_id.dirOrigen or 'N/A'" />
-            </p>
-            <p>
-              <strong>Dirección de Destino:</strong>
-              <t t-esc="factura.mudanza_id.dirDestino or 'N/A'"/>
-            </p>
-            <p>
-              <strong>Estado:</strong>
-              <t t-esc="factura.mudanza_id.estado or 'N/A'" />
-            </p>
-          </div>
+          <t t-if="factura.mudanza_id != False">
+            <div class="mudanza-info">
+              <h3>Información de la mudanza asociada</h3>
+              <p>
+                <strong>ID de la Mudanza: </strong>
+                <a t-att-href="'/upocargo/mudanzas/%s' % factura.mudanza_id.id_mudanza">
+                  <t t-esc="factura.mudanza_id.id_mudanza" />
+                </a>
+              </p>
+              <p>
+                <strong>Dirección de Origen:</strong>
+                <t t-esc="factura.mudanza_id.dirOrigen or 'N/A'" />
+              </p>
+              <p>
+                <strong>Dirección de Destino:</strong>
+                <t t-esc="factura.mudanza_id.dirDestino or 'N/A'" />
+              </p>
+              <p>
+                <strong>Estado:</strong>
+                <t t-esc="factura.mudanza_id.estado or 'N/A'" />
+              </p>
+            </div>
+          </t>
           <div class="factura-info">
             <h3>Desglose de gastos</h3>
             <table class="desglose-table">
@@ -590,13 +749,13 @@
                 </tr>
               </thead>
               <tbody>
-                <t t-foreach="factura.compute_desglose_gastos()" t-as="gasto">
+                <t t-foreach="factura.desglose_gastos" t-as="gasto">
                   <tr>
                     <td>
                       <t t-esc="gasto['concepto']" />
                     </td>
                     <td>
-                      <t t-esc="gasto['valor']"/>
+                      <t t-esc="gasto['valor']" />
                       <t t-esc="factura.currency_id.symbol" />
                     </td>
                   </tr>
@@ -605,6 +764,236 @@
             </table>
           </div>
         </section>
+      </div>
+    </t>
+  </template>
+
+  <template id="marketplace_page" name="Marketplace">
+    <t t-call="web.layout">
+      <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/marketplace.css" />
+      <div class="container marketplace">
+        <!-- Barra de Navegación -->
+        <nav class="navbar">
+          <div class="navbar-brand">
+            <a href="/upocargo/portal_home">UpoCargo</a>
+          </div>
+          <ul class="navbar-menu">
+            <li>
+              <a href="/upocargo/mudanzas">Mis Mudanzas</a>
+            </li>
+            <li>
+              <a href="/upocargo/facturas">Mis Facturas</a>
+            </li>
+            <li>
+              <a href="/upocargo/almacenamientos">Mis Almacenamientos</a>
+            </li>
+            <li>
+              <a href="/upocargo/marketplace">Marketplace</a>
+            </li>
+          </ul>
+          <div class="navbar-end">
+            <a href="/upocargo/logout" class="button is-danger">Cerrar Sesión</a>
+          </div>
+        </nav>
+
+        <!-- Contenido Principal -->
+        <div class="marketplace-content">
+          <!-- Galería de Servicios Adicionales (Parte Izquierda) -->
+          <div class="services-gallery">
+            <h2>Servicios Adicionales</h2>
+            <div class="services-container">
+              <t t-foreach="services" t-as="service">
+                <div class="service-card">
+                  <div class="service-info">
+                    <h3>
+                      <t t-esc="service.tipo" />
+                    </h3>
+                    <p>
+                      <strong>Aplicable a:</strong>
+                      <t t-esc="service.aplicable_a" />
+                    </p>
+                    <p><strong>Precio Final:</strong> <t t-esc="service.precio_final" /> €</p>
+                    <p>
+                      <strong>Estado:</strong>
+                      <t t-esc="service.estado" />
+                    </p>
+                  </div>
+                  <div class="service-footer">
+                    <a t-att-href="'/upocargo/servicio_adicional/' + service.id_servicios"
+                      class="btn btn-primary">Ver detalles</a>
+                  </div>
+                </div>
+              </t>
+            </div>
+          </div>
+
+          <!-- Información del Usuario y Buscador (Parte Derecha) -->
+          <div class="user-info">
+            <h3>Mi Información</h3>
+            <p>
+              <strong>Nombre:</strong>
+              <t t-esc="user.name" />
+            </p>
+            <p>
+              <strong>Email:</strong>
+              <t t-esc="user.email" />
+            </p>
+            <p>
+              <strong>Teléfono:</strong>
+              <t t-esc="user.telefono" />
+            </p>
+            <a href="/upocargo/servicios_contratados" class="button is-primary">Ver Mis Servicios
+              Contratados</a>
+
+            <!-- Buscador -->
+            <div class="search-box">
+              <h3>Buscar Servicios</h3>
+              <form method="GET" action="/upocargo/search_servicios">
+                <div class="field">
+                  <label for="search">Buscar por nombre, tipo o proveedor:</label>
+                  <input type="text" name="search" id="search" class="input" placeholder="Buscar..." />
+                </div>
+                <button type="submit" class="button is-primary">Buscar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </t>
+  </template>
+
+  <template id="servicio_adicional_page" name="Detalle del Servicio Adicional">
+    <t t-call="web.layout">
+      <link rel="stylesheet" type="text/css"
+        href="/upocargo/static/src/css/servicio_adicional_page.css" />
+      <div class="container">
+        <nav class="navbar">
+          <div class="navbar-brand">
+            <a href="/upocargo/portal_home">UpoCargo</a>
+          </div>
+          <ul class="navbar-menu">
+            <li>
+              <a href="/upocargo/mudanzas">Mis Mudanzas</a>
+            </li>
+            <li>
+              <a href="/upocargo/facturas">Mis Facturas</a>
+            </li>
+            <li>
+              <a href="/upocargo/almacenamientos">Mis Almacenamientos</a>
+            </li>
+            <li>
+              <a href="/upocargo/marketplace">Marketplace</a>
+            </li>
+          </ul>
+          <div class="navbar-end">
+            <a href="/upocargo/logout" class="button is-danger">Cerrar Sesión</a>
+          </div>
+        </nav>
+
+        <div class="content">
+          <h2>Detalles del Servicio Adicional</h2>
+          <div class="service-details">
+            <h3>
+              <t t-esc="service.tipo" />
+            </h3>
+            <p>
+              <strong>Proveedor:</strong>
+              <t t-esc="service.proveedores.name" />
+            </p>
+            <p><strong>Precio:</strong> <t t-esc="service.precio_final" /> USD</p>
+            <p>
+              <strong>Estado:</strong>
+              <t t-esc="service.estado" />
+            </p>
+            <p>
+              <strong>Aplicable a:</strong>
+              <t t-esc="service.aplicable_a" />
+            </p>
+          </div>
+
+          <!-- Botón de suscripción / desuscripción -->
+          <div class="subscription-button">
+            <t t-if="not is_subscribed">
+              <a t-att-href="'/upocargo/suscribirse_servicio/' + service.id_servicios"
+                class="button is-primary">
+                Suscribirse al servicio
+              </a>
+            </t>
+            <t t-if="is_subscribed">
+              <a t-att-href="'/upocargo/suscribirse_servicio/'+service.id_servicios"
+                class="button is-danger">
+                Desuscribirse del servicio
+              </a>
+            </t>
+          </div>
+        </div>
+      </div>
+    </t>
+  </template>
+
+  <template id="servicios_contratados_page" name="Servicios Contratados">
+    <t t-call="web.layout">
+      <link rel="stylesheet" type="text/css"
+        href="/upocargo/static/src/css/servicios_contratados.css" />
+      <div class="container">
+        <!-- Barra de Navegación -->
+        <nav class="navbar">
+          <div class="navbar-brand">
+            <a href="/upocargo/portal_home">UpoCargo</a>
+          </div>
+          <ul class="navbar-menu">
+            <li>
+              <a href="/upocargo/mudanzas">Mis Mudanzas</a>
+            </li>
+            <li>
+              <a href="/upocargo/facturas">Mis Facturas</a>
+            </li>
+            <li>
+              <a href="/upocargo/almacenamientos">Mis Almacenamientos</a>
+            </li>
+            <li>
+              <a href="/upocargo/marketplace">Marketplace</a>
+            </li>
+          </ul>
+          <div class="navbar-end">
+            <a href="/upocargo/logout" class="button is-danger">Cerrar Sesión</a>
+          </div>
+        </nav>
+
+        <!-- Contenido Principal -->
+        <div class="user-services">
+          <h2>Servicios Contratados</h2>
+          <div class="services-container">
+            <t t-foreach="services" t-as="service">
+              <div class="service-card">
+                <div class="service-info">
+                  <h3>
+                    <t t-esc="service.tipo" />
+                  </h3>
+                  <p>
+                    <strong>Proveedor:</strong>
+                    <t t-esc="service.proveedores.name" />
+                  </p>
+                  <p><strong>Precio Final:</strong> <t t-esc="service.precio_final" /> €</p>
+                  <p>
+                    <strong>Estado:</strong>
+                    <t t-esc="service.estado" />
+                  </p>
+                  <p>
+                    <strong>Aplicable a:</strong>
+                    <t t-esc="service.aplicable_a" />
+                  </p>
+                </div>
+                <div class="service-footer">
+                  <a t-att-href="'/upocargo/suscribirse_servicio/' + service.id_servicios"
+                    class="button is-danger">
+                    Desuscribirse
+                  </a>
+                </div>
+              </div>
+            </t>
+          </div>
+        </div>
       </div>
     </t>
   </template>

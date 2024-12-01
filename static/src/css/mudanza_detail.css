@@ -79,6 +79,96 @@ a.btn:hover {
     background-color: #0056b3;
 }
 
+form .field {
+    margin-bottom: 15px;
+}
+
+form .label {
+    font-weight: bold;
+    color: #333;
+}
+
+form .input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #fff;
+}
+
+form .input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+form .button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+form .button:hover {
+    background-color: #0056b3;
+}
+
+form .button.is-warning {
+    background-color: #ffc107;
+}
+
+form .button.is-warning:hover {
+    background-color: #e0a800;
+}
+form .button.is-danger {
+    background-color: #ff4d07;
+}
+
+form .button.is-danger:hover {
+    background-color: #e00000;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #fff;
+}
+
+select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Estilos adicionales para la lista de servicios */
+.servicios-agregados ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.servicios-agregados ul li {
+    padding: 8px;
+    background-color: #f1f1f1;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.servicios-agregados ul li:last-child {
+    margin-bottom: 0;
+}
+
+.formulario-accion {
+    text-align: center;
+}
+
 @media (max-width: 768px){
     .container{
         padding: 15px;

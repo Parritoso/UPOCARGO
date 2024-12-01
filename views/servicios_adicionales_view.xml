@@ -9,6 +9,8 @@
                 <field name="id_servicios"/>
                 <field name="tipo"/>
                 <field name="estado"/>
+                <field name="proveedores" />
+                <field name="precio_final" />
             </tree>
         </field>
     </record>
@@ -23,6 +25,10 @@
                         <field name="id_servicios" />
                         <field name="tipo" />
                         <field name="estado" />
+                        <field name="proveedores" options="{'no_create': True}"/>
+                        <field name="aplicable_a"/>
+                        <field name="precio_base" />
+                        <field name="precio_final" />
                     </group>
                 </sheet>
             </form>
@@ -34,13 +40,11 @@
         <field name="model">upocargo.servicios_adicionales</field>
         <field name="arch" type="xml">
             <search>
-            <!--
-                <filter name="search_capacity" string="Capacity > 10" domain="[('capacity','>',10)]" />
+                <filter name="search_precio" string="Precio Final > 20" domain="[('precio_final','>',20)]" />
                 <separator orientation="vertical" />
                 <group expand="0" string="Agrupar por...">
-                    <filter name="group_by_instructor" string="Instructor" context="{'group_by':'instructores_id'}" />
+                    <filter name="group_by_proveedor" string="Proveedor" context="{'group_by':'id_proveedor'}" />
                 </group>
-            -->
             </search>
         </field>
     </record>

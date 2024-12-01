@@ -25,7 +25,23 @@
                         <field name="fecha_ingreso" />
                         <field name="fecha_salida" />
                         <field name="estado" />
+                        <field name="cliente"/>
                     </group>
+                    <group>
+                        <field name="almacen" options="{'no_create': True}" />
+                    </group>
+                    <notebook>
+                        <page name="Bienes">
+                            <field name="bienes_almacenados">
+                                <tree>
+                                    <field name="descripcion" />
+                                    <field name="peso" />
+                                    <field name="tamanyo"/>
+                                    <field name="cantidad"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

@@ -234,7 +234,7 @@ Definición de las fechas de entrega y material que se entrega, así como, comen
 <br>
 **Segundo entregable (35%).** <br>
 **Entrega intermedia del desarrollo de un módulo.** <br>
-$${\color{red}Fecha} \space {\color{red}límite} \space {\color{red}de} \space {\color{red}entrega:} \space {\color{red}Lunes,} \space {\color{red}18} \space {\color{red}de} \space {\color{red}Noviembre} \space {\color{red}a} \space {\color{red}las} \space {\color{red}23.59h}$$
+~~Fecha límite de entrega: Lunes, 18 de Noviembre a las 23.59h.~~
 <br>
 **Tercer entregable (10%).** <br>
 **Defensa del proyecto.** <br>

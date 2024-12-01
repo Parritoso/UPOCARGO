@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_upocargo_almacen_form" model="ir.ui.view">
+        <field name="name">upocargo.almacen.form</field>
+        <field name="model">upocargo.almacen</field>
+        <field name="arch" type="xml">
+            <form string="Almacén">
+                <sheet>
+                    <group>
+                        <field name="id_almacen" string="ID del Almacén" readonly="1" />
+                        <field name="name"/>
+                        <field name="tamaño_maximo" string="Tamaño Máximo" />
+                        <field name="almacenamiento_id" string="Almacenamiento Asociado" />
+                    </group>
+                    <group>
+                        <field name="tamaño_ocupado" string="Tamaño Ocupado" readonly="1" />
+                        <field name="temperatura_actual" string="Temperatura Actual (ºC)"
+                            readonly="1" />
+                        <field name="humedad_actual" string="Humedad Actual (%)" readonly="1" />
+                    </group>
+                    <group>
+                        <field name="temp_min" string="Temperatura Mínima Permitida" />
+                        <field name="temp_max" string="Temperatura Máxima Permitida" />
+                        <field name="humedad_min" string="Humedad Mínima Permitida" />
+                        <field name="humedad_max" string="Humedad Máxima Permitida" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_upocargo_almacen_tree" model="ir.ui.view">
+        <field name="name">upocargo.almacen.tree</field>
+        <field name="model">upocargo.almacen</field>
+        <field name="arch" type="xml">
+            <tree string="Almacenes">
+                <field name="id_almacen" />
+                <field name="name"/>
+                <field name="tamaño_maximo" />
+                <field name="tamaño_ocupado" />
+                <field name="temperatura_actual" />
+                <field name="humedad_actual" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_upocargo_almacen_grafico_fecha" model="ir.ui.view">
+        <field name="name">upocargo.almacen.grafico</field>
+        <field name="model">upocargo.almacen</field>
+        <field name="type">graph</field>
+        <field name="arch" type="xml">
+            <graph string="Ocupación Actual por Almacén" type="bar">
+                <field name="id_almacen" type="dimension" />
+                <field name="tamaño_ocupado" type="measure" />
+                <field name="tamaño_maximo" type="measure" />
+            </graph>
+        </field>
+    </record>
+
+    <record id="action_upocargo_almacen_grafico" model="ir.actions.act_window">
+        <field name="name">Gráfico de Ocupación</field>
+        <field name="res_model">upocargo.almacen</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="view_upocargo_almacen_grafico_fecha" />
+        <!-- Referencia correcta a la vista del gráfico -->
+        <field name="context">{'fecha': context.get('fecha', False)}</field>
+    </record>
+
+    <record id="upocargo_almacen_action" model="ir.actions.act_window">
+        <field name="name">Almacenes</field>
+        <field name="res_model">upocargo.almacen</field>
+        <field name="view_mode">tree,form,graph</field>
+        <field name="view_id" ref="view_upocargo_almacen_tree" />
+    </record>
+</odoo>

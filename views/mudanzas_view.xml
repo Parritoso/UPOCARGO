@@ -6,12 +6,12 @@
         <field name="model">upocargo.mudanza</field>
         <field name="arch" type="xml">
             <tree string="Mudanzas UPOCARGO">
-                <field name="id_mudanza"/>
-                <field name="fecha"/>
-                <field name="dirOrigen"/>
-                <field name="dirDestino"/>
-                <field name="estado"/>
-                <field name="cliente"/>
+                <field name="id_mudanza" />
+                <field name="fecha" />
+                <field name="dirOrigen" />
+                <field name="dirDestino" />
+                <field name="estado" />
+                <field name="cliente" />
                 <field name="factura" />
             </tree>
         </field>
@@ -22,18 +22,34 @@
         <field name="model">upocargo.mudanza</field>
         <field name="arch" type="xml">
             <form string="Mudanza">
+                <header invisible="estado == 'cancelado'">
+                    <button name="action_cancelar_mudanza" type="object"
+                        string="Cancelar Mudanza"
+                        class="btn-danger" />
+                </header>
                 <sheet>
                     <group>
                         <field name="id_mudanza" />
                         <field name="fecha" />
+                        <field name="fecha_final_mudanza" invisible="not almacenamientos" />
                         <field name="dirOrigen" />
                         <field name="dirDestino" />
                         <field name="estado" />
                     </group>
-                    <field name="vehiculos_ocupados" invisible="1"/>
-                    <field name="empleados_ocupados" invisible="1"/>
+                    <field name="vehiculos_ocupados" invisible="1" />
+                    <field name="empleados_ocupados" invisible="1" />
                     <group>
                         <field name="cliente" />
+                    </group>
+                    <group string="Almacenamientos">
+                        <field name="almacenamientos" widget="one2many_list"
+                            domain="[('mudanza_id', '=', active_id)]">
+                            <tree>
+                                <field name="fecha_ingreso" />
+                                <field name="fecha_salida" />
+                                <field name="almacen" />
+                            </tree>
+                        </field>
                     </group>
                     <notebook>
                         <page name="Vehiculos">
@@ -56,7 +72,8 @@
                             <field name="factura">
                                 <tree>
                                     <field name="id_factura" />
-                                    <field name="precio" widget="monetary" options="{'currency_field': 'currency_id'}" />
+                                    <field name="precio" widget="monetary"
+                                        options="{'currency_field': 'currency_id'}" />
                                     <field name="currency_id" invisible="1" />
                                 </tree>
                             </field>
@@ -71,7 +88,8 @@
         <field name="name">upocargo.mudanza.calendar</field>
         <field name="model">upocargo.mudanza</field>
         <field name="arch" type="xml">
-            <calendar string="Mudanzas" color="estado" date_start="fecha" date_stop="fecha" mode="month">
+            <calendar string="Mudanzas" color="estado" date_start="fecha" date_stop="fecha"
+                mode="month">
                 <field name="id_mudanza" />
                 <field name="cliente" />
             </calendar>
@@ -83,13 +101,14 @@
         <field name="model">upocargo.mudanza</field>
         <field name="arch" type="xml">
             <search>
-                <!--
-                <filter name="search_capacity" string="Capacity > 10" domain="[('capacity','>',10)]" />
+                <filter name="search_precio" string="Precio > 5000"
+                    domain="[('factura.precio','>',5000)]" />
                 <separator orientation="vertical" />
                 <group expand="0" string="Agrupar por...">
-                    <filter name="group_by_instructor" string="Instructor" context="{'group_by':'instructores_id'}" />
+                    <!--<filter
+                    name="group_by_cliente" string="Cliente"
+                    context="{'group_by':'cliente.id_cliente'}" />-->
                 </group>
-            -->
             </search>
         </field>
     </record>

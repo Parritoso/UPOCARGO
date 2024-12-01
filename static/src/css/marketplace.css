@@ -1,0 +1,182 @@
+/* Estilo General */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Barra de navegación */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #0056b3;
+    color: white;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.navbar-brand a {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}
+
+.navbar-menu {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    margin: 0;
+}
+
+.navbar-menu li {
+    margin-left: 20px;
+}
+
+.navbar-menu a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+}
+
+.navbar-menu a:hover {
+    text-decoration: underline;
+}
+
+.navbar-end .button {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.navbar-end .button:hover {
+    background-color: #c82333;
+}
+
+/* Sección principal: Marketplace */
+.marketplace-content {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+/* Galería de Servicios (Parte Izquierda) */
+.services-gallery {
+    width: 70%;
+    padding-right: 20px;
+}
+
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.service-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.service-info h3 {
+    color: #0056b3;
+}
+
+.service-footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.service-footer .btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.service-footer .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Información del Usuario y Buscador (Parte Derecha) */
+.user-info {
+    width: 30%;
+}
+
+.user-info h3 {
+    margin-bottom: 20px;
+}
+
+.user-info p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.search-box {
+    margin-top: 30px;
+}
+
+.search-box form {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-box input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.search-box button {
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-box button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .marketplace-content {
+        flex-direction: column;
+    }
+
+    .services-gallery {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .user-info {
+        width: 100%;
+        margin-top: 20px;
+    }
+}
