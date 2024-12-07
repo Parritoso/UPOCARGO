@@ -14,6 +14,7 @@ access_cliente_portal, access_cliente_portal,model_upocargo_cliente,base.group_p
 access_mudanza_portal, access_mudanza_portal,model_upocargo_mudanza,base.group_portal,1,0,0,0
 access_almacenamiento_portal, access_almacenamiento_portal,model_upocargo_almacenamiento,base.group_portal,1,0,0,0
 access_factura_portal, access_factura_portal,model_upocargo_factura,base.group_portal,1,0,0,0
+access_marketplace_portal, access_marketplace_portal,model_upocargo_servicios_adicionales,base.group_portal,1,0,0,0
 upocargo_cliente_empleado,upocargo_cliente_empleado,model_upocargo_cliente,group_upocargo_empleado,1,1,1,1
 upocargo_mudanza_empleado,upocargo_mudanza_empleado,model_upocargo_mudanza,group_upocargo_empleado,1,1,1,1
 upocargo_almacenamiento_empleado,upocargo_almacenamiento_empleado,model_upocargo_almacenamiento,group_upocargo_empleado,1,1,1,1

@@ -23,6 +23,7 @@ class Almacenamiento(models.Model):
     factura_id = fields.Many2one('upocargo.factura', string='Factura', ondelete='cascade')
     almacen = fields.Many2one('upocargo.almacen',string='Almacen', ondelete='restrict', required=True)
     mudanza_id = fields.Many2one('upocargo.mudanza', string="Mudanza", ondelete='cascade')
+    servicios_adicionales = fields.Many2many('upocargo.servicios_adicionales', string="Servicios Adicionales", track_visibility='onchange')
 
     @api.model
     def create(self,vals):
@@ -145,6 +146,24 @@ class Almacenamiento(models.Model):
                     nuevo_almacenamiento = self.env['upocargo.almacenamiento'].create(vals)
 
         return almacenamienrto
+    
+    def write(self,vals):
+        if 'servicios_adicionales' in vals:
+            servicios_adicionales = vals.get('servicios_adicionales', [(6, 0, [])])
+            costo_servicios_adicionales = sum([self.env['upocargo.servicios_adicionales'].browse(servicio[1]).precio_final for servicio in servicios_adicionales])
+
+            # Calcular el nuevo costo total
+            coste = float(self.precio) + costo_servicios_adicionales
+
+            # Actualizar la factura con el nuevo costo
+            factura = self.factura
+            if factura:
+                factura.write({'precio': coste})
+
+                # Agregar o actualizar los gastos de los servicios adicionales
+                for servicio in servicios_adicionales:
+                    servicio_obj = self.env['upocargo.servicios_adicionales'].browse(servicio[1])
+                    factura.agregar_gasto(f"Servicio Adicional: {servicio_obj.tipo}", servicio_obj.precio_final)
 
     @staticmethod
     def _generate_id_almacenamiento():

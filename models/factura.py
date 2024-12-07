@@ -66,3 +66,13 @@ class Factura(models.Model):
                     item['valor'] = nuevo_valor
                     break
             record.desglose_gastos = json.dumps(desglose)
+
+    def obtener_desglose_gastos(self):
+        if not isinstance(self.desglose_gastos, str):
+            self.desglose_gastos = json.dumps(self.desglose_gastos)
+        if isinstance(self.desglose_gastos, str):
+            try:
+                desglose = json.loads(self.desglose_gastos)
+            except json.JSONDecodeError:
+                desglose = []
+        return desglose

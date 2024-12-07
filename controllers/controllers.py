@@ -2,6 +2,8 @@
 from odoo import http, fields
 from odoo.http import request
 from datetime import timedelta
+import logging
+_logger = logging.getLogger(__name__)
 
 
 # class Gym(http.Controller):
@@ -164,13 +166,16 @@ class UpocargoPortal(http.Controller):
             return request.redirect('/upocargo/login')
         mudanza = request.env['upocargo.mudanza'].sudo().search([('id_mudanza','=',id_mudanza)],limit=1)
         if not mudanza:
-            return http.request.httprequest.not_found("Mudanza no encontrada D:")
+            return http.request.not_found("Mudanza no encontrada D:")
         if not user_id == mudanza.cliente.id_cliente:
             return request.redirect('/upocargo/mudanzas')
-        servicios_cliente = request.env['upocargo.servicios_adicionales'].sudo().search([('cliente_id', '=', user_id), ('estado', '=', 'true')])
+        servicios_cliente = request.env['upocargo.servicios_adicionales'].sudo().search([('cliente.id_cliente', '=', user_id), ('estado', '=', 'true'),'|', ('aplicable_a','=','mudanza'),('aplicable_a', '=', 'ambos')])
         if http.request.httprequest.method == 'POST':
+            _logger.info("Method POST")
             action = kwargs.get('action')
+            _logger.info("action: "+action)
             if action == 'cancelar':
+                _logger.info("cancelar")
                 return self.cancelar_mudanza(mudanza)
             elif action == 'atrasar':
                 return self.atrasar_mudanza(mudanza, kwargs.get('dias_atraso'))
@@ -198,22 +203,26 @@ class UpocargoPortal(http.Controller):
             if factura:
                 precio_original = factura.precio
                 factura.write({'precio': precio_original / 2})
+                factura.agregar_gasto("Mudanza Cancelada", precio_original-(precio_original/2))
         
         # Redirigir a la página de detalles de la mudanza
         return request.redirect('/upocargo/mudanzas/%s' % mudanza.id_mudanza)
 
     def atrasar_mudanza(self, mudanza, dias_atraso):
         # Atrasar la fecha de la mudanza
-        nueva_fecha = fields.Date.from_string(mudanza.fecha) + timedelta(days=int(dias_atraso))
-        mudanza.write({'fecha': nueva_fecha})
-        
-        # Actualizar la factura añadiendo el coste extra por día de atraso
-        factura = mudanza.factura
-        if factura:
-            # Suponemos un coste extra por día
-            coste_extra_por_dia = 10  # Por ejemplo, 10 unidades de la moneda por día
-            nuevo_precio = factura.precio + (int(dias_atraso) * coste_extra_por_dia)
-            factura.write({'precio': nuevo_precio})
+        if not dias_atraso=='':
+            nueva_fecha = fields.Date.from_string(mudanza.fecha) + timedelta(days=int(dias_atraso))
+            mudanza.write({'fecha': nueva_fecha})
+            
+            # Actualizar la factura añadiendo el coste extra por día de atraso
+            factura = mudanza.factura
+            if factura:
+                # Suponemos un coste extra por día
+                coste_extra_por_dia = 10  # Por ejemplo, 10 unidades de la moneda por día
+                aumento = (int(dias_atraso) * coste_extra_por_dia)
+                nuevo_precio = factura.precio + aumento
+                factura.write({'precio': nuevo_precio})
+                factura.agregar_gasto(("Mudanza atrasana "+dias_atraso+" dias"),aumento)
         
         # Redirigir a la página de detalles de la mudanza
         return request.redirect('/upocargo/mudanzas/%s' % mudanza.id_mudanza)
@@ -239,7 +248,7 @@ class UpocargoPortal(http.Controller):
             return request.redirect('/upocargo/login')
         factura = request.env['upocargo.factura'].sudo().search([('id_factura','=',id_factura)],limit=1)
         if not factura:
-            return http.request.httprequest.not_found("Factura no encontrada D:")
+            return http.request.not_found("Factura no encontrada D:")
         if not user_id == factura.mudanza_id.cliente.id_cliente:
             return request.redirect('/upocargo/facturas')
         return http.request.render('upocargo.factura_detail',{
@@ -266,29 +275,42 @@ class UpocargoPortal(http.Controller):
             return request.redirect('/upocargo/login')
         almacenamiento = request.env['upocargo.almacenamiento'].sudo().search([('id_almacenamiento','=',id_almacenamiento)],limit=1)
         if not almacenamiento:
-            return http.request.httprequest.not_found("Mudanza no encontrada D:")
+            return http.request.not_found("Almacenamiento no encontrada D:")
         if not user_id == almacenamiento.cliente.id_cliente:
-            return request.redirect('/upocargo/mudanzas')
+            return request.redirect('/upocargo/almacenamiento')
+        servicios_cliente = request.env['upocargo.servicios_adicionales'].sudo().search([('cliente.id_cliente', '=', user_id), ('estado', '=', 'true'),'|', ('aplicable_a','=','almacenamiento'),('aplicable_a', '=', 'ambos')])
         if http.request.httprequest.method == 'POST':
             action = kwargs.get('action')
             if action == 'atrasar':
                 return self.atrasar_almacenamiento(almacenamiento, kwargs.get('dias_atraso'))
+            elif action == 'agregar_servicio':
+                # Obtener el servicio adicional seleccionado
+                servicio_id = kwargs.get('servicio_id')
+                if servicio_id:
+                    servicio = request.env['upocargo.servicios_adicionales'].sudo().search([('id_servicios', '=', servicio_id)], limit=1)
+                    if servicio:
+                        # Asignar el servicio a la mudanza
+                        almacenamiento.servicios_adicionales = [(4, servicio.id)]
         return http.request.render('upocargo.mudanza_detail',{
-            'almacenamiento': almacenamiento
+            'almacenamiento': almacenamiento,
+            'servicios_disponibles': servicios_cliente
         })
     
     def atrasar_almacenamiento(self, almacenamiento, dias_atraso):
         # Atrasar la fecha de salida
-        nueva_fecha_salida = fields.Date.from_string(almacenamiento.fecha_salida) + timedelta(days=int(dias_atraso))
-        almacenamiento.write({'fecha_salida': nueva_fecha_salida})
-        
-        # Actualizar la factura, añadiendo un costo adicional por cada día extra
-        factura = almacenamiento.factura_id
-        if factura:
-            # Supongamos que el costo adicional es de 5 unidades monetarias por cada día adicional
-            coste_extra_por_dia = 5  # Ejemplo: 5 unidades monetarias por día
-            nuevo_precio = factura.precio + (int(dias_atraso) * coste_extra_por_dia)
-            factura.write({'precio': nuevo_precio})
+        if not dias_atraso=='':
+            nueva_fecha_salida = fields.Date.from_string(almacenamiento.fecha_salida) + timedelta(days=int(dias_atraso))
+            almacenamiento.write({'fecha_salida': nueva_fecha_salida})
+            
+            # Actualizar la factura, añadiendo un costo adicional por cada día extra
+            factura = almacenamiento.factura_id
+            if factura:
+                # Supongamos que el costo adicional es de 5 unidades monetarias por cada día adicional
+                coste_extra_por_dia = 5  # Ejemplo: 5 unidades monetarias por día
+                aumento = (int(dias_atraso) * coste_extra_por_dia)
+                nuevo_precio = factura.precio + aumento
+                factura.write({'precio': nuevo_precio})
+                factura.agregar_gasto("Almacenamiento "+almacenamiento.id_almacenamiento+" atrasado "+dias_atraso+" dias",aumento)
         
         # Redirigir a la página de detalles del almacenamiento
         return request.redirect('/upocargo/almacenamientos/%s' % almacenamiento.id_almacenamiento)
@@ -340,7 +362,7 @@ class UpocargoPortal(http.Controller):
             return request.redirect('/upocargo/login')
         servicio = request.env['upocargo.servicios_adicionales'].sudo().search([('id_servicios','=', service)],limit=1)
         if not servicio:
-            return http.request.httprequest.not_found("Servicio no encontrado D:")
+            return http.request.not_found("Servicio no encontrado D:")
         user = request.env['upocargo.cliente'].sudo().search([('id_cliente','=',user_id)])
         is_subscribed = bool(request.env['upocargo.servicios_adicionales'].sudo().search([('cliente.id_cliente','=',user_id)]))
 
@@ -354,24 +376,27 @@ class UpocargoPortal(http.Controller):
     @http.route('/upocargo/suscribirse_servicio/<string:service>', 
                 type='http', auth="public")
     def suscribirse_servicio(self, service, **kwargs):
-        user = request.env.user
+        user_id = request.session.get('cliente_id')
+        user = request.env['upocargo.cliente'].sudo().search([('id_cliente','=',user_id)])
         # Comprobar si el usuario ya está suscrito al servicio
-        subscription = request.env['upocargo.cliente'].search([
-            ('servicios_adicionales.id_servicios', '=', service)
+        servicio_adicional = request.env['upocargo.servicios_adicionales'].search([
+            ('id_servicios', '=', service),
+            ('cliente', '=', user.id)
         ], limit=1)
 
-        if subscription:
+        if servicio_adicional:
             # Si está suscrito, desuscribir
-            subscription.unlink()
+            servicio_adicional.write({'cliente': None})
         else:
             # Si no está suscrito, suscribir
-            request.env['upocargo.servicios_adicionales'].create({
-                'cliente': user.id,
-                'name': service.id,
-            })
+            servicio = request.env['upocargo.servicios_adicionales'].search([
+                ('id_servicios', '=', service)
+            ], limit=1)
+            if servicio:
+                servicio.write({'cliente': user.id})
 
         # Redirigir al usuario de nuevo a la página del servicio
-        return request.redirect('/upocargo/servicio_adicional/{}'.format(service.id_servicios))
+        return request.redirect('/upocargo/servicio_adicional/{}'.format(service))
     
     @http.route('/upocargo/servicios_contratados', type='http', auth="public")
     def servicios_contratados(self, **kwargs):

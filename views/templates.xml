@@ -383,22 +383,50 @@
               <t t-esc="id_mudanza.estado" />
             </p>
           </div>
-          <t t-if="id_mudanza.estado != 'Cancelada'">
+          <t t-if="id_mudanza.estado != 'cancelado'">
             <form method="post">
+              <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
               <div class="field">
                 <label class="label">Atrasar Mudanza (Días):</label>
                 <div class="control">
-                  <input class="input" type="number" name="dias_atraso" min="1" required="1" />
+                  <input class="input" type="number" name="dias_atraso" min="1"/>
                 </div>
               </div>
-              <input type="hidden" name="mudanza_id" value="id_mudanza.id_mudanza" />
+              <input type="hidden" name="mudanza_id" t-att-value="id_mudanza.id_mudanza" />
               <button class="button is-warning" type="submit" name="action" value="atrasar">Atrasar
                 Mudanza</button>
-            </form>
-            <from method="post">
               <button class="button is-danger" type="submit" name="action" value="cancelar">Cancelar
                 Mudanza</button>
-            </from>
+            </form>
+          </t>
+          <t t-if="id_mudanza.cliente.servicios_adicionales and id_mudanza.estado != 'cancelado'">
+            <div class="servicios-agregados">
+              <h3>Servicios Contratados</h3>
+              <ul>
+                <t t-foreach="id_mudanza.servicios_adicionales" t-as="servicio">
+                  <li><t t-esc="servicio.tipo" /> - <t t-esc="servicio.precio_final" /> €</li>
+                </t>
+              </ul>
+            </div>
+
+            <form method="post">
+              <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+              <div class="field">
+                <label class="label">Seleccionar Servicio Adicional:</label>
+                <div class="control">
+                  <div class="select">
+                    <select name="servicio_id" required="1">
+                      <t t-foreach="servicios_disponibles" t-as="servicio">
+                        <option t-att-value="servicio.id_servicios">
+                          <t t-esc="servicio.tipo" /> - <t t-esc="servicio.precio_final" /> € </option>
+                      </t>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <button class="button is-primary" type="submit" name="action" value="agregar_servicio">Añadir
+                Servicio</button>
+            </form>
           </t>
           <!--Informacion
           del Cliente-->
@@ -565,34 +593,38 @@
             </p>
           </div>
 
-          <div class="servicios-agregados">
-            <h3>Servicios Contratados</h3>
-            <ul>
-              <t t-foreach="id_mudanza.servicios_adicionales" t-as="servicio">
-                <li><t t-esc="servicio.tipo" /> - <t t-esc="servicio.precio_final" /> €</li>
-              </t>
-            </ul>
-          </div>
-
-          <form method="post" action="">
-            <div class="field">
-              <label class="label">Seleccionar Servicio Adicional:</label>
-              <div class="control">
-                <div class="select">
-                  <select name="servicio_id" required="1">
-                    <t t-foreach="servicios_disponibles" t-as="servicio">
-                      <option t-att-value="servicio.id_servicios">
-                        <t t-esc="servicio.tipo" /> - <t t-esc="servicio.precio_final" /> € </option>
-                    </t>
-                  </select>
-                </div>
-              </div>
+          <t t-if="almacenamiento.cliente.servicios_adicionales">
+            <div class="servicios-agregados">
+              <h3>Servicios Contratados</h3>
+              <ul>
+                <t t-foreach="almacenamiento.servicios_adicionales" t-as="servicio">
+                  <li><t t-esc="servicio.tipo" /> - <t t-esc="servicio.precio_final" /> €</li>
+                </t>
+              </ul>
             </div>
-            <button class="button is-primary" type="submit" name="action" value="agregar_servicio">Añadir
-              Servicio</button>
-          </form>
+
+              <form method="post">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                <div class="field">
+                  <label class="label">Seleccionar Servicio Adicional:</label>
+                  <div class="control">
+                    <div class="select">
+                      <select name="servicio_id" required="1">
+                        <t t-foreach="servicios_disponibles" t-as="servicio">
+                          <option t-att-value="servicio.id_servicios">
+                            <t t-esc="servicio.tipo" /> - <t t-esc="servicio.precio_final" /> € </option>
+                        </t>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <button class="button is-primary" type="submit" name="action" value="agregar_servicio">Añadir
+                  Servicio</button>
+              </form>
+          </t>
 
           <form method="post">
+            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
             <div class="field">
               <label class="label">Atrasar Almacenamiento (Días):</label>
               <div class="control">
@@ -749,13 +781,13 @@
                 </tr>
               </thead>
               <tbody>
-                <t t-foreach="factura.desglose_gastos" t-as="gasto">
+                <t t-foreach="factura.obtener_desglose_gastos()" t-as="gasto">
                   <tr>
                     <td>
-                      <t t-esc="gasto['concepto']" />
+                      <t t-esc="gasto.get('concepto')" />
                     </td>
                     <td>
-                      <t t-esc="gasto['valor']" />
+                      <t t-esc="gasto.get('valor')" />
                       <t t-esc="factura.currency_id.symbol" />
                     </td>
                   </tr>

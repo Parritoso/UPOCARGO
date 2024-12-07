@@ -4,6 +4,8 @@ import random
 import string
 from datetime import datetime, date
 import json
+import logging
+_logger = logging.getLogger(__name__)
 
 class Mudanza(models.Model):
     _name = 'upocargo.mudanza'
@@ -153,9 +155,11 @@ class Mudanza(models.Model):
             coste = self._calcular_precio_promedio()
             coste_vehiculo_extra = 100
             coste_empleado_extra = 50
-            vehiculos_extra = max(0, len(self.vehiculos_id)-1)
-            empleados_extra = max(0, len(self.empleados_id)-2)
-            coste = float(coste) + float(vehiculos_extra * coste_vehiculo_extra) + float(empleados_extra * coste_empleado_extra) + costo_servicios_adicionales + costo_servicios_adicionales
+            _logger.info("self.vehiculos: %s",[vehiculo.id for vehiculo in self.vehiculos])
+            vehiculos_extra = max(0, len(self.vehiculos)-1)
+            _logger.info("self.empleados: %s",[empleado.id for empleado in self.empleados])
+            empleados_extra = max(0, len(self.empleados)-2)
+            coste = float(coste) + float(vehiculos_extra * coste_vehiculo_extra) + float(empleados_extra * coste_empleado_extra) + costo_servicios_adicionales
 
             # Actualizar la factura con el nuevo costo
             factura = self.factura
