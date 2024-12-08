@@ -18,6 +18,17 @@
     list-style: none;
 }
 
+.navbar-menu .navbar-item {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+  }
+
+
+.navbar-item:hover {
+    color: #ff6f61; /* Resalta el enlace al pasar el ratón */
+  }
+
 .navbar-end .button{
     padding: 5px 10px;
     border: none;
@@ -30,6 +41,26 @@
 .navbar-end .button:hover{
     background-color: #e60000;
 }
+
+.modify-button {
+    padding: 10px 20px;
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .modify-button:hover {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  .modify-button:focus {
+    outline: none;
+  }
 
 @media (max-width: 768px) {
     .navbar-menu{

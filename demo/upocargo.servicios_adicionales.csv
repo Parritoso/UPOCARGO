@@ -1,51 +1,101 @@
-id_servicios,tipo,estado
-YZCIIV60P,Marketing,false
-XW7F7XRUW,Training,false
-U7LV1IXZC,Legal,false
-QZCMW64J8,Research and Development,false
-YXCJXS2YP,Human Resources,false
-AQIXV7OPG,Training,true
-0PC82E2GK,Product Management,true
-BBH1EB2JY,Accounting,true
-VMOEZRIYE,Human Resources,false
-LUV9DHCUK,Human Resources,true
-QR9ZRUDQN,Legal,true
-8J49SRN4R,Marketing,true
-H3AFPBO4J,Product Management,true
-SYG4HBRP9,Support,true
-SZQN6VILZ,Product Management,true
-TF8OJQ5EB,Marketing,false
-CKY760AR8,Legal,true
-AHUOEFBJY,Services,false
-SWW03RATC,Research and Development,true
-FI2F9DZW5,Engineering,true
-ET9JKXQYT,Training,true
-RGD0S3FVS,Accounting,true
-4YXE1EPEJ,Training,false
-7SWGRWOG9,Legal,true
-FT4QBYYA3,Product Management,true
-GGJFZ7HQA,Engineering,false
-FIWPM0J9Z,Sales,false
-DU0X8NBBQ,Services,true
-VM88FYGLV,Product Management,false
-IXFQ9QLO2,Services,false
-0O10D31QH,Research and Development,true
-2UJ9AKSTN,Support,true
-IIQ77H098,Research and Development,true
-6COJOLJEP,Business Development,false
-LECX3LKMR,Services,false
-XZJLI04ZN,Human Resources,false
-O1HYBOQTM,Marketing,false
-ORLIDI9L8,Business Development,true
-89DMVCACQ,Human Resources,true
-O3MHTC53S,Product Management,false
-A1KWSM4FV,Marketing,true
-UV4BUG8UA,Business Development,true
-CSBR7ZKIH,Product Management,false
-Y0H8GAFND,Accounting,true
-COE096XTV,Legal,true
-UUYMS7JKL,Services,false
-AIPPE7VRA,Services,false
-NPXCW7SFV,Marketing,true
-QC3G3XM12,Engineering,true
-FX9DXSLMF,Training,false
+id_servicios,tipo,estado,aplicable_a,precio_base
+D0REGQ4SZ,Human Resources,false,almacenamiento,4
+S1QJYD0Z7,Accounting,true,ambos,49
+GKGTCW0UB,Research and Development,true,almacenamiento,8
+1MO509DJR,Business Development,true,mudanza,75
+S3VZEKSPM,Services,false,ambos,14
+ZSQ0USHAY,Accounting,false,almacenamiento,13
+SZQREYG8I,Marketing,false,almacenamiento,71
+MC8K7ABB3,Training,true,mudanza,68
+SFC2MTBFK,Business Development,true,ambos,47
+OMJSV59AB,Business Development,true,almacenamiento,58
+F7VW41ZH4,Product Management,false,almacenamiento,44
+5HVTJIFFB,Support,false,mudanza,1
+3YLB1QJZL,Sales,false,ambos,13
+UITE8QVR3,Research and Development,true,mudanza,100
+Q3Y1FL1KA,Accounting,false,mudanza,45
+QGSANLR0C,Sales,false,ambos,63
+E1QI8ADPO,Support,true,almacenamiento,54
+ILO7Q2F9Z,Accounting,true,mudanza,11
+2FUT15CSI,Accounting,true,almacenamiento,51
+G4YREQRCP,Training,true,ambos,20
+UG76D4FNZ,Support,true,ambos,57
+18CYI6G2C,Marketing,true,almacenamiento,65
+2JZJGHJU9,Services,false,mudanza,47
+XXD0PNM7R,Sales,false,almacenamiento,58
+212URVKQD,Legal,false,ambos,96
+SNIF8W7TU,Research and Development,true,mudanza,82
+MRZRB4V72,Accounting,false,almacenamiento,66
+CWXQFLPRQ,Product Management,true,almacenamiento,95
+OT8FT3FW4,Business Development,true,almacenamiento,57
+D1MNDRIJE,Product Management,false,mudanza,54
+YJYGO0V00,Human Resources,true,mudanza,77
+O7929S4VR,Legal,false,almacenamiento,81
+3CDV3ZO51,Training,true,almacenamiento,44
+51KXFCNXS,Engineering,true,mudanza,5
+7MRNLPQ8G,Engineering,false,almacenamiento,34
+UMN250W0J,Sales,true,almacenamiento,33
+TPVZGRRKU,Services,false,ambos,56
+USXGN4NW2,Research and Development,true,ambos,24
+C4LHQBKPG,Sales,true,almacenamiento,38
+3U9AWP6QO,Services,true,mudanza,52
+R8W1PVQMR,Engineering,true,ambos,61
+GDG56AET9,Research and Development,false,almacenamiento,10
+JP82N6KZN,Legal,false,ambos,73
+Q8TCH0O3L,Business Development,true,ambos,2
+WUNR1UXG5,Sales,true,mudanza,52
+P24VN5XTJ,Engineering,true,mudanza,5
+2GSXNAZ40,Marketing,false,ambos,58
+NKLQ75AON,Engineering,false,mudanza,85
+66XE477YP,Marketing,false,mudanza,44
+4DAAI5XXB,Human Resources,true,mudanza,1
+8PFH3W1S0,Services,true,mudanza,56
+P8CPZCON5,Marketing,true,mudanza,96
+BXKKNUUMO,Engineering,true,almacenamiento,1
+ZVJNEQKE2,Human Resources,false,almacenamiento,71
+FZ2ZGXQQJ,Sales,true,mudanza,28
+44ZYMBTG1,Training,false,mudanza,84
+31A2MFXJ2,Research and Development,false,ambos,33
+MBZW7J45Q,Marketing,true,almacenamiento,76
+WCZUNUYX2,Legal,true,mudanza,59
+WH6CN9MSU,Marketing,true,ambos,30
+9XL0P89DM,Human Resources,true,almacenamiento,27
+40WD0DIM8,Training,false,almacenamiento,6
+NUNA5VTIF,Business Development,false,mudanza,9
+70HTEWVU3,Legal,false,ambos,88
+F19BQ5XLZ,Business Development,true,almacenamiento,11
+M9S2D88ZX,Accounting,false,almacenamiento,98
+I4QV9OYUW,Business Development,true,ambos,27
+LTRUUB61C,Support,true,ambos,17
+WQFBIJA7J,Services,true,almacenamiento,62
+NV53UUSAZ,Research and Development,false,almacenamiento,25
+FVRNDL34K,Human Resources,false,mudanza,43
+DL83FUAJA,Human Resources,false,mudanza,89
+LZ82DSU8N,Sales,true,mudanza,15
+5XAADWFOF,Engineering,false,mudanza,11
+IFZHDX7NG,Services,false,mudanza,46
+2T060UD6B,Product Management,false,ambos,27
+D60S2I6VD,Human Resources,false,almacenamiento,61
+71TESU1W3,Services,false,mudanza,6
+03IBMBOVN,Legal,false,ambos,6
+NPHXFL8YC,Engineering,false,almacenamiento,33
+Y9MLMOG1Z,Accounting,false,ambos,6
+YJPBOGC3V,Accounting,false,ambos,86
+N5DMU0IEJ,Legal,false,mudanza,28
+Q8GVB8IS3,Marketing,true,ambos,50
+ZB3VPVU2C,Legal,false,mudanza,48
+L1J3OBO6U,Services,false,mudanza,8
+N3ABMLFR0,Research and Development,true,ambos,68
+9HT62RXTO,Services,true,ambos,44
+V99KCZALV,Research and Development,true,almacenamiento,85
+ZKMCVH0NX,Services,true,mudanza,11
+9XQDV3UPG,Engineering,true,mudanza,86
+RGW4FMWA7,Training,false,ambos,85
+2JG6N60RM,Business Development,false,mudanza,20
+P1FFSQ3KL,Services,true,mudanza,74
+E6DB00Y27,Marketing,true,almacenamiento,17
+GST6BWR7G,Engineering,false,ambos,4
+K1J8Z58H9,Support,false,almacenamiento,86
+FF1NJE3KW,Human Resources,true,mudanza,6
+U8G29GB57,Product Management,false,ambos,47
+86J4IWXVG,Human Resources,true,mudanza,54

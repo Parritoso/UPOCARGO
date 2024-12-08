@@ -88,6 +88,100 @@ a .card {
     background-color: #e60000;
 }
 
+.mudanza-card {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .mudanza-card a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .mudanza-card span {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+  .mudanza-card strong {
+    color: #2c3e50;
+}
+  
+  /* Estilo para el carrusel */
+  .owl-carousel .owl-item {
+    display: flex;
+    justify-content: center;
+}
+
+.owl-carousel .card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.owl-carousel .card img {
+    max-width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.owl-carousel .mudanza-card {
+    cursor: pointer;
+}
+
+/* Estilos para los botones de navegación (next/prev) */
+.owl-nav button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+    transform: translateY(-50%);
+}
+
+.owl-nav .owl-prev {
+    left: 10px;
+}
+
+.owl-nav .owl-next {
+    right: 10px;
+}
+
+/* Estilos para los puntos de navegación (dots) */
+.owl-dots {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.owl-dots .owl-dot {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.owl-dots .owl-dot span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ccc;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.owl-dots .owl-dot.active span {
+    background-color: #4CAF50;
+}
+  
 @media (max-width: 768px) {
     .navbar-menu{
         flex-direction: column;

@@ -4,6 +4,7 @@ import string
 import threading
 import time
 import logging
+from datetime import datetime
 _logger = logging.getLogger(__name__)
 
 def _simular_sensores(self):
@@ -92,3 +93,33 @@ class Almacen(models.Model):
         for almacen in almacenes:
             #self._start_iot_thread(almacen)
             return
+        
+    @api.model
+    def get_ocupacion_by_fecha(self, fecha):
+        if not fecha:
+            return []
+        
+        fecha = datetime.strptime(fecha, "%Y-%m-%d").date()
+        almacenamientos = self.env['upocargo.almacenamiento'].search([
+            ('fecha_ingreso', '<=', fecha),  # Fecha de ingreso antes o igual a la fecha proporcionada
+            ('fecha_salida', '>=', fecha)  # Fecha de salida después o igual a la fecha proporcionada
+        ])
+
+        ocupacion = {}
+
+        for almacenamiento in almacenamientos:
+            # Calcular el tamaño total ocupado en ese almacenamiento
+            total_tamano = sum(bien.tamanyo * bien.cantidad for bien in almacenamiento.bienes_almacenados)
+
+            # Agrupar la ocupación por almacén (almacen.almacen es el campo de relación)
+            if almacenamiento.almacen.id not in ocupacion:
+                ocupacion[almacenamiento.almacen.id] = {
+                    'id_almacen': almacenamiento.almacen.id,
+                    'nombre_almacen': almacenamiento.almacen.name,
+                    'ocupacion': total_tamano
+                }
+            else:
+                ocupacion[almacenamiento.almacen.id]['ocupacion'] += total_tamano
+
+        # Retornar la ocupación por almacén
+        return [{'id_almacen': data['id_almacen'], 'nombre_almacen': data['nombre_almacen'], 'ocupacion': data['ocupacion']} for data in ocupacion.values()]

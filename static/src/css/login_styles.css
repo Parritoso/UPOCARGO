@@ -74,6 +74,17 @@ body {
 }
 
 .error-message {
+    display: none;
+    color: red;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    background-color: #ffe6e6;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ff4d4d
+}
+
+.server-message {
     color: red;
     font-size: 0.9rem;
     margin-bottom: 1rem;

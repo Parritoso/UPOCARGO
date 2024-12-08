@@ -1,0 +1,15 @@
+.modify-button, .create-service-button {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Estilo específico para el botón de crear servicio adicional */
+.create-service-button {
+    background-color: #28a745;  /* Color verde para indicar acción positiva */
+    color: white;
+}
+
+.create-service-button:hover {
+    background-color: #218838;  /* Efecto hover con un tono más oscuro de verde */
+}

@@ -1,0 +1,34 @@
+.content {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.field {
+    margin-bottom: 15px;
+}
+
+.field label {
+    font-weight: bold;
+    color: #333;
+}
+
+.input, .select {
+    width: 100%;
+    margin-top: 5px;
+}
+
+/* Botón */
+button {
+    width: 100%;
+}
+
+/* Estilos adicionales para la barra de navegación */
+.navbar {
+    margin-bottom: 30px;
+}
+
+.navbar-end .button {
+    margin-left: 10px;
+}

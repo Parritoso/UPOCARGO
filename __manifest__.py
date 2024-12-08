@@ -35,17 +35,22 @@
         'wizard/MudanzaCancelacionWizard_view.xml',
         'views/menu.xml'
     ],
+    'assets': {
+        'web.assets_backend': [
+            'upocargo/static/src/js/grafico.js',
+            'upocargo/static/src/js/grafico_ocupacion.js',
+            'upocargo/static/src/js/selector_fecha.js',
+        ],
+    },
     # only loaded in demonstration mode
     'demo': [    
         'demo/upocargo.almacen.csv',
-        'demo/upocargo.almacenamiento.csv',
-        'demo/upocargo.bienes_almacenados.csv',
-        'demo/upocargo.cliente.csv',
         'demo/upocargo.empleado.csv',
+        'demo/upocargo.vehiculo.csv' ,
         'demo/upocargo.proveedor.csv',
         'demo/upocargo.servicios_adicionales.csv',
-        'demo/upocargo.vehiculo.csv'   
+        'demo/upocargo.cliente.csv',
+        'demo/upocargo.bienes_almacenados.csv'
     ],
-    'post_init_hook': 'post_init_hook',
     'application': True,
 }

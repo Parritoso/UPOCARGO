@@ -46,7 +46,14 @@ body {
     line-height: 1.5;
 }
 
+/*.desglose-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}*/
 .desglose-table {
+    display: none; /* Ocultar por defecto */
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
@@ -70,6 +77,11 @@ body {
 
 .desglose-table td {
     font-size: 14px;
+}
+
+button.is-info {
+    margin-bottom: 10px;
+    cursor: pointer;
 }
 
 a {

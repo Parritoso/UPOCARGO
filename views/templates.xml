@@ -25,6 +25,8 @@
       <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
       <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/upocargo.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
       <div id="warp" class="homepage">
         <!--Header-->
         <section id="hero" class="hero-section text-center">
@@ -62,7 +64,23 @@
         <section id="testimonials" class="testimonials-section bg-light py-5">
           <div class="container">
             <h2 class="text-center mb-4">Clientes Satisfechos</h2>
-            <div class="row">
+            <!-- OWL Carousel -->
+            <div class="owl-carousel owl-theme">
+              <div class="item">
+                <blockquote class="blockquote">
+                  <p>"El equipo de Upocargo hizo que nuestra mudanza fuera increíblemente sencilla.
+                    100% recomendados."</p>
+                  <footer class="blockquote-footer">Ana Rodríguez</footer>
+                </blockquote>
+              </div>
+              <div class="item">
+                <blockquote class="blockquote">
+                  <p>"Un servicio profesional y amigable. Definitivamente los contrataría de nuevo."</p>
+                  <footer class="blockquote-footer">Luis García</footer>
+                </blockquote>
+              </div>
+            </div>
+            <!--<div class="row">
               <div class="col-md-6">
                 <blockquote class="blockquote">
                   <p>"El equipo de Upocargo hizo que nuestra mudanza fuera increíblemente sencilla.
@@ -76,7 +94,7 @@
                   <footer class="blockquote-footer">Luis García</footer>
                 </blockquote>
               </div>
-            </div>
+            </div>-->
           </div>
         </section>
         <!--Footer-->
@@ -101,64 +119,92 @@
           </div>
         </footer>
       </div>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+      <script src="/upocargo/static/src/js/upocargo_index.js"></script>
     </t>
   </template>
 
   <template id="login_template" name="Login">
     <t t-call="web.layout">
       <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/login_styles.css" />
-      <div class="login-container">
-        <div class="login-box">
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+      <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+      <div class="login-container" data-aos="fade-up" data-aos-duration="1000">
+        <div class="login-box" data-aos="fade-up" data-aos-duration="1000">
           <h2>Iniciar Sesión</h2>
           <form action="/upocargo/login" method="post">
             <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
-            <div class="input-group">
+            <div class="input-group" data-aos="fade-up" data-aos-duration="1000">
               <label for="email">Email:</label>
               <input type="email" name="email" required="required" />
+              <div class="error-message" id="email-error"></div>
             </div>
-            <div class="input-group">
+            <div class="input-group" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
               <label for="password">Password:</label>
-              <input type="password" name="password" required="required" />
+              <div class="password-container">
+                <input type="password" name="password" id="password" required="required" />
+                <i class="fa fa-eye" id="toggle-password" style="cursor: pointer;"></i>
+              </div>
+              <div class="error-message" id="password-error"></div>
             </div>
             <div>
-              <button type="submit" class="login-button">Iniciar Sesión</button>
+              <button type="submit" class="login-button" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">Iniciar Sesión</button>
             </div>
             <t t-if="error">
-              <div class="error-message">
+              <div class="server-message" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
                 <p t-esc="error"></p>
               </div>
             </t>
           </form>
         </div>
       </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="/upocargo/static/src/js/login.js"></script>
     </t>
   </template>
 
   <template id="change_password_template" name="Change Password">
     <t t-call="web.layout">
       <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/login_styles.css" />
-      <div class="login-container">
-        <div class="login-box">
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"></link>
+      <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+      <div class="login-container" data-aos="fade-up" data-aos-duration="1000">
+        <div class="login-box" data-aos="fade-up" data-aos-duration="1000">
           <h2>Cambiar Contraseña</h2>
           <form action="/upocargo/change_password" method="post">
             <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
-            <div class="input-group">
+            <div class="input-group" data-aos="fade-up" data-aos-duration="1000">
               <label for="password">Nueva Contraseña:</label>
-              <input type="password" name="password" required="required" />
+              <div class="password-container">
+                <input type="password" name="password" id="password" required="required" />
+                <i class="fa fa-eye" id="toggle-password" style="cursor: pointer;"></i>
+              </div>
+              <div class="error-message" id="password-error"></div>
             </div>
-            <div class="input-group">
+            <div class="input-group" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
               <label for="password_confirm">Confirmar Contraseña:</label>
-              <input type="password" name="password_confirm" required="required" />
+              <div class="password-container">
+                <input type="password" name="password_confirm" id="password_confirm" required="required" />
+                <i class="fa fa-eye" id="toggle-password-confirm" style="cursor: pointer;"></i>
+              </div>
+              <div class="error-message" id="password-confirm-error"></div>
             </div>
             <t t-if="error">
-              <div class="error-message">
+              <div class="error-message" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
                 <p t-esc="error"></p>
               </div>
             </t>
-            <button type="submit" class="login-button">Cambiar Contraseña</button>
+            <button type="submit" class="login-button" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">Cambiar Contraseña</button>
           </form>
         </div>
       </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="/upocargo/static/src/js/change_password.js"></script>
     </t>
   </template>
 
@@ -167,20 +213,20 @@
       <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/portal_home_styles.css" />
       <div class="container">
         <nav class="navbar">
-          <div class="navber-brand">
+          <div class="navbar-brand">
             <a href="/upocargo/portal_home">UpoCargo</a>
           </div>
           <ul class="navbar-menu">
-            <li>
+            <li class="navbar-item">
               <a href="/upocargo/mudanzas">Mis Mudanzas</a>
             </li>
-            <li>
+            <li class="navbar-item">
               <a href="/upocargo/facturas">Mis Facturas</a>
             </li>
-            <li>
+            <li class="navbar-item">
               <a href="/upocargo/almacenamientos">Mis Almacenamientos</a>
             </li>
-            <li>
+            <li class="navbar-item">
               <a href="/upocargo/marketplace">Marketplace</a>
             </li>
           </ul>
@@ -189,12 +235,147 @@
           </div>
         </nav>
         <div class="content">
-          <a href="/upocargo/modificar_datos" class="button is-primary">Modificar mis datos</a>
+          <a href="/upocargo/modificar_datos" class="button is-primary modify-button">Modificar mis datos</a>
           <t t-raw="0" />
         </div>
       </div>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script type="text/javascript" src="/upocargo/static/src/js/portal_home.js"></script>
     </t>
   </template>
+
+  <template id="portal_home_proveedor" name="Crear Servicio Adicional">
+    <t t-call="web.layout">
+        <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/portal_home_styles.css" />
+        <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/proveedor.css" />
+        
+        <div class="container">
+            <!-- Barra de Navegación -->
+            <nav class="navbar">
+                <div class="navbar-brand">
+                    <a href="/upocargo/portal_home">UpoCargo</a>
+                </div>
+                <ul class="navbar-menu">
+                    <li class="navbar-item">
+                        <a href="/upocargo/mudanzas">Mis Mudanzas</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="/upocargo/facturas">Mis Facturas</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="/upocargo/almacenamientos">Mis Almacenamientos</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="/upocargo/marketplace">Marketplace</a>
+                    </li>
+                </ul>
+                <div class="navbar-end">
+                    <a href="/upocargo/logout" class="button is-danger">Cerrar Sesión</a>
+                </div>
+            </nav>
+
+            <!-- Contenido Principal -->
+            <div class="content">
+                <a href="/upocargo/modificar_datos" class="button is-primary modify-button">Modificar mis datos</a>
+                
+                <!-- Botón para Crear un Servicio Adicional -->
+                <a href="/upocargo/crear_servicio_adicional" class="button is-success create-service-button">Crear Servicio Adicional</a>
+
+                <t t-raw="0" />
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="/upocargo/static/src/js/portal_home.js"></script>
+    </t>
+</template>
+
+<template id="crear_servicio_adicional_template" name="Crear Servicio Adicional">
+    <t t-call="web.layout">
+        <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/crear_servicio_adicional.css" />
+
+        <div class="container">
+            <!-- Barra de Navegación -->
+            <nav class="navbar">
+                <div class="navbar-brand">
+                    <a href="/upocargo/portal_home">UpoCargo</a>
+                </div>
+                <ul class="navbar-menu">
+                    <li class="navbar-item">
+                        <a href="/upocargo/mudanzas">Mis Mudanzas</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="/upocargo/facturas">Mis Facturas</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="/upocargo/almacenamientos">Mis Almacenamientos</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="/upocargo/marketplace">Marketplace</a>
+                    </li>
+                </ul>
+                <div class="navbar-end">
+                    <a href="/upocargo/logout" class="button is-danger">Cerrar Sesión</a>
+                </div>
+            </nav>
+
+            <!-- Formulario para Crear un Servicio Adicional -->
+            <div class="content">
+                <h2>Crear un Servicio Adicional</h2>
+                <form method="POST" action="/upocargo/guardar_servicio_adicional" id="crear-servicio-form">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                    <div class="field">
+                        <label for="tipo" class="label">Tipo de Servicio</label>
+                        <div class="control">
+                            <input type="text" name="tipo" id="tipo" class="input" required="1" placeholder="Tipo de servicio (Ej. Mudanza Premium)" />
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="estado" class="label">Estado</label>
+                        <div class="control">
+                            <div class="select">
+                                <select name="estado" id="estado" required="1">
+                                    <option value="true">En curso</option>
+                                    <option value="false">No activo</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="aplicable_a" class="label">Aplicable a</label>
+                        <div class="control">
+                            <div class="select">
+                                <select name="aplicable_a" id="aplicable_a" required="1">
+                                    <option value="mudanza">Mudanza</option>
+                                    <option value="almacenamiento">Almacenamiento</option>
+                                    <option value="ambos">Ambos</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="precio_base" class="label">Precio Base</label>
+                        <div class="control">
+                            <input type="number" step="0.01" name="precio_base" id="precio_base" class="input" required="1" placeholder="Precio base" />
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <button type="submit" class="button is-primary">Crear Servicio Adicional</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="/upocargo/static/src/js/marketplace/servicio_create.js"></script>
+    </t>
+</template>
 
   <template id="modificar_datos_template" name="Modificar mis datos">
     <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/modificar_datos.css" />
@@ -226,22 +407,23 @@
         <div class="content">
           <h2>Modificar mis datos</h2>
           <t t-if="error">
-            <div class="alert alert-danger">
+            <div class="alert alert-danger" id="error-message">
               <t t-esc="error" />
             </div>
           </t>
-          <form method="post" action="/upocargo/guardar_datos">
+          <form method="post" action="/upocargo/guardar_datos" id="form-modificar-datos">
+            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
             <div class="field">
               <label class="label">Correo Electrónico</label>
               <div class="control">
-                <input class="input" type="email" name="email" t-att-value="user.email" required="1" />
+                <input class="input" type="email" id="email" name="email" t-att-value="user.email" required="1" />
               </div>
             </div>
 
             <div class="field">
               <label class="label">Nombre</label>
               <div class="control">
-                <input class="input" type="text" name="name" t-att-value="user.name" required="1" />
+                <input id="dir" class="input" type="text" name="name" t-att-value="user.name" required="1" />
               </div>
             </div>
 
@@ -256,7 +438,7 @@
             <div class="field">
               <label class="label">Telefono</label>
               <div class="control">
-                <input class="input" type="text" name="telf" t-att-value="user.telefono"
+                <input id="telf" class="input" type="text" name="telf" t-att-value="user.telefono"
                   required="1" />
               </div>
             </div>
@@ -264,8 +446,10 @@
             <div class="field">
               <label class="label">Contraseña</label>
               <div class="control">
-                <input class="input" type="password" name="password"
-                  placeholder="Ingrese su contraseña para confirmar" required="1" />
+                <input class="input" type="password" name="password" placeholder="Ingrese su contraseña para confirmar" required="1" id="password" />
+                <span class="eye-icon" id="toggle-password">
+                  <i class="fa fa-eye"></i>
+                </span>
               </div>
             </div>
 
@@ -273,11 +457,15 @@
           </form>
         </div>
       </div>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script type="text/javascript" src="/upocargo/static/src/js/modificar_datos.js"></script>
     </t>
   </template>
 
   <template id="mudanzas_template" name="Portal de Mudanzas">
     <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/aux_pages.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/assets/owl.carousel.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/assets/owl.theme.default.min.css"/>
     <div class="container mt-4">
       <nav class="navbar">
         <div class="navber-brand">
@@ -304,57 +492,37 @@
       <section class="section" id="mudanzas">
         <h2>Mis Mudanzas</h2>
         <t t-if="mudanzas">
-          <t t-foreach="mudanzas" t-as="mudanza">
-            <a t-att-href="'/upocargo/mudanzas/' + str(mudanza.id_mudanza)">
-              <div class="card">
-                <span>
-                  <strong>Mudanza</strong>
-                  <t t-esc="mudanza.id_mudanza" /> - <strong>Fecha:</strong>
-                  <t
-                    t-esc="mudanza.fecha" />
-                </span>
+          <div class="owl-carousel owl-theme">
+            <t t-foreach="mudanzas" t-as="mudanza">
+              <div class="card mudanza-card">
+                <a t-att-href="'/upocargo/mudanzas/' + str(mudanza.id_mudanza)">
+                  <div class="card">
+                    <span>
+                      <strong>Mudanza</strong>
+                      <t t-esc="mudanza.id_mudanza" /> - <strong>Fecha:</strong>
+                      <t
+                        t-esc="mudanza.fecha" />
+                    </span>
+                  </div>
+                </a>
               </div>
-            </a>
-          </t>
+            </t>
+          </div>
         </t>
         <t t-else="">
           <p>No hay mudanzas disponibles</p>
         </t>
       </section>
-      <!--<h2>Mis
-      mudanzas</h2>
-      <t t-if="mudanzas">
-        <ul>
-          <t t-foreach="mudanzas" t-as="mudanza">
-            <li>
-              <strong>ID:</strong>
-              <t t-esc="mudanza.id_mudanza"/>
-              <br/>
-              <strong>Fecha:</strong>
-              <t t-esc="mudanza.fecha"/>
-              <br/>
-              <strong>Direccion Origen:</strong>
-              <t t-esc="mudanza.dirOrigen"/>
-              <br/>
-              <strong>Direccion Destino:</strong>
-              <t t-esc="mudanza.dirDestino"/>
-              <br/>
-              <strong>Estado:</strong>
-              <t t-esc="mudanza.estado"/>
-              <br/>
-            </li>
-          </t>
-        </ul>
-      </t>
-      <t t-else="">
-        <p>No hay mudanzas disponibles</p>
-      </t>-->
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/owl.carousel.min.js"></script>
+      <script type="text/javascript" src="/upocargo/static/src/js/portal/portal_mudanza.js"></script>
   </template>
 
   <template id="mudanza_detail" name="Detalles de Mudanza">
     <t t-call="web.layout">
       <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/mudanza_detail.css" />
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <div class="container">
         <section class="mudanza-detail">
           <h2>Detalles de la mudanza</h2>
@@ -384,7 +552,7 @@
             </p>
           </div>
           <t t-if="id_mudanza.estado != 'cancelado'">
-            <form method="post">
+            <form method="post" id="mudanza-form">
               <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
               <div class="field">
                 <label class="label">Atrasar Mudanza (Días):</label>
@@ -393,9 +561,9 @@
                 </div>
               </div>
               <input type="hidden" name="mudanza_id" t-att-value="id_mudanza.id_mudanza" />
-              <button class="button is-warning" type="submit" name="action" value="atrasar">Atrasar
+              <button class="button is-warning" id="atrasar-btn" type="submit" name="action" value="atrasar">Atrasar
                 Mudanza</button>
-              <button class="button is-danger" type="submit" name="action" value="cancelar">Cancelar
+              <button class="button is-danger" id="cancelar-btn" type="submit" name="action" value="cancelar">Cancelar
                 Mudanza</button>
             </form>
           </t>
@@ -456,7 +624,7 @@
           </div>
           <!--Empleados-->
           <div class="empleados-info">
-            <h3>Empleados Asignados</h3>
+            <h3><span id="empleados-toggle" class="toggle-button">Empleados Asignados</span></h3>
             <t t-if="id_mudanza.empleados">
               <ul>
                 <t t-foreach="id_mudanza.empleados" t-as="empleado">
@@ -493,11 +661,14 @@
           </div>
         </section>
       </div>
+      <script type="text/javascript" src="/upocargo/static/src/js/details/mudanza_detail.js"></script>
     </t>
   </template>
 
   <template id="almacenamientos_template" name="Portal de ALmacenamientos">
     <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/aux_pages.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/assets/owl.carousel.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/assets/owl.theme.default.min.css"/>
     <div class="container mt-4">
       <nav class="navbar">
         <div class="navber-brand">
@@ -524,52 +695,38 @@
       <section class="section" id="almacenamientos">
         <h2>Mis Almacenamientos</h2>
         <t t-if="almacenamientos">
-          <t t-foreach="almacenamientos" t-as="almacenamiento">
-            <a t-att-href="'/upocargo/almacenamientos/' +str(almacenamiento.id_almacenamiento)">
-              <div class="card">
-                <span>
-                  <strong>Almacenamiento</strong>
-                  <t t-esc="almacenamiento.id_almacenamiento" /> - <strong>Fecha
-                  de Ingreso:</strong>
-                  <t t-esc="almacenamiento.fecha_ingreso" />
-                </span>
-              </div>
-            </a>
-          </t>
+          <div class="owl-carousel owl-theme">
+            <t t-foreach="almacenamientos" t-as="almacenamiento">
+              <a t-att-href="'/upocargo/almacenamientos/' +str(almacenamiento.id_almacenamiento)">
+                <div class="card almacenamiento-card">
+                  <span>
+                    <strong>Almacenamiento</strong>
+                    <t t-esc="almacenamiento.id_almacenamiento" /> - <strong>Fecha
+                    de Ingreso:</strong>
+                    <t t-esc="almacenamiento.fecha_ingreso" />
+                  </span>
+                </div>
+              </a>
+            </t>
+          </div>
         </t>
         <t t-else="">
           <p>No hay almacenamientos disponibles</p>
         </t>
       </section>
-      <!--<h2>Mis
-      Almacenamientos</h2>
-    <t t-if="almacenamientos">
-      <ul>
-        <t t-foreach="almacenamientos" t-as="almacenamiento">
-          <li>
-            <strong>ID:</strong>
-            <t t-esc="almacenamiento.id_almacenamiento"/>
-            <br/>
-            <strong>Fecha de Ingreso:</strong>
-            <t t-esc="almacenamiento.fecha_ingreso"/>
-            <br/>
-            <strong>Fecha de Salida:</strong>
-            <t t-esc="almacenamiento.fecha_salida"/>
-            <br/>
-          </li>
-        </t>
-      </ul>
-    </t>
-    <t t-else="">
-      <p>No hay almacenamientos disponibles</p>
-    </t>-->
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="/upocargo/static/src/js/portal/portal_almacenamiento.js"></script>
   </template>
 
   <template id="almacenamiento_detail" name="Detalles de Almacenamiento">
     <t t-call="web.layout">
       <link rel="stylesheet" type="text/css"
         href="/upocargo/static/src/css/almacenamiento_detail.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
       <div class="container">
         <section class="almacenamiento-detail">
           <h2>Detalles de Almacenamiento</h2>
@@ -631,7 +788,7 @@
                 <input class="input" type="number" name="dias_atraso" min="1" required="1" />
               </div>
             </div>
-            <button class="button is-warning" type="submit" name="action" value="atrasar">Atrasar
+            <button class="button is-warning" id="atrasar-btn" type="submit" name="action" value="atrasar">Atrasar
               Almacenamiento</button>
           </form>
           <div class="bien-info">
@@ -661,11 +818,14 @@
           </div>
         </section>
       </div>
+      <script type="text/javascript" src="/upocargo/static/src/js/details/almacenamiento_detail.js"></script>
     </t>
   </template>
 
   <template id="facturas_template" name="Portal de Facturas">
     <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/aux_pages.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/assets/owl.carousel.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/assets/owl.theme.default.min.css"/>
     <div class="container mt-4">
       <nav class="navbar">
         <div class="navber-brand">
@@ -692,48 +852,38 @@
       <section class="section" id="facturas">
         <h2>Mis Facturas</h2>
         <t t-if="facturas">
-          <t t-foreach="facturas" t-as="factura">
-            <a t-att-href="'/upocargo/facturas/' +str(factura.id_factura)">
-              <div class="card">
-                <span>
-                  <strong>Factura</strong>
-                  <t t-esc="factura.id_factura" /> - <strong>Total</strong>
-                  <t
-                    t-esc="factura.precio" />
-                </span>
-              </div>
-            </a>
-          </t>
+          <div class="owl-carousel owl-theme">
+            <t t-foreach="facturas" t-as="factura">
+              <a t-att-href="'/upocargo/facturas/' +str(factura.id_factura)">
+                <div class="card factura-card">
+                  <span>
+                    <strong>Factura</strong>
+                    <t t-esc="factura.id_factura" /> - <strong>Total</strong>
+                    <t
+                      t-esc="factura.precio" />
+                  </span>
+                </div>
+              </a>
+            </t>
+          </div>
         </t>
         <t t-else="">
           <p>No hay facturas disponibles</p>
         </t>
       </section>
-      <!--<h2>Mis
-      Facturas</h2>
-    <t t-if="facturas">
-      <ul>
-        <t t-foreach="facturas" t-as="factura">
-          <li>
-            <strong>ID:</strong>
-            <t t-esc="factura.id_factura"/>
-            <br/>
-            <strong>Coste:</strong>
-            <t t-esc="factura.precio"/>
-            <br/>
-          </li>
-        </t>
-      </ul>
-    </t>
-    <t t-else="">
-      <p>No hay facturas disponibles</p>
-    </t>-->
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="/upocargo/static/src/js/portal/portal_factura.js"></script>
   </template>
 
   <template id="factura_detail" name="Detalles de Factura">
     <t t-call="web.layout">
       <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/factura_detail.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <div class="container">
         <section class="factura-detail">
           <h2>Detalles de Factura</h2>
@@ -773,7 +923,8 @@
           </t>
           <div class="factura-info">
             <h3>Desglose de gastos</h3>
-            <table class="desglose-table">
+            <button id="toggle-desglose" class="button is-info">Ver Desglose de Gastos</button>
+            <table class="desglose-table" id="desglose-gastos">
               <thead>
                 <tr>
                   <th>Concepto</th>
@@ -797,12 +948,15 @@
           </div>
         </section>
       </div>
+      <script type="text/javascript" src="/upocargo/static/src/js/details/factura_detail.js"></script>
     </t>
   </template>
 
   <template id="marketplace_page" name="Marketplace">
     <t t-call="web.layout">
       <link rel="stylesheet" type="text/css" href="/upocargo/static/src/css/marketplace.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
       <div class="container marketplace">
         <!-- Barra de Navegación -->
         <nav class="navbar">
@@ -891,6 +1045,9 @@
           </div>
         </div>
       </div>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+      <script type="text/javascript" src="/upocargo/static/src/js/marketplace/marketplace.js"/>
     </t>
   </template>
 
@@ -898,6 +1055,8 @@
     <t t-call="web.layout">
       <link rel="stylesheet" type="text/css"
         href="/upocargo/static/src/css/servicio_adicional_page.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
       <div class="container">
         <nav class="navbar">
           <div class="navbar-brand">
@@ -967,6 +1126,8 @@
     <t t-call="web.layout">
       <link rel="stylesheet" type="text/css"
         href="/upocargo/static/src/css/servicios_contratados.css" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/assets/owl.carousel.min.css"/>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/assets/owl.theme.default.min.css"/>
       <div class="container">
         <!-- Barra de Navegación -->
         <nav class="navbar">
@@ -995,7 +1156,7 @@
         <!-- Contenido Principal -->
         <div class="user-services">
           <h2>Servicios Contratados</h2>
-          <div class="services-container">
+          <div class="services-container owl-carousel owl-theme">
             <t t-foreach="services" t-as="service">
               <div class="service-card">
                 <div class="service-info">
@@ -1027,6 +1188,8 @@
           </div>
         </div>
       </div>
+      <script src="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/owl.carousel.min.js"></script>
+      <script src="/upocargo/static/src/js/marketplace/servicios_contratados.js"></script>
     </t>
   </template>
 </odoo>

@@ -418,3 +418,48 @@ class UpocargoPortal(http.Controller):
             'services': servicios_contratados,
             'user': user,
         })
+    
+    @http.route('/upocargo/guardar_servicio_adicional', type='http', auth='public', methods=['POST'], csrf=True)
+    def crear_servicio_adicional(self, **post):
+        user_id = request.session.get('cliente_id')
+        if not user_id:
+            return request.redirect('/upocargo/login')
+        proveedor_id = request.session.get('proveedor_id')
+        if not proveedor_id:
+            return request.redirect('/upocargo/login')
+        tipo = post.get('tipo')
+        estado = post.get('estado')
+        aplicable_a = post.get('aplicable_a')
+        precio_base = float(post.get('precio_base'))
+        
+        
+        # Crear el servicio adicional
+        servicio_adicional = request.env['upocargo.servicios_adicionales'].create({
+            'tipo': tipo,
+            'estado': estado,
+            'aplicable_a': aplicable_a,
+            'precio_base': precio_base,
+            'proveedores': [(6, 0, [proveedor_id])]
+        })
+        
+        return request.redirect('/upocargo/servicio_adicional/%s' % servicio_adicional.id_servicios)
+    
+    @http.route('/upocargo/portal_home_proveedor', type='http', auth='public')
+    def portal_home_proveedor(self, **post):
+        user_id = request.session.get('cliente_id')
+        if not user_id:
+            return request.redirect('/upocargo/login')
+        proveedor_id = request.session.get('proveedor_id')
+        if not proveedor_id:
+            return request.redirect('/upocargo/login')
+        return http.request.render('upocargo.portal_home_proveedor')
+    
+    @http.route('/upocargo/crear_servicio_adicional', type='http', auth='public')
+    def portal_home_proveedor(self, **post):
+        user_id = request.session.get('cliente_id')
+        if not user_id:
+            return request.redirect('/upocargo/login')
+        proveedor_id = request.session.get('proveedor_id')
+        if not proveedor_id:
+            return request.redirect('/upocargo/login')
+        return http.request.render('upocargo.crear_servicio_adicional_template')
