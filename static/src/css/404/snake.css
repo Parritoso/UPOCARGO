@@ -38,10 +38,10 @@
   background: #212837;
   grid-template: repeat(30, 1fr) / repeat(30, 1fr);
 }
-.game .play-board .game .food {
+.game .play-board .food {
   background: #FF003D;
 }
-.game .play-board .game .head {
+.game .play-board .head {
   background: #60CBFF;
 }
 .game .controls {

@@ -33,27 +33,8 @@
     margin-bottom: 50px;
 }
 
-.game button {
-    font-size: 18px;
-    padding: 10px 20px;
-    background-color: #5cb85c;
-    border: none;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-.game button:hover {
-    background-color: #4cae4c;
-}
-
-#gameStatus {
-    margin-top: 20px;
-    font-size: 18px;
-    color: #f0ad4e;
-}
-
-#startGame {
-    display: inline-block;
+#page_not_found img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 30px;
 }

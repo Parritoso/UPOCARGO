@@ -31,15 +31,13 @@
         'views/factura_view.xml',
         'views/vehiculo_view.xml',
         'views/empleado_view.xml',
+        'views/servicios_adicionales_view.xml',
         'views/templates.xml',
         'wizard/MudanzaCancelacionWizard_view.xml',
         'views/menu.xml'
     ],
     'assets': {
         'web.assets_backend': [
-            'upocargo/static/src/js/grafico.js',
-            'upocargo/static/src/js/grafico_ocupacion.js',
-            'upocargo/static/src/js/selector_fecha.js',
         ],
     },
     # only loaded in demonstration mode

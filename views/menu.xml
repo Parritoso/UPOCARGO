@@ -1,22 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+      <!-- First Menu -->
       <menuitem id="upocargo_root_menu" name="UPOCARGO" groups="group_upocargo_manager,group_upocargo_empleado"/>
 
-      <!-- actions -->
-      <menuitem id="upocargos_clientes_menu" name="Clientes" parent="upocargo_root_menu" groups="group_upocargo_manager,group_upocargo_empleado" action="upocargo_clientes_action"/>
-      <menuitem id="upocargo_mudanza_menu" name="Mudanzas" parent="upocargo_root_menu" groups="group_upocargo_manager,group_upocargo_empleado" action="upocargo_mudanzas_action"/>
+      <!-- Second Level Menu -->
+
+      <menuitem id="upocargo_servicios_menu" name="Servicios" parent="upocargo_root_menu" groups="group_upocargo_manager,group_upocargo_empleado"/>
+            <!-- actions -->
+            <menuitem id="upocargo_mudanza_menu" name="Mudanzas" parent="upocargo_servicios_menu" groups="group_upocargo_manager,group_upocargo_empleado" action="upocargo_mudanzas_action"/>
+            <menuitem id="upocargo_almacenamiento_menu" name="Almacenamiento" parent="upocargo_servicios_menu" groups="group_upocargo_manager,group_upocargo_empleado" action="upocargo_almacenamiento_action"/>
+            <menuitem id="upocargo_bienes_almacenados_menu" name="Bienes Almacenados" parent="upocargo_servicios_menu" groups="group_upocargo_manager,group_upocargo_empleado" action="upocargo_bienes_almacenados_action"/>
+            <menuitem id="upocargo_factura_menu" name="Factura" parent="upocargo_servicios_menu" groups="group_upocargo_manager,group_upocargo_empleado" action="upocargo_factura_action"/>
+
+      <menuitem id="upocargo_empresa_menu" name="Empresa" parent="upocargo_root_menu" groups="group_upocargo_manager,group_upocargo_empleado"/>
+            <!-- actions -->
+            <menuitem id="upocargos_clientes_menu" name="Clientes" parent="upocargo_empresa_menu" groups="group_upocargo_manager,group_upocargo_empleado" action="upocargo_clientes_action"/>
+            <menuitem id="upocargo_empleado_menu" name="Empleado" parent="upocargo_empresa_menu" groups="group_upocargo_manager,group_upocargo_empleado" action="upocargo_empleado_action"/>
+            <menuitem id="upocargo_vehiculo_menu" name="Vehiculo" parent="upocargo_empresa_menu" groups="group_upocargo_manager,group_upocargo_empleado" action="upocargo_vehiculo_action"/>
+      
+      <menuitem id="upocargo_marketplace_menu" name="Marketplace" parent="upocargo_root_menu" groups="group_upocargo_manager,group_upocargo_empleado"/>
+            <!-- actions -->
+            <menuitem id="upocargo_proveedor_menu" name="Proveedor" parent="upocargo_marketplace_menu" groups="group_upocargo_manager,group_upocargo_empleado" action="upocargo_proveedor_action"/>
+            <menuitem id="upocargo_servicios_adicionales_menu" name="Servicios Adicionales" parent="upocargo_marketplace_menu" groups="group_upocargo_manager,group_upocargo_empleado" action="upocargo_servicios_adicionales_action"/>
+      
       <menuitem id="upocargo_almacen_menu" name="Almacenes" parent="upocargo_root_menu" action="upocargo_almacen_action" groups="group_upocargo_manager,group_upocargo_empleado"/>
-      <menuitem
-            id="upocargo_almacen_tree_form_menu"
-            name="Almacenes"
-            parent="upocargo_almacen_menu" action="upocargo_almacen_action" groups="group_upocargo_manager,group_upocargo_empleado"/>
-      <menuitem id="upocargo_almacen_grafico_menu" name="Ocupación de Almacenes" parent="upocargo_almacen_menu" action="action_upocargo_almacen_grafico" />
-      <menuitem id="upocargo_almacenamiento_menu" name="Almacenamiento" parent="upocargo_root_menu" groups="group_upocargo_manager,group_upocargo_empleado" action="upocargo_almacenamiento_action"/>
-      <menuitem id="upocargo_bienes_almacenados_menu" name="Bienes Almacenados" parent="upocargo_root_menu" groups="group_upocargo_manager,group_upocargo_empleado" action="upocargo_bienes_almacenados_action"/>
-      <menuitem id="upocargo_proveedor_menu" name="Proveedor" parent="upocargo_root_menu" groups="group_upocargo_manager,group_upocargo_empleado" action="upocargo_proveedor_action"/>
-      <menuitem id="upocargo_empleado_menu" name="Empleado" parent="upocargo_root_menu" groups="group_upocargo_manager,group_upocargo_empleado" action="upocargo_empleado_action"/>
-      <menuitem id="upocargo_vehiculo_menu" name="Vehiculo" parent="upocargo_root_menu" groups="group_upocargo_manager,group_upocargo_empleado" action="upocargo_vehiculo_action"/>
-      <menuitem id="upocargo_factura_menu" name="Factura" parent="upocargo_root_menu" groups="group_upocargo_manager,group_upocargo_empleado" action="upocargo_factura_action"/>
+            <!-- actions -->
+            <menuitem
+                  id="upocargo_almacen_tree_form_menu"
+                  name="Almacenes"
+                  parent="upocargo_almacen_menu" action="upocargo_almacen_action" groups="group_upocargo_manager,group_upocargo_empleado"/>
+            <menuitem id="upocargo_almacen_grafico_menu" name="Ocupación de Almacenes" parent="upocargo_almacen_menu" action="action_upocargo_almacen_grafico" />
 
 </odoo>

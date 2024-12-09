@@ -4,7 +4,6 @@
         <!-- Cargar tu archivo JS sin heredar de web.assets_backend -->
         <template id="assets_backend" name="upocargo_assets">
             <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-            <script type="text/javascript" src="/upocargo/static/src/js/main.js"></script>
         </template>
     </data>
     <record id="view_upocargo_almacen_form" model="ir.ui.view">
@@ -54,27 +53,25 @@
     <record id="view_upocargo_almacen_grafico_fecha" model="ir.ui.view">
         <field name="name">upocargo.almacen.grafico</field>
         <field name="model">upocargo.almacen</field>
-        <field name="type">qweb</field>
         <field name="arch" type="xml">
-            <t t-name="upocargo.almacen.grafico">
-                <div>
-                        <!-- Contenedor para el SelectorFecha -->
+            <form>
+                <div class="o_form_view">
+                        <!-- Contenedor para el SelectorFecha 
                         <div id="selector-fecha"></div>
 
-                        <!-- Contenedor para el GraficoOcupacion -->
-                        <div id="grafico-ocupacion"></div>
-                    </div>
-            </t>
+                        Contenedor para el GraficoOcupacion
+                        <div id="grafico-ocupacion"></div>-->
+                </div>
+            </form>
         </field>
     </record>
 
     <record id="action_upocargo_almacen_grafico" model="ir.actions.act_window">
         <field name="name">Gráfico de Ocupación</field>
-        <field name="res_model">upocargo.almacen</field>
-        <field name="view_mode">qweb</field>
-        <field name="view_id" ref="view_upocargo_almacen_grafico_fecha" />
+        <field name="tag">upocargo.Task</field>
+        <!--<field name="view_id" ref="view_upocargo_almacen_grafico_fecha" />-->
         <!-- Referencia correcta a la vista del gráfico -->
-        <field name="context">{'fecha': context.get('fecha', False)}</field>
+        <field name="target">main</field>
     </record>
 
     <record id="upocargo_almacen_action" model="ir.actions.act_window">

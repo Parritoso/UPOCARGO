@@ -1240,7 +1240,7 @@
       <link rel="stylesheet" href="/upocargo/static/src/css/404/404.css"></link>
       <div id="page_not_found" class="container text-center">
         <h1>Oops! Página no encontrada</h1>
-
+        <img src="/upocargo/static/src/img/404-error-message.png" alt="Imagen de error 404" width="600" height="353" />
         <!-- Mensaje aleatorio -->
         <p id="random-message"></p>
         <p id="cita"></p>
@@ -1249,7 +1249,7 @@
         <div id="game" class="game">
           <t t-if="game == 'snake'">
             <link rel="stylesheet" href="/upocargo/static/src/css/404/snake.css"></link>
-            <script type="text/javascript" src="/upocargo/static/src/js/404/snake.js" defer=""/>
+            <script type="text/javascript" src="/upocargo/static/src/js/404/snake.js" defer=""></script>
             <div class="wrapper">
               <div class="game-details">
                 <span class="score">Score: 0</span>
