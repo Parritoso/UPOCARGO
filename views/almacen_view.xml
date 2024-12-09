@@ -66,9 +66,9 @@
         </field>
     </record>
 
-    <record id="action_upocargo_almacen_grafico" model="ir.actions.act_window">
+    <record id="action_upocargo_almacen_grafico" model="ir.actions.client">
         <field name="name">Gráfico de Ocupación</field>
-        <field name="tag">upocargo.Task</field>
+        <field name="tag">upocargo.GraficoOcupacionTemplate</field>
         <!--<field name="view_id" ref="view_upocargo_almacen_grafico_fecha" />-->
         <!-- Referencia correcta a la vista del gráfico -->
         <field name="target">main</field>

@@ -37,7 +37,11 @@
         'views/menu.xml'
     ],
     'assets': {
+        'web.assets_qweb':[
+            'upocargo/static/src/components/grafico_selector/grafico_ocupacion.xml'
+        ],
         'web.assets_backend': [
+            'upocargo/static/src/components/grafico_selector/grafico_ocupacion.js'
         ],
     },
     # only loaded in demonstration mode

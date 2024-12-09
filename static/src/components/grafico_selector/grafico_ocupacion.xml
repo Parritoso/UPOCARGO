@@ -1,4 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
-
+    <t t-name="upocargo.GraficoOcupacionTemplate" owl="1">
+        <div>
+            <!-- Campo de selección de fecha -->
+            <div>
+                <label for="fecha">Seleccionar Fecha</label>
+                <input type="date" id="fecha" t-on-change="onFechaChange"/>
+            </div>
+            <!-- Gráfico donde se actualizarán los datos -->
+            <div>
+                <h3>Gráfico de Ocupación para la Fecha ${this.state.fecha || 'Seleccionada'}</h3>
+                <div id="grafico-ocupacion" style="height: 400px; width: 100%;"></div>
+            </div>
+            <div>
+                <t t-if="state.datosGrafico.length > 0">
+                    <graph string="Gráfico de Valor Calculado" t-att-data="state.datosGrafico"/>
+                </t>
+                <t t-else="">
+                    <p>No hay datos disponibles para el gráfico.</p>
+                </t>
+            </div>
+        </div>
+    </t>
 </templates>
