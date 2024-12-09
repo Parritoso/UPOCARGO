@@ -1,0 +1,217 @@
+/* Importing Google Fonts - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+.game * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body {
+  background: #5372F0;
+}
+#page_not_found{
+    background: #fff;
+    border-radius: 5px;
+}
+#back-button{
+    margin-bottom: 30px;
+}
+.game .select-box,
+.game .play-board,
+.game .result-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+}
+.game .select-box {
+  background: #fff;
+  padding: 20px 25px 25px;
+  border-radius: 5px;
+  max-width: 400px;
+  width: 100%;
+}
+.game .select-box.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+.game .select-box header {
+  font-size: 30px;
+  font-weight: 600;
+  padding-bottom: 10px;
+  border-bottom: 1px solid lightgrey;
+}
+.game .select-box .title {
+  font-size: 22px;
+  font-weight: 500;
+  margin: 20px 0;
+}
+.game .select-box .options {
+  display: flex;
+  width: 100%;
+}
+.game .options button {
+  width: 100%;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 10px 0;
+  border: none;
+  background: #5372F0;
+  border-radius: 5px;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.game .options button:hover,
+.game .btn button:hover {
+  background: #2c52ed;
+}
+.game .options button.playerX {
+  margin-right: 5px;
+}
+.game .options button.playerO {
+  margin-left: 5px;
+}
+.game .select-box .credit {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: 500;
+}
+.game .select-box .credit a {
+  color: #5372F0;
+  text-decoration: none;
+}
+.game .select-box .credit a:hover {
+  text-decoration: underline;
+}
+.game .play-board {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+.game .play-board.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+.game .play-board .details {
+  padding: 7px;
+  border-radius: 5px;
+  background: #fff;
+}
+.game .play-board .players {
+  width: 100%;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+}
+.game .players span {
+  position: relative;
+  z-index: 2;
+  color: #5372F0;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 10px 0;
+  width: 100%;
+  text-align: center;
+  cursor: default;
+  user-select: none;
+  transition: all 0.3 ease;
+}
+.game .players.active span:first-child {
+  color: #fff;
+}
+.game .players.active span:last-child {
+  color: #5372F0;
+}
+.game .players span:first-child {
+  color: #fff;
+}
+.game .players .slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: #5372F0;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+.game .players.active .slider {
+  left: 50%;
+}
+.game .players.active span:first-child {
+  color: #5372F0;
+}
+.game .players.active span:nth-child(2) {
+  color: #fff;
+}
+.game .players.active .slider {
+  left: 50%;
+}
+.game .play-area {
+  margin-top: 20px;
+}
+.game .play-area section {
+  display: flex;
+  margin-bottom: 1px;
+}
+.game .play-area section span {
+  display: block;
+  height: 90px;
+  width: 90px;
+  margin: 2px;
+  color: #5372F0;
+  font-size: 40px;
+  line-height: 80px;
+  text-align: center;
+  border-radius: 5px;
+  background: #fff;
+}
+.game .result-box {
+  padding: 25px 20px;
+  border-radius: 5px;
+  max-width: 400px;
+  width: 100%;
+  opacity: 0;
+  text-align: center;
+  background: #fff;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+.game .result-box.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+.game .result-box .won-text {
+  font-size: 30px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+}
+.game .result-box .won-text p {
+  font-weight: 600;
+  margin: 0 5px;
+}
+.game .result-box .btn {
+  width: 100%;
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+}
+.game .btn button {
+  font-size: 18px;
+  font-weight: 500;
+  padding: 8px 20px;
+  border: none;
+  background: #5372F0;
+  border-radius: 5px;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}

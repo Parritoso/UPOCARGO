@@ -3,6 +3,7 @@ from odoo import http, fields
 from odoo.http import request
 from datetime import timedelta
 import logging
+import random
 _logger = logging.getLogger(__name__)
 
 
@@ -93,6 +94,8 @@ class UpocargoAuth(http.Controller):
         return http.request.render('upocargo.change_password_template')
 
 class UpocargoPortal(http.Controller):
+
+    games = ["snake","tic","rock"]
     @http.route('/upocargo', type='http', auth='none')
     def upocargo(self, **kwargs):
         return http.request.render('upocargo.upocargo_index')
@@ -166,7 +169,10 @@ class UpocargoPortal(http.Controller):
             return request.redirect('/upocargo/login')
         mudanza = request.env['upocargo.mudanza'].sudo().search([('id_mudanza','=',id_mudanza)],limit=1)
         if not mudanza:
-            return http.request.not_found("Mudanza no encontrada D:")
+            game = random.choice(self.games)
+            return http.request.render('upocargo.page_not_found_404',{
+                'game': game
+            })
         if not user_id == mudanza.cliente.id_cliente:
             return request.redirect('/upocargo/mudanzas')
         servicios_cliente = request.env['upocargo.servicios_adicionales'].sudo().search([('cliente.id_cliente', '=', user_id), ('estado', '=', 'true'),'|', ('aplicable_a','=','mudanza'),('aplicable_a', '=', 'ambos')])
@@ -248,7 +254,10 @@ class UpocargoPortal(http.Controller):
             return request.redirect('/upocargo/login')
         factura = request.env['upocargo.factura'].sudo().search([('id_factura','=',id_factura)],limit=1)
         if not factura:
-            return http.request.not_found("Factura no encontrada D:")
+            game = random.choice(self.games)
+            return http.request.render('upocargo.page_not_found_404',{
+                'game': game
+            })
         if not user_id == factura.mudanza_id.cliente.id_cliente:
             return request.redirect('/upocargo/facturas')
         return http.request.render('upocargo.factura_detail',{
@@ -275,7 +284,10 @@ class UpocargoPortal(http.Controller):
             return request.redirect('/upocargo/login')
         almacenamiento = request.env['upocargo.almacenamiento'].sudo().search([('id_almacenamiento','=',id_almacenamiento)],limit=1)
         if not almacenamiento:
-            return http.request.not_found("Almacenamiento no encontrada D:")
+            game = random.choice(self.games)
+            return http.request.render('upocargo.page_not_found_404',{
+                'game': game
+            })
         if not user_id == almacenamiento.cliente.id_cliente:
             return request.redirect('/upocargo/almacenamiento')
         servicios_cliente = request.env['upocargo.servicios_adicionales'].sudo().search([('cliente.id_cliente', '=', user_id), ('estado', '=', 'true'),'|', ('aplicable_a','=','almacenamiento'),('aplicable_a', '=', 'ambos')])
@@ -362,7 +374,10 @@ class UpocargoPortal(http.Controller):
             return request.redirect('/upocargo/login')
         servicio = request.env['upocargo.servicios_adicionales'].sudo().search([('id_servicios','=', service)],limit=1)
         if not servicio:
-            return http.request.not_found("Servicio no encontrado D:")
+            game = random.choice(self.games)
+            return http.request.render('upocargo.page_not_found_404',{
+                'game': game
+            })
         user = request.env['upocargo.cliente'].sudo().search([('id_cliente','=',user_id)])
         is_subscribed = bool(request.env['upocargo.servicios_adicionales'].sudo().search([('cliente.id_cliente','=',user_id)]))
 

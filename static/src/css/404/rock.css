@@ -1,0 +1,118 @@
+/* Import Google font - Audiowide */
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+.game * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Audiowide", sans-serif;
+}
+.game body {
+  height: 100vh;
+  display: flex;
+  padding: 15px;
+  align-items: center;
+  justify-content: center;
+  background: #f6f7fb;
+}
+.game .container {
+  display: flex;
+  flex-direction: column;
+  max-width: 535px;
+  width: 100%;
+  padding: 2rem 5rem;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.game .result_images {
+  display: flex;
+  gap: 7rem;
+  justify-content: center;
+}
+.game .container.start .user_result {
+  transform-origin: left;
+  animation: userShake 0.7s ease infinite;
+}
+@keyframes userShake {
+  50% {
+    transform: rotate(10deg);
+  }
+}
+.game .container.start .bot_result {
+  transform-origin: right;
+  animation: botShake 0.7s ease infinite;
+}
+@keyframes botShake {
+  50% {
+    transform: rotate(-10deg);
+  }
+}
+.game .result_images img {
+  width: 100px;
+}
+.game .user_result img {
+  transform: rotate(90deg);
+}
+.game .bot_result img {
+  transform: rotate(-90deg) rotateY(180deg);
+}
+.game .result {
+  text-align: center;
+  font-size: 2rem;
+  color: #7d2ae8;
+  margin: 1.5rem 0;
+}
+.game .option_image img {
+  width: 50px;
+}
+.game .option_images {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-top: 2.5rem;
+  justify-content: space-evenly;
+}
+.game .container.start .option_images {
+  pointer-events: none;
+}
+.game .option_image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+.game .option_image:hover {
+  opacity: 1;
+}
+.game .option_image.active {
+  opacity: 1;
+}
+.game .option_image img {
+  pointer-events: none;
+}
+.game .option_image p {
+  color: #7d2ae8;
+  font-size: 1.235rem;
+  margin-top: 1rem;
+  pointer-events: none;
+}
+/* Responsive media query code for small devices */
+@media (max-width: 768px) {
+  .game .container {
+    padding: 2rem;
+  }
+  .game .result_images img {
+    width: 80px;
+  }
+}
+/* Responsive media query code for small devices */
+@media (max-width: 500px) {
+  .game .option_images {
+    justify-content: space-between;
+  }
+  .game .option_image img {
+    width: 40px;
+  }
+}
