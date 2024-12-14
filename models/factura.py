@@ -6,6 +6,7 @@ import json
 class Factura(models.Model):
     _name = 'upocargo.factura'
     _description = 'Facturas UPOCARGO'
+    _rec_name = 'id_factura'
 
     #Campos base
     id_factura = fields.Char(string="Id de la factura", required=True, help="Identificador de la factura", default=lambda self: self._generate_id_factura(), readonly=True)

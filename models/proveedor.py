@@ -6,6 +6,7 @@ class Proveedor(models.Model):
     _name = 'upocargo.proveedor'
     _inherit = 'upocargo.cliente'
     _description = 'Proveedores UPOCARGO'
+    _rec_name = 'entidad'
 
     #Campos Base
     id_proveedor = fields.Char(string="Id del proveedor", required=True,help="Identificador de un proveedor", default=lambda self: self._generate_id_proovedor(), readonly=True)

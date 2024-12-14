@@ -25,6 +25,7 @@ def _start_iot_simulation(self):
 class Almacen(models.Model):
     _name = 'upocargo.almacen'
     _description = 'Almacén UPOCARGO'
+    _rec_name = 'name'
     _iot_thread = threading.Thread(target=_start_iot_simulation)
     _iot_thread.daemon = True
 

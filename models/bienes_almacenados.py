@@ -5,6 +5,7 @@ import string
 class BienesAlmacenados(models.Model):
     _name = 'upocargo.bienes_almacenados'
     _description = 'Bienes Almacenados UPOCARGO'
+    _rec_name = 'descripcion'
 
     #Campos Base
     id_bien = fields.Char(string="Id bien almacenado", required=True,help="Identificador de un bien almacenado", default=lambda self: self._generate_id_bien(), readonly=True)
@@ -29,7 +30,7 @@ class BienesAlmacenados(models.Model):
     @staticmethod
     def _generate_id_bien():
         return ''.join(random.choices(string.ascii_uppercase + string.digits, k=9))
-    
+
     #@api.constrains('condicion_especial', 'tipo_sensor', 'valor_sensor_min', 'valor_sensor_max', 'almacenamiento')
     #def _check_condiciones_sensor(self):
     #    for record in self:

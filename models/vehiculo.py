@@ -5,6 +5,7 @@ import string
 class Vehiculo(models.Model):
     _name = 'upocargo.vehiculo'
     _description = 'Vehiculos UPOCARGO'
+    _rec_name = 'id_vehiculo'
 
     #Campos Base
     id_vehiculo = fields.Char(string="Id del vehículo", required=True, help="Identificador del vehículo", default=lambda self: self._generate_id_vehiculo(), readonly=True)

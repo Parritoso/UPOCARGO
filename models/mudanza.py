@@ -10,6 +10,7 @@ _logger = logging.getLogger(__name__)
 class Mudanza(models.Model):
     _name = 'upocargo.mudanza'
     _description = 'Mudanzas UPOCARGO'
+    _rec_name = 'id_mudanza'
 
     #Campos Base
     id_mudanza = fields.Char(string="Id de la mudanza", required=True, help="Identificador de la mudanza", default=lambda self: self._generate_id_mudanza(), readonly=True)

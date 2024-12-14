@@ -5,6 +5,7 @@ import string
 class Empleado(models.Model):
     _name = 'upocargo.empleado'
     _description = 'Empleados UPOCARGO'
+    _rec_name = 'nombre'
 
     #Campos base
     id_empleado = fields.Char(string="Id del empleado", required=True, help="Identificador del empleado", default=lambda self: self._generate_id_empleado(), readonly=True)
@@ -12,6 +13,7 @@ class Empleado(models.Model):
     telefono = fields.Integer("Telefono", help="Telefono del Empleado")
     cargo = fields.Selection([])
     email = fields.Char(string="Email", required=True, help="Email del Empleado")
+    rec_name_field = fields.Char(string="rec_name", store=False, compute='rec_name')
 
     #Campos relacionales
     mudanza = fields.Many2many('upocargo.mudanza', string='mudanza')

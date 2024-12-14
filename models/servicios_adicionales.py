@@ -5,6 +5,7 @@ import string
 class ServiciosAdicionales(models.Model):
     _name = 'upocargo.servicios_adicionales'
     _description = 'Servicios Adicionales UPOCARGO'
+    _rec_name = 'id_servicios'
 
     #Campos Base
     id_servicios = fields.Char(string="Id del servicio adicional", required=True,help="Identificador del servicio adicional", default=lambda self: self._generate_id_servicio_adicional(), readonly=True)

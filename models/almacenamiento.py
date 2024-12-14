@@ -10,6 +10,7 @@ class Almacenamiento(models.Model):
     _description = 'Almacenamiento UPOCARGO'
     _mostrar_error = fields.Boolean(string="mostrar_error", store=False)
     _texto = fields.Text(string="error_msg", store=False)
+    _rec_name = 'id_almacenamiento'
 
     #Campos Base
     id_almacenamiento = fields.Char(string="Id del Almacenamiento", required=True, help="Identificador del Almacenamiento", default=lambda self: self._generate_id_almacenamiento(), readonly=True)

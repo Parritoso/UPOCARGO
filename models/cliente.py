@@ -9,6 +9,7 @@ from datetime import datetime,date
 class Cliente(models.Model):
     _name = 'upocargo.cliente'
     _description = 'Clientes UPOCARGO'
+    _rec_name = 'name'
 
     #Campos Base
     id_cliente = fields.Char(string="Id del Cliente", required=True, help="Identificador del Cliente", default=lambda self: self._generate_id_cliente(), readonly=True)

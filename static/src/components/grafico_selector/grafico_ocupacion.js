@@ -1,22 +1,14 @@
 /** @odoo-module **/
 
-/*import { Component, useState, useEffect } from "@odoo/owl";
-import { useService } from "@odoo/owl";
+import { Component, useState, useEffect } from "@odoo/owl";
+import { useService } from '@web/core/utils/hooks';
 import { registry } from '@web/core/registry';
 
 export class GraficoOcupacion extends Component {
   constructor() {
     super(...arguments);
-    this.state = useState({
-        fecha: null,
-        datosGrafico: []
-    });
-    this.orm = useService("orm");
-    this.on('fecha_cambiada', async (nuevaFecha) => {
-      this.state.fecha = nuevaFecha;
-      await this.obtenerDatosGrafico(nuevaFecha);
-    });
   }
+
   setup() {
     this.state = useState({
       fecha: null,  // Fecha seleccionada para los datos del gráfico
@@ -97,9 +89,10 @@ export class GraficoOcupacion extends Component {
         <div id="grafico-ocupacion" style="height: 400px; width: 100%;"></div>
       </div>
     `;
-  }
-}*/
+  }*/
+}
 
+/*
 import { Component, useState } from "@odoo/owl";
 import { xml } from "@odoo/owl"; // Importación de OWL para definir la plantilla
 import { registry } from '@web/core/registry';
@@ -146,7 +139,7 @@ export class MiComponenteOWL extends Component {
                 </t>
             </div>
         </div>
-    `*/;
-}
+    `;
+}*/
 
-registry.category('actions').add('upocargo.GraficoOcupacionTemplate', MiComponenteOWL);
+registry.category('actions').add('upocargo.GraficoOcupacionTemplate', GraficoOcupacion);
