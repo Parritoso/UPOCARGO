@@ -119,7 +119,8 @@ class Almacenamiento(models.Model):
 
         if not vals.get('factura_id'):
             dias = (fields.Date.from_string(vals['fecha_salida']) - fields.Date.from_string(vals['fecha_ingreso'])).days
-            precio_por_dia = 50
+            #precio_por_dia = 50
+            precio_por_dia = self.env['ir.config_parameter'].get_param('upocargo.precio_por_dia_almacenamiento')
             coste_total = dias * precio_por_dia
             factura_vals = {
                 'id_factura': self.env['upocargo.factura']._generate_id_factura(),

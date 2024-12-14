@@ -238,7 +238,7 @@ Definición de las fechas de entrega y material que se entrega, así como, comen
 <br>
 **Tercer entregable (10%).** <br>
 **Defensa del proyecto.** <br>
-$${\color{red}Fechas} \space {\color{red}de} \space {\color{red}defensa:} \space {\color{red}Martes} \space {\color{red}10} \space {\color{red}y} \space {\color{red}17} \space {\color{red}de} \space {\color{red}Diciembre} \space {\color{red}en} \space {\color{red}horario} \space {\color{red}de} \space {\color{red}EB.}$$
+~~Fechas de defensa: Martes 10 y 17 de Diciembre en horario de EB.~~
 <br>
 **Cuarto entregable (40%).** <br>
 **Entrega completa del módulo (Subir nota: +10% incorporación de tests automatizados)** <br>

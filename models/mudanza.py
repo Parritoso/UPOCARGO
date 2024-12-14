@@ -111,8 +111,10 @@ class Mudanza(models.Model):
                 almacenamiento = self.env['upocargo.almacenamiento'].create(almacenamiento_vals)
 
         coste = self._calcular_precio_promedio()
-        coste_vehiculo_extra = 100
-        coste_empleado_extra = 50
+        #coste_vehiculo_extra = 100
+        #coste_empleado_extra = 50
+        coste_vehiculo_extra = self.env['ir.config_parameter'].get_param('upocargo.coste_vehiculo_extra')
+        coste_empleado_extra = self.env['ir.config_parameter'].get_param('upocargo.coste_empleado_extra')
         vehiculos_extra = max(0, len(vehiculos_id)-1)
         empleados_extra = max(0, len(empleados_id)-2)
         coste = float(coste) + float(vehiculos_extra*coste_vehiculo_extra) + float(empleados_extra*coste_empleado_extra)
@@ -154,8 +156,10 @@ class Mudanza(models.Model):
 
             # Calcular el nuevo costo total
             coste = self._calcular_precio_promedio()
-            coste_vehiculo_extra = 100
-            coste_empleado_extra = 50
+            #coste_vehiculo_extra = 100
+            #coste_empleado_extra = 50
+            coste_vehiculo_extra = self.env['ir.config_parameter'].get_param('upocargo.coste_vehiculo_extra')
+            coste_empleado_extra = self.env['ir.config_parameter'].get_param('upocargo.coste_empleado_extra')
             _logger.info("self.vehiculos: %s",[vehiculo.id for vehiculo in self.vehiculos])
             vehiculos_extra = max(0, len(self.vehiculos)-1)
             _logger.info("self.empleados: %s",[empleado.id for empleado in self.empleados])

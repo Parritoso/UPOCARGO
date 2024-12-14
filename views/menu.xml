@@ -32,4 +32,12 @@
                   parent="upocargo_almacen_menu" action="upocargo_almacen_action" groups="group_upocargo_manager,group_upocargo_empleado"/>
             <menuitem id="upocargo_almacen_grafico_menu" name="Ocupación de Almacenes" parent="upocargo_almacen_menu" action="action_upocargo_almacen_grafico" />
 
+
+      <!-- Ajustes Menu -->
+      <menuitem id="menu_upocargo_configuracion"
+              name="Configuración de Upocargo"
+              parent="base.menu_config"
+              action="action_upocargo_configuracion"
+              sequence="10"/>
+
 </odoo>

@@ -12,7 +12,7 @@ class BienesAlmacenados(models.Model):
     descripcion = fields.Char(string="Descripcion bien", required=True, help="Descripcion de un bien alamcenado")
     peso = fields.Float(string="Peso",help="Peso del bien almacenado")
     tamanyo = fields.Float(string="Tamaño",help="Tamaño del bien almacenado", required=True)
-    cantidad = fields.Integer(string="Cantidad", required=True)
+    cantidad = fields.Integer(string="Cantidad", required=True, default=1)
     
 
     #Campos relacionales
