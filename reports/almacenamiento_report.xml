@@ -1,0 +1,84 @@
+<odoo>
+    <template id="upocargo_almacenamiento_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="oe_structure" />
+                        <div class="row" style="font-size: 32px; margin-bottom: 20px;">
+                            <span style="font-weight: bold; text-decoration: underline; ">
+                                <strong>UPOCARGO -</strong>
+                            </span>
+                            <span style="color: #999999;" t-field="o" />
+                        </div>
+                        <div class="row" style="font-size: 24px; margin-bottom: 20px;">
+                            <span style="font-weight: bold; text-decoration: underline; ">ID Almacenamiento:</span>
+                            <span style="color: #999999;" t-field="o.id_almacenamiento" />
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-8" style="text-align: left; margin: auto; padding-left: 15px; padding-top: 10px;">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                <strong>ID Almacenamiento: </strong>
+                                            </p>
+                                            <p>
+                                                <strong>Fecha Ingreso: </strong>
+                                            </p>
+                                            <p>
+                                                <strong>Fecha Salida: </strong>
+                                            </p>
+                                            <p>
+                                                <strong>Estado: </strong>
+                                            </p>
+                                        </td>
+                                        <td style="padding-left: 10px;">
+                                            <p t-field="o.id_almacenamiento" />
+                                            <p t-field="o.fechaIngreso" />
+                                            <p t-field="o.fechaSalida" />
+                                            <p t-field="o.estado" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div t-if="o.bienes_almacenados" class="row" style="margin-top: 40px; font-weight: bold; font-size: 19px;">
+                            Bienes que contiene
+                            </div>
+                            <div t-if="o.bienes_almacenados" id="bienes_almacenados_r" class="row" style="margin-top: 10px;">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID Bien</th>
+                                            <th>Descripcion</th>
+                                            <th>Peso</th>
+                                            <th>Tamaño</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="o.bienes_almacenados" t-as="b">
+                                            <tr>
+                                                <td>
+                                                    <p t-field="b.id_bien" />
+                                                </td>
+                                                <td>
+                                                    <p t-field="b.descripcion" />
+                                                </td>
+                                                <td>
+                                                    <p t-field="b.peso" />
+                                                </td>
+                                                <td>
+                                                    <p t-field="b.tamaño" />
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

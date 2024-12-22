@@ -1,0 +1,59 @@
+<odoo>
+    <template id="upocargo_servicios_adicionales_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="oe_structure" />
+                        <div class="row" style="font-size: 32px; margin-bottom: 20px;">
+                            <span style="font-weight: bold; text-decoration: underline; ">
+                                <strong>UPOCARGO -</strong>
+                            </span>
+                            <span style="color: #999999;" t-field="o" />
+                        </div>
+                        <div class="row" style="font-size: 24px; margin-bottom: 20px;">
+                            <span style="font-weight: bold; text-decoration: underline; ">ID Servicio Adicional:</span>
+                            <span style="color: #999999;" t-field="o.id_servicios" />
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-8" style="text-align: left; margin: auto; padding-left: 15px; padding-top: 10px;">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                <strong>ID Servicio Adicional: </strong>
+                                            </p>
+                                            <p>
+                                                <strong>Tipo: </strong>
+                                            </p>
+                                            <p>
+                                                <strong>Aplicable: </strong>
+                                            </p>
+                                            <p>
+                                                <strong>Precio Base: </strong>
+                                            </p>
+                                            <p>
+                                                <strong>Precio Final: </strong>
+                                            </p>
+                                            <p>
+                                                <strong>Estado: </strong>
+                                            </p>
+                                        </td>
+                                        <td style="padding-left: 10px;">
+                                            <p t-field="o.id_servicios" />
+                                            <p t-field="o.tipo" />
+                                            <p t-field="o.aplicable_a" />
+                                            <p t-field="o.precio_base" />
+                                            <p t-field="o.precio_final" />
+                                            <p t-field="o.estado" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

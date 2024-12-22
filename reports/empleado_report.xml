@@ -2,18 +2,20 @@
     <template id="upocargo_empleado_template">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
-                <t t-call="web.external_layout">  
+                <t t-call="web.external_layout">
                     <div class="page">
                         <div class="oe_structure" />
-                            <div class="row" style="font-size: 32px; margin-bottom: 20px;">
-                                <span style="font-weight: bold; text-decoration: underline; "><strong>UPOCARGO -</strong></span>
-                                <span style="color: #999999;" t-field="o" />
-                            </div>
-                            <div class="row" style="font-size: 24px; margin-bottom: 20px;">
-                                <span style="font-weight: bold; text-decoration: underline; ">ID Empleado:</span>
-                                <span style="color: #999999;" t-field="o.id_empleado" />
-                            </div>
-                            <div class="row">
+                        <div class="row" style="font-size: 32px; margin-bottom: 20px;">
+                            <span style="font-weight: bold; text-decoration: underline; ">
+                                <strong>UPOCARGO -</strong>
+                            </span>
+                            <span style="color: #999999;" t-field="o" />
+                        </div>
+                        <div class="row" style="font-size: 24px; margin-bottom: 20px;">
+                            <span style="font-weight: bold; text-decoration: underline; ">ID Empleado:</span>
+                            <span style="color: #999999;" t-field="o.id_empleado" />
+                        </div>
+                        <div class="row">
                             <div class="col-xs-2" style="margin: auto; text-align: center; padding-left: 15px; padding-right: 15px; border-right: 2px solid #cccccc;">
                                 <p style="padding-top: 10px;">
                                     <img t-if="not o.photo" t-att-src="'/web/static/src/img/placeholder.png'" height="120" border="1" width="120" />
@@ -53,40 +55,41 @@
                             </div>
                             <div t-if="o.mudanza" class="row" style="margin-top: 40px; font-weight: bold; font-size: 19px;">
                             Mudanzas que lleva <span t-field="o.nombre" />
-                        </div>
-                        <div t-if="o.mudanza" id="mudanza_lleva" class="row" style="margin-top: 10px;">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>ID Mudanza</th>
-                                        <th>Fecha</th>
-                                        <th>Direccion Origen</th>
-                                        <th>Direccion Destino</th>
-                                        <th>Estado</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <t t-foreach="o.mudanza" t-as="m">
+                            </div>
+                            <div t-if="o.mudanza" id="mudanza_lleva" class="row" style="margin-top: 10px;">
+                                <table class="table">
+                                    <thead>
                                         <tr>
-                                            <td>
-                                                <p t-field="m.id_mudanza" />
-                                            </td>
-                                            <td>
-                                                <p t-field="m.fecha" />
-                                            </td>
-                                            <td>
-                                                <p t-field="m.dirOrigen" />
-                                            </td>
-                                            <td>
-                                                <p t-field="m.dirDestino" />
-                                            </td>
-                                            <td>
-                                                <p t-field="m.estado" />
-                                            </td>
+                                            <th>ID Mudanza</th>
+                                            <th>Fecha</th>
+                                            <th>Direccion Origen</th>
+                                            <th>Direccion Destino</th>
+                                            <th>Estado</th>
                                         </tr>
-                                    </t>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="o.mudanza" t-as="m">
+                                            <tr>
+                                                <td>
+                                                    <p t-field="m.id_mudanza" />
+                                                </td>
+                                                <td>
+                                                    <p t-field="m.fecha" />
+                                                </td>
+                                                <td>
+                                                    <p t-field="m.dirOrigen" />
+                                                </td>
+                                                <td>
+                                                    <p t-field="m.dirDestino" />
+                                                </td>
+                                                <td>
+                                                    <p t-field="m.estado" />
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </t>
