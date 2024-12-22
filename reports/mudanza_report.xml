@@ -1,0 +1,56 @@
+<odoo>
+    <template id="upocargo_mudanza_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="oe_structure" />
+                        <div class="row" style="font-size: 32px; margin-bottom: 20px;">
+                            <span style="font-weight: bold; text-decoration: underline; ">
+                                <strong>UPOCARGO -</strong>
+                            </span>
+                            <span style="color: #999999;" t-field="o" />
+                        </div>
+                        <div class="row" style="font-size: 24px; margin-bottom: 20px;">
+                            <span style="font-weight: bold; text-decoration: underline; ">ID Mudanza:</span>
+                            <span style="color: #999999;" t-field="o.id_mudanza" />
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-8" style="text-align: left; margin: auto; padding-left: 15px; padding-top: 10px;">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                <strong>ID Mudanza: </strong>
+                                            </p>
+                                            <p>
+                                                <strong>Fecha: </strong>
+                                            </p>
+                                            <p>
+                                                <strong>Fecha Final: </strong>
+                                            </p>
+                                            <p>
+                                                <strong>Direccion Origen: </strong>
+                                            </p>
+                                            <p>
+                                                <strong>Estado: </strong>
+                                            </p>
+                                        </td>
+                                        <td style="padding-left: 10px;">
+                                            <p t-field="o.id_almacenamiento" />
+                                            <p t-field="o.fecha" />
+                                            <p t-field="o.fecha_final_mudanza" />
+                                            <p t-field="o.dirOrigen" />
+                                            <p t-field="o.dirDestino" />
+                                            <p t-field="o.estado" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
