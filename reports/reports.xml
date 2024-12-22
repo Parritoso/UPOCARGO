@@ -23,11 +23,90 @@
     <!-- EMPLEADOS -->
     <record id="report_upocargo_empleado_report" model="ir.actions.report">
         <field name="name">Empleado report</field>
-        <field name="model">upocargo.empleado</field>
+        <field name="model">upoargo.empleado</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">upocargo.upocargo_empleado_template</field>
         <field name="binding_model_id" ref="model_upocargo_empleado"/>
         <field name="binding_type">report</field>
     </record>
 
+    <!-- ALMACENAMIENTO -->
+    <record id="report_upocargo_almacenamiento_report" model="ir.actions.report">
+        <field name="name">Almacenamiento report</field>
+        <field name="model">upocargo.almacenamiento</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">upocargo.upocargo_almacenamiento_template</field>
+        <field name="binding_model_id" ref="model_upocargo_almacenamiento"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- BIENES ALMACENADOS -->
+    <record id="report_upocargo_bienes_almacenados_report" model="ir.actions.report">
+        <field name="name">BienesAlmacenados report</field>
+        <field name="model">upocargo.bienes_almacenados</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">upocargo.upocargo_bienes_almacenados_template</field>
+        <field name="binding_model_id" ref="model_upocargo_bienes_almacenados"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- FACTURA -->
+    <record id="report_upocargo_factura_report" model="ir.actions.report">
+        <field name="name">Factura report</field>
+        <field name="model">upocargo.factura</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">upocargo.upocargo_factura_template</field>
+        <field name="binding_model_id" ref="model_upocargo_factura"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- CLIENTE -->
+    <record id="report_upocargo_cliente_report" model="ir.actions.report">
+        <field name="name">Cliente report</field>
+        <field name="model">upocargo.cliente</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">upocargo.upocargo_cliente_template</field>
+        <field name="binding_model_id" ref="model_upocargo_cliente"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- MUDANZA -->
+    <record id="report_upocargo_mudanza_report" model="ir.actions.report">
+        <field name="name">Mudanza report</field>
+        <field name="model">upocargo.mudanza</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">upocargo.upocargo_mudanza_template</field>
+        <field name="binding_model_id" ref="model_upocargo_mudanza"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- PROVEEDOR -->
+    <record id="report_upocargo_proveedor_report" model="ir.actions.report">
+        <field name="name">Proveedor report</field>
+        <field name="model">upocargo.proveedor</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">upocargo.upocargo_proveedor_template</field>
+        <field name="binding_model_id" ref="model_upocargo_proveedor"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- VEHICULO -->
+    <record id="report_upocargo_vehiculo_report" model="ir.actions.report">
+        <field name="name">Vehiculo report</field>
+        <field name="model">upocargo.vehiculo</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">upocargo.upocargo_vehiculo_template</field>
+        <field name="binding_model_id" ref="model_upocargo_vehiculo"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- SERVICIOS ADICIONALES -->
+    <record id="report_upocargo_servicios_almacenados_report" model="ir.actions.report">
+        <field name="name">ServiciosAdicionales report</field>
+        <field name="model">upocargo.servicios_almacenados</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">upocargo.upocargo_servicios_almacenados_template</field>
+        <field name="binding_model_id" ref="model_upocargo_servicios_almacenados"/>
+        <field name="binding_type">report</field>
+    </record>
 </odoo>
