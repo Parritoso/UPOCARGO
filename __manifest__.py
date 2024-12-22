@@ -38,10 +38,8 @@
         'views/menu.xml'
     ],
     'assets': {
-        'web.assets_qweb':[
-            'upocargo/static/src/components/grafico_selector/grafico_ocupacion.xml'
-        ],
         'web.assets_backend': [
+            'upocargo/static/src/components/grafico_selector/grafico_ocupacion.xml',
             'upocargo/static/src/components/grafico_selector/grafico_ocupacion.js'
         ],
     },
@@ -54,6 +52,20 @@
         'demo/upocargo.servicios_adicionales.csv',
         'demo/upocargo.cliente.csv',
         'demo/upocargo.bienes_almacenados.csv'
+    ],
+    'test': [
+        'tests/test_configuracion.py',
+        'tests/test_almacen.py',
+        'tests/test_empleado.py',
+        'tests/test_vehiculo.py',
+        'tests/test_proveedor.py',
+        'tests/test_servicios_adicionales.py',
+        'tests/test_cliente.py',
+        'tests/test_bienes_almacenados.py',
+        'tests/test_factura.py',
+        'tests/test_almacenamiento.py',
+        'tests/test_mudanza.py',
+        'tests/test_controllers.py'
     ],
     'application': True,
 }

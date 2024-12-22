@@ -5,46 +5,65 @@ import { useService } from '@web/core/utils/hooks';
 import { registry } from '@web/core/registry';
 
 export class GraficoOcupacion extends Component {
-  constructor() {
-    super(...arguments);
-  }
 
   setup() {
     this.state = useState({
       fecha: null,  // Fecha seleccionada para los datos del gráfico
       datosGrafico: [],
+      datosRaw: [],
     });
 
     // Servicio ORM para realizar consultas
     this.orm = useService("orm");
 
     // Escuchar el evento de cambio de fecha
-    this.on('fecha_cambiada', async (nuevaFecha) => {
-      this.state.fecha = nuevaFecha;
-      await this.obtenerDatosGrafico(nuevaFecha);
-    });
+    this.onFechaChange = this.onFechaChange.bind(this);
+
+    // Usamos un useEffect para manejar la lógica de actualización de gráficos
+    useEffect(() => {
+      if (this.state.fecha) {
+        this.obtenerDatosGrafico(this.state.fecha);
+      }
+    }, ()=>{return[this.state.fecha]});  // Solo se ejecutará cuando la fecha cambie
   }
 
-  onFechaChange(event) {
+  async onFechaChange(event) {
     const nuevaFecha = event.target.value;
     this.state.fecha = nuevaFecha;
 
     // Llamar a un método para actualizar el gráfico cuando la fecha cambie
-    this.trigger('fecha_cambiada', nuevaFecha);  // Emitimos el evento
+    await this.obtenerDatosGrafico(nuevaFecha);
   }
 
   // Método para obtener los datos del gráfico según la fecha
   async obtenerDatosGrafico(fecha) {
     if (!fecha) return;
 
-    // Suponiendo que el modelo 'upocargo.almacen' tiene un método que devuelva datos por fecha
-    const ocupacionData = await this.orm.call('upocargo.almacen', 'get_ocupacion_by_fecha', [fecha]);
-    this.state.datosGrafico = ocupacionData;  // Asignamos los datos al estado
-    this.renderGrafico();
+    try {
+      // Suponiendo que el modelo 'upocargo.almacen' tiene un método que devuelva datos por fecha
+      const ocupacionData = await this.orm.call('upocargo.almacen', 'get_ocupacion_by_fecha', [fecha]);
+      console.log('Datos de ocupacion: ',ocupacionData);
+      //this.state.datosGrafico = ocupacionData;  // Asignamos los datos al estado
+      if(ocupacionData){
+        this.state.datosGrafico = {
+          etiquetas: ocupacionData.map(item => item.nombre_almacen),
+          ocupacion: ocupacionData.map(item => item.porcentaje_ocupacion),
+        };
+        this.state.datosRaw = ocupacionData;
+        this.renderGrafico();
+      }
+    } catch (error) {
+      console.error("Error obteniendo datos del gráfico:", error);
+    }
   }
 
   renderGrafico() {
-    const ctx = document.getElementById('grafico-ocupacion').getContext('2d');
+    const canvas = document.getElementById('grafico-ocupacion');
+    if (!canvas) {
+      console.error("No se encuentra el canvas con id 'grafico-ocupacion'");
+      return;  // Salir si el canvas no existe
+    }
+    const ctx = canvas.getContext('2d');
     if (this.chart) {
       this.chart.destroy(); // Si ya existe un gráfico, lo destruimos antes de crear uno nuevo
     }
@@ -64,32 +83,52 @@ export class GraficoOcupacion extends Component {
 
     // Crear el gráfico usando Chart.js
     this.chart = new Chart(ctx, {
-      type: 'line',  // Tipo de gráfico (línea en este caso)
+      type: 'bar',  // Tipo de gráfico (línea en este caso)
       data: datos,
       options: {
         responsive: true,
         scales: {
           x: {
-            beginAtZero: true
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Almacenes',
+            }
           },
           y: {
-            beginAtZero: true
+            beginAtZero: true,
+            max: 100,
+            title: {
+              display: true,
+              text: 'Ocupación (%)',
+            },
+            ticks: {
+              callback: function(value){
+                return value+'%';
+              }
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: true,
+            position: 'top',
+          },
+          tooltip: {
+            enable: true,
+            callback: {
+              label: function(tooltip){
+                return tooltip.raw.toFixed(2) + '%';
+              }
+            }
           }
         }
       }
     });
   }
 
-  static template = 'upocargo.GraficoOcupacionTemplate';
+  static template = 'GraficoOcupacionTemplate';
 
-  /*render() {
-    return 'upocargo.GraficoOcupacionTemplate'/*xml`
-      <div>
-        <h3>Gráfico de Ocupación para la Fecha ${this.state.fecha || 'Seleccionada'}</h3>
-        <div id="grafico-ocupacion" style="height: 400px; width: 100%;"></div>
-      </div>
-    `;
-  }*/
 }
 
 /*
@@ -142,4 +181,4 @@ export class MiComponenteOWL extends Component {
     `;
 }*/
 
-registry.category('actions').add('upocargo.GraficoOcupacionTemplate', GraficoOcupacion);
+registry.category('actions').add('GraficoOcupacionTemplate', GraficoOcupacion);

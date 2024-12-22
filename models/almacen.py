@@ -117,10 +117,20 @@ class Almacen(models.Model):
                 ocupacion[almacenamiento.almacen.id] = {
                     'id_almacen': almacenamiento.almacen.id,
                     'nombre_almacen': almacenamiento.almacen.name,
-                    'ocupacion': total_tamano
+                    'ocupacion': total_tamano,
+                    'tamaño_maximo': almacenamiento.almacen.tamaño_maximo,
                 }
             else:
                 ocupacion[almacenamiento.almacen.id]['ocupacion'] += total_tamano
 
         # Retornar la ocupación por almacén
-        return [{'id_almacen': data['id_almacen'], 'nombre_almacen': data['nombre_almacen'], 'ocupacion': data['ocupacion']} for data in ocupacion.values()]
+        result = []
+        for data in ocupacion.values():
+            porcentaje_ocupacion = (data['ocupacion']/ data['tamaño_maximo']) *100 if data['tamaño_maximo'] > 0 else 0
+            result.append({
+                'id_almacen': data['id_almacen'],
+                'nombre_almacen': data['nombre_almacen'],
+                'ocupacion': data['ocupacion'],
+                'porcentaje_ocupacion': round(porcentaje_ocupacion,2),
+            })
+        return result#[{'id_almacen': data['id_almacen'], 'nombre_almacen': data['nombre_almacen'], 'ocupacion': data['ocupacion']} for data in ocupacion.values()]

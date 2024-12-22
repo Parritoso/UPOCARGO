@@ -1,0 +1,46 @@
+#grafico-ocupacion {
+    width: 80%;
+    height: 400px;
+    margin: 0 auto;
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.container-grafico {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    gap: 5%;
+}
+
+.fecha {
+    margin-top: 20px;
+}
+
+.grafico {
+    height: 60%;
+    width: 80%;
+    justify-items: center;
+}
+
+.table{
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #f4f4f4;
+}
+
+.table-striped tbody tr:nth-last-of-type(odd) {
+    background-color: #f9f9f9;
+}

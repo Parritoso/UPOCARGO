@@ -1,20 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
-    <t t-name="upocargo.GraficoOcupacionTemplate" owl="1">
-        <div>
+    <t t-name="GraficoOcupacionTemplate" owl="1">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <link rel="stylesheet" type="text/css" href="/upocargo/static/src/components/grafico_selector/grafico_ocupacion.css"/>
+        <div class="container-grafico">
             <!-- Campo de selección de fecha -->
-            <div>
+            <div class="fecha">
                 <label for="fecha">Seleccionar Fecha</label>
                 <input type="date" id="fecha" t-on-change="onFechaChange"/>
             </div>
             <!-- Gráfico donde se actualizarán los datos -->
-            <div>
-                <h3>Gráfico de Ocupación para la Fecha ${this.state.fecha || 'Seleccionada'}</h3>
-                <div id="grafico-ocupacion" style="height: 400px; width: 100%;"></div>
+            <div class="grafico">
+                <h3>Gráfico de Ocupación para la Fecha <t t-esc="this.state.fecha"/></h3>
+                <canvas id="grafico-ocupacion"></canvas>
             </div>
             <div>
-                <t t-if="state.datosGrafico.length > 0">
-                    <graph string="Gráfico de Valor Calculado" t-att-data="state.datosGrafico"/>
+                <t t-if="state.datosRaw.length > 0">
+                    <p>Ocupación de almacenes: </p>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Almacén</th>
+                                <th>Ocupación</th>
+                                <th>Ocupación (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="state.datosRaw" t-as="dato" t-key="dato.id_almacen">
+                                <tr>
+                                    <td><t t-esc="dato.nombre_almacen"/></td>
+                                    <td><t t-esc="dato.ocupacion"/></td>
+                                    <td><t t-esc="dato.porcentaje_ocupacion"/>%</td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
                 </t>
                 <t t-else="">
                     <p>No hay datos disponibles para el gráfico.</p>
