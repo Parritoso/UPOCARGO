@@ -23,7 +23,7 @@
     <!-- EMPLEADOS -->
     <record id="report_upocargo_empleado_report" model="ir.actions.report">
         <field name="name">Empleado report</field>
-        <field name="model">upoargo.empleado</field>
+        <field name="model">upocargo.empleado</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">upocargo.upocargo_empleado_template</field>
         <field name="binding_model_id" ref="model_upocargo_empleado"/>
