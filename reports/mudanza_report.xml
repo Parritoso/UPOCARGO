@@ -9,14 +9,16 @@
                             <span style="font-weight: bold; text-decoration: underline; ">
                                 <strong>UPOCARGO -</strong>
                             </span>
-                            <span style="color: #999999;" t-field="o" />
+                            <span style="color: #999999;" t-field="o.id_mudanza" />
                         </div>
                         <div class="row" style="font-size: 24px; margin-bottom: 20px;">
-                            <span style="font-weight: bold; text-decoration: underline; ">ID Mudanza:</span>
+                            <span style="font-weight: bold; text-decoration: underline; ">ID
+                                Mudanza:</span>
                             <span style="color: #999999;" t-field="o.id_mudanza" />
                         </div>
                         <div class="row">
-                            <div class="col-xs-8" style="text-align: left; margin: auto; padding-left: 15px; padding-top: 10px;">
+                            <div class="col-xs-8"
+                                style="text-align: left; margin: auto; padding-left: 15px; padding-top: 10px;">
                                 <table>
                                     <tr>
                                         <td>
@@ -26,7 +28,7 @@
                                             <p>
                                                 <strong>Fecha: </strong>
                                             </p>
-                                            <p>
+                                            <p t-if="o.fecha_final_mudanza">
                                                 <strong>Fecha Final: </strong>
                                             </p>
                                             <p>
@@ -37,15 +39,244 @@
                                             </p>
                                         </td>
                                         <td style="padding-left: 10px;">
-                                            <p t-field="o.id_almacenamiento" />
+                                            <p t-field="o.id_mudanza" />
                                             <p t-field="o.fecha" />
-                                            <p t-field="o.fecha_final_mudanza" />
+                                            <p t-if="o.fecha_final_mudanza"
+                                                t-field="o.fecha_final_mudanza" />
                                             <p t-field="o.dirOrigen" />
                                             <p t-field="o.dirDestino" />
                                             <p t-field="o.estado" />
                                         </td>
                                     </tr>
                                 </table>
+                                <div t-if="o.servicios_adicionales" class="row"
+                                    style="margin-top: 40px; font-weight: bold; font-size: 19px;">
+                                    Servicios Adicionales
+                                </div>
+                                <div t-if="o.servicios_adicionales" id="servicios_adicionales_r"
+                                    class="row" style="margin-top: 10px;">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <p>
+                                                    <strong>ID Sevicios Adicional: </strong>
+                                                </p>
+                                                <p>
+                                                    <strong>Tipo: </strong>
+                                                </p>
+                                                <p>
+                                                    <strong>Aplicable: </strong>
+                                                </p>
+                                                <p>
+                                                    <strong>Precio Base: </strong>
+                                                </p>
+                                                <p>
+                                                    <strong>Precio Final: </strong>
+                                                </p>
+                                                <p>
+                                                    <strong>Estado: </strong>
+                                                </p>
+                                                <p>
+                                                    <strong>Proveedor: </strong>
+                                                </p>
+                                            </td>
+                                            <t t-foreach="o.servicios_adicionales" t-as="sa">
+                                                <td>
+                                                    <p t-field="sa.id_servicios" />
+                                                </td>
+                                                <td>
+                                                    <p t-field="sa.tipo" />
+                                                </td>
+                                                <td>
+                                                    <p t-field="sa.aplicable_a" />
+                                                </td>
+                                                <td>
+                                                    <p t-field="sa.precio_base" />
+                                                </td>
+                                                <td>
+                                                    <p t-field="sa.precio_final" />
+                                                </td>
+                                                <td>
+                                                    <p t-field="sa.estado" />
+                                                </td>
+                                                <td>
+                                                    <p t-field="sa.proveedores.entidad" />
+                                                </td>
+                                            </t>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div t-if="o.almacenamientos" class="row"
+                                    style="margin-top: 40px; font-weight: bold; font-size: 19px;">
+                                    Almacenamientos
+                                </div>
+                                <div t-if="o.almacenamientos" class="col-xs-8"
+                                    style="text-align: left; margin: auto; padding-left: 15px; padding-top: 10px;">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <p>
+                                                    <strong>ID Almacenamiento: </strong>
+                                                </p>
+                                                <p>
+                                                    <strong>Fecha Ingreso: </strong>
+                                                </p>
+                                                <p>
+                                                    <strong>Fecha Salida: </strong>
+                                                </p>
+                                                <p>
+                                                    <strong>Estado: </strong>
+                                                </p>
+                                            </td>
+                                            <td style="padding-left: 10px;">
+                                                <p t-field="o.almacenamientos.id_almacenamiento" />
+                                                <p t-field="o.almacenamientos.fecha_ingreso" />
+                                                <p t-field="o.almacenamientos.fecha_salida" />
+                                                <p t-field="o.almacenamientos.estado" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div t-if="o.almacenamientos.bienes_almacenados" class="row"
+                                    style="margin-top: 40px; font-weight: bold; font-size: 19px;">
+                                    Bienes que contiene
+                                </div>
+                                <div t-if="o.almacenamientos.bienes_almacenados" id="bienes_almacenados_r"
+                                    class="row" style="margin-top: 10px;">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>ID Bien</th>
+                                                <th>Descripcion</th>
+                                                <th>Peso</th>
+                                                <th>Tamaño</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="o.almacenamientos.bienes_almacenados" t-as="b">
+                                                <tr>
+                                                    <td>
+                                                        <p t-field="b.id_bien" />
+                                                    </td>
+                                                    <td>
+                                                        <p t-field="b.descripcion" />
+                                                    </td>
+                                                    <td>
+                                                        <p t-field="b.peso" />
+                                                    </td>
+                                                    <td>
+                                                        <p t-field="b.tamanyo" />
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div t-if="o.empleados" class="row"
+                                    style="margin-top: 40px; font-weight: bold; font-size: 19px;">
+                                    Empleados
+                                </div>
+                                <div t-if="o.empleados" class="col-xs-8"
+                                    style="text-align: left; margin: auto; padding-left: 15px; padding-top: 10px;">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <p>
+                                                    <strong>ID Empleado: </strong>
+                                                </p>
+                                                <p>
+                                                    <strong>Nombre: </strong>
+                                                </p>
+                                                <p>
+                                                    <strong>Telefono:</strong>
+                                                </p>
+                                                <p>
+                                                    <strong>Cargo: </strong>
+                                                </p>
+                                                <p>
+                                                    <strong>Email:</strong>
+                                                </p>
+                                            </td>
+                                            <t t-foreach="o.empleados" t-as="b">
+                                                <tr>
+                                                    <td><p t-field="b.id_empleado" /></td>
+                                                    <td><p t-field="b.nombre" /></td>
+                                                    <td><p t-field="b.telefono" /></td>
+                                                    <td><p t-field="b.cargo" /></td>
+                                                    <td><p t-field="b.email" /></td>
+                                                </tr>
+                                            </t>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div t-if="o.vehiculos" class="row"
+                                    style="margin-top: 40px; font-weight: bold; font-size: 19px;">
+                                    Vehiculos
+                                </div>
+                                <div t-if="o.vehiculos" class="col-xs-8"
+                                    style="text-align: left; margin: auto; padding-left: 15px; padding-top: 10px;">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <p>
+                                                    <strong>ID Empleado: </strong>
+                                                </p>
+                                                <p>
+                                                    <strong>Matricula: </strong>
+                                                </p>
+                                                <p>
+                                                    <strong>Capacidad:</strong>
+                                                </p>
+                                                <p>
+                                                    <strong>Estado: </strong>
+                                                </p>
+                                            </td>
+                                            <t t-foreach="o.vehiculos" t-as="v">
+                                                <tr>
+                                                    <td><p t-field="v.id_vehiculo" /></td>
+                                                    <td><p t-field="v.matricula" /></td>
+                                                    <td><p t-field="v.capacidad" /></td>
+                                                    <td><p t-field="v.estado" /></td>
+                                                </tr>
+                                            </t>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div t-if="o.cliente" class="row"
+                                    style="margin-top: 40px; font-weight: bold; font-size: 19px;">
+                                    Cliente
+                                </div>
+                                <div t-if="o.cliente" class="col-xs-8"
+                                    style="text-align: left; margin: auto; padding-left: 15px; padding-top: 10px;">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <p>
+                                                    <strong>ID Cliente: </strong>
+                                                </p>
+                                                <p>
+                                                    <strong>Nombre: </strong>
+                                                </p>
+                                                <p>
+                                                    <strong>Telefono:</strong>
+                                                </p>
+                                                <p>
+                                                    <strong>Direccion: </strong>
+                                                </p>
+                                                <p>
+                                                    <strong>Email:</strong>
+                                                </p>
+                                            </td>
+                                            <td style="padding-left: 10px;">
+                                                <p t-field="o.cliente.id_cliente" />
+                                                <p t-field="o.cliente.name" />
+                                                <p t-field="o.cliente.telefono" />
+                                                <p t-field="o.cliente.direccion" />
+                                                <p t-field="o.cliente.email" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

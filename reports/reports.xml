@@ -23,7 +23,7 @@
     <!-- EMPLEADOS -->
     <record id="report_upocargo_empleado_report" model="ir.actions.report">
         <field name="name">Empleado report</field>
-        <field name="model">upoargo.empleado</field>
+        <field name="model">upocargo.empleado</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">upocargo.upocargo_empleado_template</field>
         <field name="binding_model_id" ref="model_upocargo_empleado"/>
@@ -107,6 +107,16 @@
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">upocargo.upocargo_servicios_adicionales_template</field>
         <field name="binding_model_id" ref="model_upocargo_servicios_adicionales"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- ALMACEN -->
+   <record id="report_upocargo_almacen_report" model="ir.actions.report">
+        <field name="name">Almacen report</field>
+        <field name="model">upocargo.almacen</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">upocargo.upocargo_almacen_template</field>
+        <field name="binding_model_id" ref="model_upocargo_almacen"/>
         <field name="binding_type">report</field>
     </record>
 </odoo>

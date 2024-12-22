@@ -9,11 +9,11 @@
                             <span style="font-weight: bold; text-decoration: underline; ">
                                 <strong>UPOCARGO -</strong>
                             </span>
-                            <span style="color: #999999;" t-field="o" />
+                            <span style="color: #999999;" t-field="o.matricula" />
                         </div>
                         <div class="row" style="font-size: 24px; margin-bottom: 20px;">
                             <span style="font-weight: bold; text-decoration: underline; ">ID Vehiculo:</span>
-                            <span style="color: #999999;" t-field="o.id_empleado" />
+                            <span style="color: #999999;" t-field="o.id_vehiculo" />
                         </div>
                         <div class="row">
                             <div class="col-xs-8" style="text-align: left; margin: auto; padding-left: 15px; padding-top: 10px;">
@@ -43,7 +43,7 @@
                                 </table>
                             </div>
                             <div t-if="o.mudanza" class="row" style="margin-top: 40px; font-weight: bold; font-size: 19px;">
-                            Mudanzas que lleva <span t-field="o.nombre" />
+                            Mudanzas que lleva <span t-field="o.matricula" />
                             </div>
                             <div t-if="o.mudanza" id="mudanza_lleva" class="row" style="margin-top: 10px;">
                                 <table class="table">

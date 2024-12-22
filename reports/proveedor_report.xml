@@ -9,11 +9,11 @@
                             <span style="font-weight: bold; text-decoration: underline; ">
                                 <strong>UPOCARGO -</strong>
                             </span>
-                            <span style="color: #999999;" t-field="o" />
+                            <span style="color: #999999;" t-field="o.id_proveedor" />
                         </div>
                         <div class="row" style="font-size: 24px; margin-bottom: 20px;">
-                            <span style="font-weight: bold; text-decoration: underline; ">ID Bien:</span>
-                            <span style="color: #999999;" t-field="o.id_bien" />
+                            <span style="font-weight: bold; text-decoration: underline; ">ID Proveedor:</span>
+                            <span style="color: #999999;" t-field="o.id_proveedor" />
                         </div>
                         <div class="row">
                             <div class="col-xs-8" style="text-align: left; margin: auto; padding-left: 15px; padding-top: 10px;">
@@ -26,10 +26,26 @@
                                             <p>
                                                 <strong>Entidad: </strong>
                                             </p>
+                                            <p>
+                                                <strong>Nombre: </strong>
+                                            </p>
+                                            <p>
+                                                <strong>Direccion: </strong>
+                                            </p>
+                                            <p>
+                                                <strong>Telefono: </strong>
+                                            </p>
+                                            <p>
+                                                <strong>Email: </strong>
+                                            </p>
                                         </td>
                                         <td style="padding-left: 10px;">
                                             <p t-field="o.id_proveedor" />
                                             <p t-field="o.entidad" />
+                                            <p t-field="o.name"/>
+                                            <p t-field="o.direccion"/>
+                                            <p t-field="o.telefono"/>
+                                            <p t-field="o.email"/>
                                         </td>
                                     </tr>
                                 </table>

@@ -9,14 +9,16 @@
                             <span style="font-weight: bold; text-decoration: underline; ">
                                 <strong>UPOCARGO -</strong>
                             </span>
-                            <span style="color: #999999;" t-field="o" />
+                            <span style="color: #999999;" t-field="o.id_servicios" />
                         </div>
                         <div class="row" style="font-size: 24px; margin-bottom: 20px;">
-                            <span style="font-weight: bold; text-decoration: underline; ">ID Servicio Adicional:</span>
+                            <span style="font-weight: bold; text-decoration: underline; ">ID
+                                Servicio Adicional:</span>
                             <span style="color: #999999;" t-field="o.id_servicios" />
                         </div>
                         <div class="row">
-                            <div class="col-xs-8" style="text-align: left; margin: auto; padding-left: 15px; padding-top: 10px;">
+                            <div class="col-xs-8"
+                                style="text-align: left; margin: auto; padding-left: 15px; padding-top: 10px;">
                                 <table>
                                     <tr>
                                         <td>
@@ -50,6 +52,100 @@
                                     </tr>
                                 </table>
                             </div>
+                        </div>
+                        <div t-if="o.proveedores" class="col-xs-8"
+                            style="text-align: left; margin: auto; padding-left: 15px; padding-top: 10px;">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <strong>ID Proveedor: </strong>
+                                        </th>
+                                        <th>
+                                            <strong>Entidad: </strong>
+                                        </th>
+                                        <th>
+                                            <strong>Nombre: </strong>
+                                        </th>
+                                        <th>
+                                            <strong>Direccion: </strong>
+                                        </th>
+                                        <th>
+                                            <strong>telefono: </strong>
+                                        </th>
+                                        <th>
+                                            <strong>Email: </strong>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="padding-left: 10px;">
+                                            <p t-field="o.proveedores.id_proveedor" />
+                                        </td>
+                                        <td style="padding-left: 10px;">
+                                            <p t-field="o.proveedores.entidad" />
+                                        </td>
+                                        <td style="padding-left: 10px;">
+                                            <p t-field="o.proveedores.name" />
+                                        </td>
+                                        <td style="padding-left: 10px;">
+                                            <p t-field="o.proveedores.direccion" />
+                                        </td>
+                                        <td style="padding-left: 10px;">
+                                            <p t-field="o.proveedores.telefono" />
+                                        </td>
+                                        <td style="padding-left: 10px;">
+                                            <p t-field="o.proveedores.email" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div t-if="o.clientes" class="col-xs-8"
+                            style="text-align: left; margin: auto; padding-left: 15px; padding-top: 10px;">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <strong>ID Cliente: </strong>
+                                        </th>
+                                        <th>
+                                            <strong>Nombre: </strong>
+                                        </th>
+                                        <th>
+                                            <strong>Telefono: </strong>
+                                        </th>
+                                        <th>
+                                            <strong>Direccion: </strong>
+                                        </th>
+                                        <th>
+                                            <strong>Email: </strong>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="o.clientes" t-as="c">
+                                        <tr>
+                                            <td>
+                                                <p t-field="c.id_cliente" />
+                                            </td>
+                                            <td>
+                                                <p t-field="c.name" />
+                                            </td>
+                                            <td>
+                                                <p t-field="c.telefono" />
+                                            </td>
+                                            <td>
+                                                <p t-field="c.direccion" />
+                                            </td>
+                                            <td>
+                                                <p t-field="c.email" />
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </t>

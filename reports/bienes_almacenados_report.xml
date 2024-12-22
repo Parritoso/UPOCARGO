@@ -9,7 +9,7 @@
                             <span style="font-weight: bold; text-decoration: underline; ">
                                 <strong>UPOCARGO -</strong>
                             </span>
-                            <span style="color: #999999;" t-field="o" />
+                            <span style="color: #999999;" t-field="o.id_bien" />
                         </div>
                         <div class="row" style="font-size: 24px; margin-bottom: 20px;">
                             <span style="font-weight: bold; text-decoration: underline; ">ID Bien:</span>
@@ -37,7 +37,7 @@
                                             <p t-field="o.id_bien" />
                                             <p t-field="o.descripcion" />
                                             <p t-field="o.peso" />
-                                            <p t-field="o.tamaño" />
+                                            <p t-field="o.tamanyo" />
                                         </td>
                                     </tr>
                                 </table>

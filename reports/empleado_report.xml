@@ -9,7 +9,7 @@
                             <span style="font-weight: bold; text-decoration: underline; ">
                                 <strong>UPOCARGO -</strong>
                             </span>
-                            <span style="color: #999999;" t-field="o" />
+                            <span style="color: #999999;" t-field="o.nombre" />
                         </div>
                         <div class="row" style="font-size: 24px; margin-bottom: 20px;">
                             <span style="font-weight: bold; text-decoration: underline; ">ID Empleado:</span>
@@ -17,10 +17,6 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-2" style="margin: auto; text-align: center; padding-left: 15px; padding-right: 15px; border-right: 2px solid #cccccc;">
-                                <p style="padding-top: 10px;">
-                                    <img t-if="not o.photo" t-att-src="'/web/static/src/img/placeholder.png'" height="120" border="1" width="120" />
-                                    <img t-if="o.photo" t-att-src="'data:image/png;base64,%s' % to_text(o.photo)" height="120" border="1" width="120" />
-                                </p>
                                 <p t-field="o.nombre" style="font-size: 14px; font-weight: bold;" />
                             </div>
                             <div class="col-xs-8" style="text-align: left; margin: auto; padding-left: 15px; padding-top: 10px;">

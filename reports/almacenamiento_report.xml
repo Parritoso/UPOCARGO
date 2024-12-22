@@ -9,7 +9,7 @@
                             <span style="font-weight: bold; text-decoration: underline; ">
                                 <strong>UPOCARGO -</strong>
                             </span>
-                            <span style="color: #999999;" t-field="o" />
+                            <span style="color: #999999;" t-field="o.id_almacenamiento" />
                         </div>
                         <div class="row" style="font-size: 24px; margin-bottom: 20px;">
                             <span style="font-weight: bold; text-decoration: underline; ">ID Almacenamiento:</span>
@@ -35,8 +35,8 @@
                                         </td>
                                         <td style="padding-left: 10px;">
                                             <p t-field="o.id_almacenamiento" />
-                                            <p t-field="o.fechaIngreso" />
-                                            <p t-field="o.fechaSalida" />
+                                            <p t-field="o.fecha_ingreso" />
+                                            <p t-field="o.fecha_salida" />
                                             <p t-field="o.estado" />
                                         </td>
                                     </tr>
@@ -68,7 +68,7 @@
                                                     <p t-field="b.peso" />
                                                 </td>
                                                 <td>
-                                                    <p t-field="b.tamaño" />
+                                                    <p t-field="b.tamanyo" />
                                                 </td>
                                             </tr>
                                         </t>

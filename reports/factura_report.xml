@@ -9,7 +9,7 @@
                             <span style="font-weight: bold; text-decoration: underline; ">
                                 <strong>UPOCARGO -</strong>
                             </span>
-                            <span style="color: #999999;" t-field="o" />
+                            <span style="color: #999999;" t-field="o.id_factura" />
                         </div>
                         <div class="row" style="font-size: 24px; margin-bottom: 20px;">
                             <span style="font-weight: bold; text-decoration: underline; ">ID Factura:</span>
@@ -68,6 +68,41 @@
                                                 <p t-field="a.estado" />
                                             </td>
                                         </t>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div t-if="o.mudanza_id" class="row" style="margin-top: 40px; font-weight: bold; font-size: 19px;">
+                            Mudanza
+                            </div>
+                            <div t-if="o.mudanza_id" id="mudanza_id_r" class="row" style="margin-top: 10px;">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                <strong>ID Mudanza: </strong>
+                                            </p>
+                                            <p>
+                                                <strong>Fecha: </strong>
+                                            </p>
+                                            <p t-if="o.mudanza_id.fecha_final_mudanza">
+                                                <strong>Fecha Final: </strong>
+                                            </p>
+                                            <p>
+                                                <strong>Direccion Origen: </strong>
+                                            </p>
+                                            <p>
+                                                <strong>Estado: </strong>
+                                            </p>
+                                        </td>
+                                        <td style="padding-left: 10px;">
+                                            <p t-field="o.mudanza_id.id_mudanza" />
+                                            <p t-field="o.mudanza_id.fecha" />
+                                            <p t-if="o.mudanza_id.fecha_final_mudanza"
+                                                t-field="o.mudanza_id.fecha_final_mudanza" />
+                                            <p t-field="o.mudanza_id.dirOrigen" />
+                                            <p t-field="o.mudanza_id.dirDestino" />
+                                            <p t-field="o.mudanza_id.estado" />
+                                        </td>
                                     </tr>
                                 </table>
                             </div>
