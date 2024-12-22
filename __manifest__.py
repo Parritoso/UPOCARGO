@@ -22,6 +22,8 @@
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
+        'reports/reports.xml',
+        'reports/empleado_report.xml',
         'views/config_views.xml',
         'views/mudanzas_view.xml',
         'views/clientes_view.xml',
