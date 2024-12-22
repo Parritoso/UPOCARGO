@@ -175,7 +175,8 @@ class UpocargoPortal(http.Controller):
             })
         if not user_id == mudanza.cliente.id_cliente:
             return request.redirect('/upocargo/mudanzas')
-        servicios_cliente = request.env['upocargo.servicios_adicionales'].sudo().search([('cliente.id_cliente', '=', user_id), ('estado', '=', 'true'),'|', ('aplicable_a','=','mudanza'),('aplicable_a', '=', 'ambos')])
+        user = request.env['upocargo.cliente'].sudo().search([('id_cliente', '=', user_id)], limit=1)
+        servicios_cliente = request.env['upocargo.servicios_adicionales'].sudo().search([('clientes', 'in', user.id), ('estado', '=', 'true'),'|', ('aplicable_a','=','mudanza'),('aplicable_a', '=', 'ambos')])
         if http.request.httprequest.method == 'POST':
             _logger.info("Method POST")
             action = kwargs.get('action')
@@ -242,6 +243,7 @@ class UpocargoPortal(http.Controller):
         if not cliente.exists():
             return request.redirect('/upocargo/login')
         facturas = cliente.mudanzas.factura
+        facturas = facturas + cliente.almacenamiento.factura_id
         #facturas = request.env['upocargo.factura'].search([('mudanza_id.cliente','=',cliente.id_cliente)])
         return request.render('upocargo.facturas_template', {
             'facturas': facturas
@@ -258,7 +260,7 @@ class UpocargoPortal(http.Controller):
             return http.request.render('upocargo.page_not_found_404',{
                 'game': game
             })
-        if not user_id == factura.mudanza_id.cliente.id_cliente:
+        if not user_id == factura.mudanza_id.cliente.id_cliente and not user_id == factura.almacenamiento_id.cliente.id_cliente:
             return request.redirect('/upocargo/facturas')
         return http.request.render('upocargo.factura_detail',{
             'factura': factura
@@ -290,7 +292,8 @@ class UpocargoPortal(http.Controller):
             })
         if not user_id == almacenamiento.cliente.id_cliente:
             return request.redirect('/upocargo/almacenamiento')
-        servicios_cliente = request.env['upocargo.servicios_adicionales'].sudo().search([('cliente.id_cliente', '=', user_id), ('estado', '=', 'true'),'|', ('aplicable_a','=','almacenamiento'),('aplicable_a', '=', 'ambos')])
+        user = request.env['upocargo.cliente'].sudo().search([('id_cliente', '=', user_id)], limit=1)
+        servicios_cliente = request.env['upocargo.servicios_adicionales'].sudo().search([('clientes', 'in', user.id), ('estado', '=', 'true'),'|', ('aplicable_a','=','almacenamiento'),('aplicable_a', '=', 'ambos')])
         if http.request.httprequest.method == 'POST':
             action = kwargs.get('action')
             if action == 'atrasar':
@@ -303,7 +306,7 @@ class UpocargoPortal(http.Controller):
                     if servicio:
                         # Asignar el servicio a la mudanza
                         almacenamiento.servicios_adicionales = [(4, servicio.id)]
-        return http.request.render('upocargo.mudanza_detail',{
+        return http.request.render('upocargo.almacenamiento_detail',{
             'almacenamiento': almacenamiento,
             'servicios_disponibles': servicios_cliente
         })
@@ -357,7 +360,8 @@ class UpocargoPortal(http.Controller):
         services = request.env['upocargo.servicios_adicionales'].search(domain)
 
         # Obtener los datos del usuario
-        user = request.env.user
+        user_id = request.session.get('cliente_id')
+        user = request.env['upocargo.cliente'].sudo().search([('id_cliente','=',user_id)])
 
         # Devolver la página con los servicios filtrados
         return request.render('upocargo.marketplace_page', {
@@ -379,7 +383,7 @@ class UpocargoPortal(http.Controller):
                 'game': game
             })
         user = request.env['upocargo.cliente'].sudo().search([('id_cliente','=',user_id)])
-        is_subscribed = bool(request.env['upocargo.servicios_adicionales'].sudo().search([('cliente.id_cliente','=',user_id)]))
+        is_subscribed = user in servicio.clientes#bool(request.env['upocargo.servicios_adicionales'].sudo().search([('cliente.id_cliente','=',user_id)]))
 
         # Mostrar la vista del servicio con los detalles
         return request.render('upocargo.servicio_adicional_page', {
@@ -391,24 +395,35 @@ class UpocargoPortal(http.Controller):
     @http.route('/upocargo/suscribirse_servicio/<string:service>', 
                 type='http', auth="public")
     def suscribirse_servicio(self, service, **kwargs):
+        # Obtener el id del cliente desde la sesión
         user_id = request.session.get('cliente_id')
-        user = request.env['upocargo.cliente'].sudo().search([('id_cliente','=',user_id)])
-        # Comprobar si el usuario ya está suscrito al servicio
-        servicio_adicional = request.env['upocargo.servicios_adicionales'].search([
-            ('id_servicios', '=', service),
-            ('cliente', '=', user.id)
+    
+        # Verificar si el usuario está autenticado
+        if not user_id:
+            return request.redirect('/upocargo/login')
+
+        # Obtener el cliente
+        user = request.env['upocargo.cliente'].sudo().search([('id_cliente', '=', user_id)], limit=1)
+
+        if not user:
+            return request.redirect('/upocargo/login')
+
+        # Obtener el servicio adicional
+        servicio = request.env['upocargo.servicios_adicionales'].sudo().search([
+            ('id_servicios', '=', service)
         ], limit=1)
 
-        if servicio_adicional:
-            # Si está suscrito, desuscribir
-            servicio_adicional.write({'cliente': None})
+        if not servicio:
+            # Si el servicio no existe, redirigir a alguna página de error o a la página de servicios
+            return request.redirect('/upocargo/servicios')
+
+        # Comprobar si el cliente ya está suscrito a este servicio
+        if user in servicio.clientes:
+            # Si ya está suscrito, desuscribir
+            servicio.write({'clientes': [(3, user.id)]})  # Elimina al cliente de la relación
         else:
             # Si no está suscrito, suscribir
-            servicio = request.env['upocargo.servicios_adicionales'].search([
-                ('id_servicios', '=', service)
-            ], limit=1)
-            if servicio:
-                servicio.write({'cliente': user.id})
+            servicio.write({'clientes': [(4, user.id)]})  # Añade al cliente a la relación
 
         # Redirigir al usuario de nuevo a la página del servicio
         return request.redirect('/upocargo/servicio_adicional/{}'.format(service))
@@ -419,15 +434,21 @@ class UpocargoPortal(http.Controller):
         user_id = request.session.get('cliente_id')
         if not user_id:
             return request.redirect('/upocargo/login')
+        
+        user = request.env['upocargo.cliente'].sudo().search([('id_cliente', '=', user_id)], limit=1)
+        if not user:
+            return request.redirect('/upocargo/login')
+        
+        _logger.info(f"Cliente encontrado: {user.id} - {user.name}")
 
         # Obtener los servicios suscritos por el usuario
         servicios_contratados = request.env['upocargo.servicios_adicionales'].search([
-            ('cliente.id_cliente', '=', user_id)
+            ('clientes', 'in', user.id), ('estado', '=', 'true')
         ])
-
-        # Obtener la información del usuario
-        user = request.env['upocargo.cliente'].sudo().search([('id_cliente', '=', user_id)])
-
+        if not servicios_contratados:
+            _logger.info(f"No se encontraron servicios contratados para el cliente {user.id}.")
+        else:
+            _logger.info(f"Servicios contratados para el cliente {user.id}: {len(servicios_contratados)} servicios encontrados.")
         # Renderizar la página con los servicios suscritos y la información del usuario
         return request.render('upocargo.servicios_contratados_page', {
             'services': servicios_contratados,

@@ -117,11 +117,14 @@ class Almacenamiento(models.Model):
             vals['bienes_almacenados'] = bienes
         almacenamienrto = super(Almacenamiento, self).create(vals)
 
+        _logger.info(f"not vals.get('factura_id'): {not vals.get('factura_id')}")
         if not vals.get('factura_id'):
             dias = (fields.Date.from_string(vals['fecha_salida']) - fields.Date.from_string(vals['fecha_ingreso'])).days
             #precio_por_dia = 50
             precio_por_dia = self.env['ir.config_parameter'].get_param('upocargo.precio_por_dia_almacenamiento')
-            coste_total = dias * precio_por_dia
+            _logger.info(f"precio_por_dia: {precio_por_dia}")
+            coste_total = dias * float(precio_por_dia)
+            _logger.info(f"coste_total: {coste_total}")
             factura_vals = {
                 'id_factura': self.env['upocargo.factura']._generate_id_factura(),
                 'precio': coste_total,
@@ -129,11 +132,15 @@ class Almacenamiento(models.Model):
                 'almacenamiento_id': almacenamienrto.id
             }
             factura = self.env['upocargo.factura'].create(factura_vals)
+            _logger.info(f"factura: {factura}")
 
-            almacenamienrto.factura_id = factura.id
+            almacenamienrto.write({'factura_id': factura.id})
+
+            _logger.info(f"almacenamienrto.factura: {almacenamienrto.factura_id}")
 
             factura.agregar_gasto('Costo base',coste_total)
 
+        _logger.info(f"bienes_caben: {bienes_caben}")
         if bienes_caben:
             for lista in bienes_caben:
                 almacen_id = lista[0]
@@ -146,7 +153,9 @@ class Almacenamiento(models.Model):
                     vals['almacen'] = almacen_id
                     vals['factura_id'] = factura.id
                     nuevo_almacenamiento = self.env['upocargo.almacenamiento'].create(vals)
+                    nuevo_almacenamiento.write({'factura_id':factura.id})
 
+        _logger.info(f"final almacenamienrto.factura: {almacenamienrto.factura_id}")
         return almacenamienrto
     
     def write(self,vals):
@@ -166,6 +175,7 @@ class Almacenamiento(models.Model):
                 for servicio in servicios_adicionales:
                     servicio_obj = self.env['upocargo.servicios_adicionales'].browse(servicio[1])
                     factura.agregar_gasto(f"Servicio Adicional: {servicio_obj.tipo}", servicio_obj.precio_final)
+        super(Almacenamiento, self).write(vals)
 
     @staticmethod
     def _generate_id_almacenamiento():

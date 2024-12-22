@@ -5,6 +5,7 @@ import string
 from datetime import datetime, date
 import json
 import logging
+import ast
 _logger = logging.getLogger(__name__)
 
 class Mudanza(models.Model):
@@ -110,14 +111,14 @@ class Mudanza(models.Model):
                 }
                 almacenamiento = self.env['upocargo.almacenamiento'].create(almacenamiento_vals)
 
-        coste = self._calcular_precio_promedio()
+        coste = self._calcular_precio_promedio(self)
         #coste_vehiculo_extra = 100
         #coste_empleado_extra = 50
         coste_vehiculo_extra = self.env['ir.config_parameter'].get_param('upocargo.coste_vehiculo_extra')
         coste_empleado_extra = self.env['ir.config_parameter'].get_param('upocargo.coste_empleado_extra')
         vehiculos_extra = max(0, len(vehiculos_id)-1)
         empleados_extra = max(0, len(empleados_id)-2)
-        coste = float(coste) + float(vehiculos_extra*coste_vehiculo_extra) + float(empleados_extra*coste_empleado_extra)
+        coste = float(coste) + float(vehiculos_extra*float(coste_vehiculo_extra)) + float(empleados_extra*float(coste_empleado_extra))
         if 'almacenamientos'and almacenamiento:
             factura_almacenamiento = self.env['upocargo.factura'].search([('id','=',almacenamiento.factura_id)])
             coste += float(factura.precio)
@@ -155,7 +156,7 @@ class Mudanza(models.Model):
             costo_servicios_adicionales = sum([self.env['upocargo.servicios_adicionales'].browse(servicio[1]).precio_final for servicio in servicios_adicionales])
 
             # Calcular el nuevo costo total
-            coste = self._calcular_precio_promedio()
+            coste = self._calcular_precio_promedio(self)
             #coste_vehiculo_extra = 100
             #coste_empleado_extra = 50
             coste_vehiculo_extra = self.env['ir.config_parameter'].get_param('upocargo.coste_vehiculo_extra')
@@ -188,8 +189,8 @@ class Mudanza(models.Model):
         return f"{creation_date}-{random_suffix}"
     
     @staticmethod
-    def _calcular_precio_promedio():
-        costos_reales = [300,500, 700, 1000, 12000, 15000,1700]
+    def _calcular_precio_promedio(self):
+        costos_reales = ast.literal_eval(self.env['ir.config_parameter'].get_param('upocargo.costos_reales'))#[300,500, 700, 1000, 12000, 15000,1700]
         return random.choice(costos_reales) #sum(costos_reales) / len(costos_reales)
     
     @api.depends('fecha', 'fecha_final_mudanza')

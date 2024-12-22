@@ -23,7 +23,7 @@ class ServiciosAdicionales(models.Model):
 
     #Campos relacionales
     proveedores = fields.One2many('upocargo.proveedor','servicios_adicionales' ,string='proveedores')
-    cliente= fields.Many2one('upocargo.cliente' ,string='clientes')
+    clientes = fields.Many2many('upocargo.cliente', 'rel_servicio_cliente', 'servicio_id', 'cliente_id', string="Clientes")
 
     @staticmethod
     def _generate_id_servicio_adicional():

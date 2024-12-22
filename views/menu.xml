@@ -36,7 +36,7 @@
       <!-- Ajustes Menu -->
       <menuitem id="menu_upocargo_configuracion"
               name="Configuración de Upocargo"
-              parent="base.menu_config"
+              parent="base.menu_administration"
               action="action_upocargo_configuracion"
               sequence="10"/>
 

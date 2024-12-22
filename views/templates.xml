@@ -846,6 +846,24 @@
               <t t-esc="almacenamiento.cliente.telefono or 'N/A'" />
             </p>
           </div>
+          <!-- Factura Asociada -->
+          <div class="factura-info">
+            <h3>Factura Asociada</h3>
+            <t t-if="almacenamiento.factura_id">
+              <p>
+                <strong>ID Factura:</strong>
+                <t t-esc="almacenamiento.factura_id.id_factura" />
+              </p>
+              <p>
+                <strong>Total:</strong>
+                <t t-esc="almacenamiento.factura_id.precio" />
+              </p>
+              <a t-att-href="'/upocargo/facturas/' + str(almacenamiento.factura_id.id_factura)">Ver Factura</a>
+            </t>
+            <t t-else="">
+              <p>No hay factura asociada a esta mudanza</p>
+            </t>
+          </div>
         </section>
       </div>
       <script type="text/javascript" src="/upocargo/static/src/js/details/almacenamiento_detail.js"></script>
@@ -932,7 +950,7 @@
               <t t-esc="'%s %s' % (factura.currency_id.symbol, factura.precio)" />
             </p>
           </div>
-          <t t-if="factura.mudanza_id != False">
+          <t t-if="factura.mudanza_id">
             <div class="mudanza-info">
               <h3>Información de la mudanza asociada</h3>
               <p>
@@ -952,6 +970,29 @@
               <p>
                 <strong>Estado:</strong>
                 <t t-esc="factura.mudanza_id.estado or 'N/A'" />
+              </p>
+            </div>
+          </t>
+          <t t-elif="factura.almacenamiento_id">
+            <div class="mudanza-info">
+              <h3>Información del almacenamiento asociada</h3>
+              <p>
+                <strong>ID del ALmacenamiento: </strong>
+                <a t-att-href="'/upocargo/almacenamientos/%s' % factura.almacenamiento_id.id_almacenamiento">
+                  <t t-esc="factura.almacenamiento_id.id_almacenamiento" />
+                </a>
+              </p>
+              <p>
+                <strong>Fecha de Ingreso:</strong>
+                <t t-esc="factura.almacenamiento_id.fecha_ingreso or 'N/A'" />
+              </p>
+              <p>
+                <strong>Fehca de Salida:</strong>
+                <t t-esc="factura.almacenamiento_id.fecha_salida or 'N/A'" />
+              </p>
+              <p>
+                <strong>Estado:</strong>
+                <t t-esc="factura.almacenamiento_id.estado or 'N/A'" />
               </p>
             </div>
           </t>
@@ -1224,6 +1265,9 @@
                   </a>
                 </div>
               </div>
+            </t>
+            <t t-if="not services">
+              <p>No tienes servicios contratados.</p>
             </t>
           </div>
         </div>

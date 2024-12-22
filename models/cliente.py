@@ -24,7 +24,10 @@ class Cliente(models.Model):
     #Campos relacionales
     mudanzas = fields.One2many('upocargo.mudanza','cliente', string="Mudanzas")
     almacenamiento = fields.One2many('upocargo.almacenamiento','cliente', string="Almacenamiento")
-    servicios_adicionales = fields.One2many('upocargo.servicios_adicionales','cliente', string="Servicios Adicionales")
+    servicios_adicionales = fields.Many2many('upocargo.servicios_adicionales','rel_servicio_cliente',  # Nombre de la tabla intermedia
+                                              'cliente_id',  # Campo en la tabla intermedia que hace referencia a 'upocargo.cliente'
+                                              'servicio_id',  # Campo en la tabla intermedia que hace referencia a 'upocargo.servicios_adicionales'
+                                              string="Servicios Adicionales")
 
     #Campos internos
     password = fields.Char(string="Contraseña", groups="base.group_no_one")
