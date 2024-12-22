@@ -101,12 +101,12 @@
     </record>
 
     <!-- SERVICIOS ADICIONALES -->
-    <record id="report_upocargo_servicios_almacenados_report" model="ir.actions.report">
+    <record id="report_upocargo_servicios_adicionales_report" model="ir.actions.report">
         <field name="name">ServiciosAdicionales report</field>
-        <field name="model">upocargo.servicios_almacenados</field>
+        <field name="model">upocargo.servicios_adicionales</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">upocargo.upocargo_servicios_almacenados_template</field>
-        <field name="binding_model_id" ref="model_upocargo_servicios_almacenados"/>
+        <field name="report_name">upocargo.upocargo_servicios_adicionales_template</field>
+        <field name="binding_model_id" ref="model_upocargo_servicios_adicionales"/>
         <field name="binding_type">report</field>
     </record>
 </odoo>
