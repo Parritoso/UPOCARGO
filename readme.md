@@ -242,4 +242,4 @@ Definición de las fechas de entrega y material que se entrega, así como, comen
 <br>
 **Cuarto entregable (40%).** <br>
 **Entrega completa del módulo (Subir nota: +10% incorporación de tests automatizados)** <br>
-$${\color{red}Fecha} \space {\color{red}límite} \space {\color{red}de} \space {\color{red}entrega:} \space {\color{red}Domingo,} \space {\color{red}22} \space {\color{red}de} \space {\color{red}Diciembre} \space {\color{red}a} \space {\color{red}las} \space {\color{red}23.59h} \space$$
+~~$${\color{red}Fecha} \space {\color{red}límite} \space {\color{red}de} \space {\color{red}entrega:} \space {\color{red}Domingo,} \space {\color{red}22} \space {\color{red}de} \space {\color{red}Diciembre} \space {\color{red}a} \space {\color{red}las} \space {\color{red}23.59h} \space$$~~
